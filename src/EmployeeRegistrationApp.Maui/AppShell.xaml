@@ -1,0 +1,79 @@
+<!-- src/EmployeeRegistrationApp.Maui/AppShell.xaml -->
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:dash="clr-namespace:EmployeeRegistrationApp.Maui.Presentation.Dashboard.Views"
+       xmlns:emp="clr-namespace:EmployeeRegistrationApp.Maui.Presentation.Employees.Views"
+       xmlns:dep="clr-namespace:EmployeeRegistrationApp.Maui.Presentation.Departments.Views"
+       xmlns:pos="clr-namespace:EmployeeRegistrationApp.Maui.Presentation.Positions.Views"
+       xmlns:rep="clr-namespace:EmployeeRegistrationApp.Maui.Presentation.Reports.Views"
+       xmlns:sets="clr-namespace:EmployeeRegistrationApp.Maui.Presentation.Settings.Views"
+       x:Class="EmployeeRegistrationApp.Maui.AppShell"
+       Shell.FlyoutBehavior="Locked">
+
+    <!-- Rotas de navegação (para usar com ShellNavigationService) -->
+    <Shell.RouteHost>
+        <ShellContent Route="dashboard" ContentTemplate="{DataTemplate dash:DashboardPage}" />
+    </Shell.RouteHost>
+
+    <TabBar>
+
+        <!-- Dashboard -->
+        <ShellContent
+            Title="Dashboard"
+            Route="dashboard-tab"
+            Icon="tab_dashboard.png"
+            ContentTemplate="{DataTemplate dash:DashboardPage}" />
+
+        <!-- Funcionários -->
+        <Tab
+            Title="Funcionários"
+            Icon="tab_employees.png">
+            <ShellContent
+                Title="Lista"
+                Route="employees-list"
+                ContentTemplate="{DataTemplate emp:EmployeesListPage}" />
+        </Tab>
+
+        <!-- Departamentos -->
+        <Tab
+            Title="Departamentos"
+            Icon="tab_departments.png">
+            <ShellContent
+                Title="Departamentos"
+                Route="departments-list"
+                ContentTemplate="{DataTemplate dep:DepartmentsListPage}" />
+        </Tab>
+
+        <!-- Cargos / Posições -->
+        <Tab
+            Title="Cargos"
+            Icon="tab_positions.png">
+            <ShellContent
+                Title="Cargos"
+                Route="positions-list"
+                ContentTemplate="{DataTemplate pos:PositionsListPage}" />
+        </Tab>
+
+        <!-- Relatórios -->
+        <Tab
+            Title="Relatórios"
+            Icon="tab_reports.png">
+            <ShellContent
+                Title="Visão Geral"
+                Route="reports"
+                ContentTemplate="{DataTemplate rep:ReportsPage}" />
+        </Tab>
+
+        <!-- Configurações -->
+        <Tab
+            Title="Configurações"
+            Icon="tab_settings.png">
+            <ShellContent
+                Title="Configurações"
+                Route="settings"
+                ContentTemplate="{DataTemplate sets:SettingsPage}" />
+        </Tab>
+
+    </TabBar>
+</Shell>

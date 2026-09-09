@@ -1,0 +1,186 @@
+{
+  "companySettings": {
+    "companyName": "TechCorp Solutions",
+    "legalName": "TechCorp Solutions LTDA",
+    "cnpj": "12.345.678/0001-90",
+    "defaultWorkloadHours": 40,
+    "defaultCurrency": "BRL"
+  },
+
+  "departments": [
+    {
+      "id": "dep-hr",
+      "name": "Recursos Humanos",
+      "code": "HR",
+      "description": "Gestão de pessoas, admissões e clima organizacional.",
+      "isActive": true
+    },
+    {
+      "id": "dep-it",
+      "name": "Tecnologia da Informação",
+      "code": "IT",
+      "description": "Desenvolvimento de software, infraestrutura e suporte.",
+      "isActive": true
+    },
+    {
+      "id": "dep-fin",
+      "name": "Financeiro",
+      "code": "FIN",
+      "description": "Controle financeiro, folha e faturamento.",
+      "isActive": true
+    }
+  ],
+
+  "positions": [
+    {
+      "id": "pos-dev-jr",
+      "title": "Desenvolvedor Frontend Júnior",
+      "departmentId": "dep-it",
+      "positionType": "Developer",
+      "baseSalary": 4500.0,
+      "isActive": true
+    },
+    {
+      "id": "pos-dev-pl",
+      "title": "Desenvolvedor Fullstack Pleno",
+      "departmentId": "dep-it",
+      "positionType": "Developer",
+      "baseSalary": 8500.0,
+      "isActive": true
+    },
+    {
+      "id": "pos-hr-analyst",
+      "title": "Analista de RH",
+      "departmentId": "dep-hr",
+      "positionType": "Analyst",
+      "baseSalary": 5200.0,
+      "isActive": true
+    },
+    {
+      "id": "pos-fin-manager",
+      "title": "Coordenador Financeiro",
+      "departmentId": "dep-fin",
+      "positionType": "Manager",
+      "baseSalary": 9800.0,
+      "isActive": true
+    }
+  ],
+
+  "employees": [
+    {
+      "id": "emp-001",
+      "fullName": "Ana Souza",
+      "cpf": "12345678901",
+      "email": "ana.souza@techcorp.com",
+      "phoneNumber": "+55 (33) 99999-0001",
+      "hireDate": "2023-01-10",
+      "birthDate": "1996-07-21",
+      "employmentStatus": "Active",
+      "contractType": "CLT",
+      "jobRole": "Developer",
+      "departmentId": "dep-it",
+      "positionId": "pos-dev-jr",
+      "salary": 4800.0,
+      "isManager": false,
+      "isActive": true
+    },
+    {
+      "id": "emp-002",
+      "fullName": "Bruno Lima",
+      "cpf": "23456789012",
+      "email": "bruno.lima@techcorp.com",
+      "phoneNumber": "+55 (33) 99999-0002",
+      "hireDate": "2022-05-03",
+      "birthDate": "1992-03-14",
+      "employmentStatus": "Active",
+      "contractType": "CLT",
+      "jobRole": "Developer",
+      "departmentId": "dep-it",
+      "positionId": "pos-dev-pl",
+      "salary": 9000.0,
+      "isManager": false,
+      "isActive": true
+    },
+    {
+      "id": "emp-003",
+      "fullName": "Carla Menezes",
+      "cpf": "34567890123",
+      "email": "carla.menezes@techcorp.com",
+      "phoneNumber": "+55 (33) 99999-0003",
+      "hireDate": "2021-09-01",
+      "birthDate": "1988-11-05",
+      "employmentStatus": "Active",
+      "contractType": "CLT",
+      "jobRole": "Analyst",
+      "departmentId": "dep-hr",
+      "positionId": "pos-hr-analyst",
+      "salary": 5400.0,
+      "isManager": false,
+      "isActive": true
+    },
+    {
+      "id": "emp-004",
+      "fullName": "Diego Martins",
+      "cpf": "45678901234",
+      "email": "diego.martins@techcorp.com",
+      "phoneNumber": "+55 (33) 99999-0004",
+      "hireDate": "2020-03-18",
+      "birthDate": "1985-02-11",
+      "employmentStatus": "Active",
+      "contractType": "CLT",
+      "jobRole": "Manager",
+      "departmentId": "dep-fin",
+      "positionId": "pos-fin-manager",
+      "salary": 10500.0,
+      "isManager": true,
+      "isActive": true
+    },
+    {
+      "id": "emp-005",
+      "fullName": "Eduarda Pires",
+      "cpf": "56789012345",
+      "email": "eduarda.pires@techcorp.com",
+      "phoneNumber": "+55 (33) 99999-0005",
+      "hireDate": "2019-08-30",
+      "birthDate": "1990-10-09",
+      "employmentStatus": "Inactive",
+      "contractType": "CLT",
+      "jobRole": "Developer",
+      "departmentId": "dep-it",
+      "positionId": "pos-dev-pl",
+      "salary": 8700.0,
+      "isManager": false,
+      "isActive": false
+    }
+  ],
+
+  "dashboardSummary": {
+    "totalEmployees": 5,
+    "activeEmployees": 4,
+    "inactiveEmployees": 1,
+    "admissionsLast30Days": 1,
+    "headcountByDepartment": [
+      {
+        "departmentId": "dep-it",
+        "departmentName": "Tecnologia da Informação",
+        "count": 3
+      },
+      {
+        "departmentId": "dep-hr",
+        "departmentName": "Recursos Humanos",
+        "count": 1
+      },
+      {
+        "departmentId": "dep-fin",
+        "departmentName": "Financeiro",
+        "count": 1
+      }
+    ],
+    "salarySummary": {
+      "totalPayroll": 29700.0,
+      "averageSalary": 7425.0,
+      "minSalary": 4800.0,
+      "maxSalary": 10500.0
+    }
+  }
+}

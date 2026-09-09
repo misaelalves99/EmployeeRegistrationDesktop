@@ -1,0 +1,27 @@
+<!-- src/EmployeeRegistrationApp.Maui/Presentation/Common/Controls/StatusBadge.xaml -->
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="EmployeeRegistrationApp.Maui.Presentation.Common.Controls.StatusBadge"
+    x:Name="Root"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Border
+        x:Name="RootBorder"
+        Padding="8,2"
+        StrokeThickness="0"
+        StrokeShape="RoundRectangle 16"
+        BackgroundColor="#111827"
+        HorizontalOptions="Start"
+        VerticalOptions="Center">
+
+        <Label
+            x:Name="StatusLabel"
+            FontSize="11"
+            FontAttributes="Bold"
+            Text="{Binding Text, Source={x:Reference Root}}"
+            TextColor="#e5e7eb"
+            HorizontalOptions="Center"
+            VerticalOptions="Center" />
+    </Border>
+</ContentView>

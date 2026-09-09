@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+  IgnorableNamespaces="uap rescap">
+
+	<Identity
+	  Name="EmployeeRegistrationApp.Maui.Desktop"
+	  Publisher="CN=YourCompany"
+	  Version="1.0.0.0" />
+
+	<Properties>
+		<DisplayName>Employee Registration Desktop</DisplayName>
+		<PublisherDisplayName>Your Company</PublisherDisplayName>
+		<Logo>Assets\Square150x150Logo.png</Logo>
+	</Properties>
+
+	<Resources>
+		<Resource Language="x-generate" />
+	</Resources>
+
+	<Dependencies>
+		<TargetDeviceFamily Name="Windows.Universal"
+							MinVersion="10.0.17763.0"
+							MaxVersionTested="10.0.19041.0" />
+	</Dependencies>
+
+	<Applications>
+		<Application Id="App"
+					 Executable="$targetnametoken$.exe"
+					 EntryPoint="EmployeeRegistrationApp.Maui.WinUI.App">
+			<uap:VisualElements
+				DisplayName="Employee Registration Desktop"
+				Description="Gestão de funcionários em ambiente desktop"
+				Square150x150Logo="Assets\Square150x150Logo.png"
+				Square44x44Logo="Assets\Square44x44Logo.png"
+				BackgroundColor="transparent">
+				<uap:DefaultTile Square71x71Logo="Assets\Square71x71Logo.png" />
+			</uap:VisualElements>
+		</Application>
+	</Applications>
+
+	<Capabilities>
+		<Capability Name="internetClient" />
+	</Capabilities>
+</Package>

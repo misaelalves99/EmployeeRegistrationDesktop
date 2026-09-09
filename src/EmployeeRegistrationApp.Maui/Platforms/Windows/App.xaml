@@ -1,0 +1,17 @@
+﻿<!-- src/EmployeeRegistrationApp.Maui/Platforms/Windows/App.xaml -->
+<maui:MauiWinUIApplication
+    x:Class="EmployeeRegistrationApp.Maui.WinUI.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:maui="using:Microsoft.Maui"
+    xmlns:local="using:EmployeeRegistrationApp.Maui.WinUI">
+
+    <!--
+        Aqui você poderia colocar recursos específicos de Windows,
+        mas normalmente deixamos a maior parte dos estilos em
+        Resources/Styles/*.xaml
+    -->
+    <maui:MauiWinUIApplication.Resources>
+
+    </maui:MauiWinUIApplication.Resources>
+</maui:MauiWinUIApplication>

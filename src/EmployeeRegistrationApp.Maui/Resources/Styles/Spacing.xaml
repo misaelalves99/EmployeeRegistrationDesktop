@@ -1,0 +1,32 @@
+﻿<!-- src/EmployeeRegistrationApp.Maui/Resources/Styles/Spacing.xaml -->
+<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!-- Escala de espaçamento (em device units) -->
+    <x:Double x:Key="Spacing.XXS">2</x:Double>
+    <x:Double x:Key="Spacing.XS">4</x:Double>
+    <x:Double x:Key="Spacing.S">8</x:Double>
+    <x:Double x:Key="Spacing.M">12</x:Double>
+    <x:Double x:Key="Spacing.L">16</x:Double>
+    <x:Double x:Key="Spacing.XL">24</x:Double>
+    <x:Double x:Key="Spacing.XXL">32</x:Double>
+
+    <!-- Espessuras padrão para margin/padding -->
+    <Thickness x:Key="Spacing.HorizontalPage">24,0</Thickness>
+    <Thickness x:Key="Spacing.VerticalPage">0,24</Thickness>
+
+    <Thickness x:Key="Spacing.CardPadding">16</Thickness>
+    <Thickness x:Key="Spacing.SectionSpacing">24,24,24,24</Thickness>
+
+    <!-- Espaçamentos verticais comuns (StackLayout / Grid) -->
+    <x:Double x:Key="Spacing.StackSmall">8</x:Double>
+    <x:Double x:Key="Spacing.StackMedium">12</x:Double>
+    <x:Double x:Key="Spacing.StackLarge">20</x:Double>
+
+    <!-- Raio de borda padrão para cards/botões -->
+    <x:Double x:Key="Radius.Small">6</x:Double>
+    <x:Double x:Key="Radius.Medium">10</x:Double>
+    <x:Double x:Key="Radius.Large">16</x:Double>
+
+</ResourceDictionary>

@@ -1,0 +1,20 @@
+﻿<!-- src/EmployeeRegistrationApp.Domain/EmployeeRegistrationApp.Domain.csproj -->
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+
+		<!-- Garante que o root namespace fique exatamente como usamos no código -->
+		<RootNamespace>EmployeeRegistrationApp.Domain</RootNamespace>
+		<AssemblyName>EmployeeRegistrationApp.Domain</AssemblyName>
+		<LangVersion>latest</LangVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- Se precisar de pacotes específicos do domínio (ex.: FluentValidation),
+         coloque aqui. Por enquanto, domínio puro, sem dependências. -->
+	</ItemGroup>
+
+</Project>

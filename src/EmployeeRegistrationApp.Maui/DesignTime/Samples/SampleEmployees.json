@@ -1,0 +1,39 @@
+// src/EmployeeRegistrationApp.Maui/DesignTime/Samples/SampleEmployees.json
+[
+  {
+    "id": 1,
+    "fullName": "Ana Souza",
+    "department": "Tecnologia",
+    "position": "Desenvolvedora Plena",
+    "employmentStatus": "Ativa",
+    "contractType": "CLT",
+    "salary": 8500.0
+  },
+  {
+    "id": 2,
+    "fullName": "Carlos Pereira",
+    "department": "Recursos Humanos",
+    "position": "Analista de RH",
+    "employmentStatus": "Ativa",
+    "contractType": "CLT",
+    "salary": 6200.0
+  },
+  {
+    "id": 3,
+    "fullName": "Mariana Lima",
+    "department": "Financeiro",
+    "position": "Coordenadora Financeira",
+    "employmentStatus": "Inativa",
+    "contractType": "PJ",
+    "salary": 12000.0
+  },
+  {
+    "id": 4,
+    "fullName": "João Santos",
+    "department": "Tecnologia",
+    "position": "Desenvolvedor Júnior",
+    "employmentStatus": "Ativa",
+    "contractType": "CLT",
+    "salary": 4500.0
+  }
+]

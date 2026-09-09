@@ -1,0 +1,111 @@
+ // src/EmployeeRegistrationApp.Maui/Presentation/Departments/Views/DepartmentsListPage.xaml<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EmployeeRegistrationApp.Maui.Presentation.Departments.Views.DepartmentsListPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Departamentos">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Text="Novo"
+            Priority="0"
+            Order="Primary"
+            Command="{Binding NewDepartmentCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <VerticalStackLayout
+        Padding="24"
+        Spacing="16">
+
+        <!-- Cabeçalho -->
+        <VerticalStackLayout Spacing="4">
+            <Label
+                Text="Departamentos"
+                FontAttributes="Bold"
+                FontSize="22" />
+
+            <Label
+                Text="Gerencie as áreas da empresa (RH, TI, Financeiro, etc.)."
+                FontSize="13"
+                Opacity="0.8" />
+        </VerticalStackLayout>
+
+        <!-- Busca -->
+        <SearchBar
+            Placeholder="Buscar departamento..."
+            Text="{Binding SearchTerm}"
+            FontSize="14" />
+
+        <!-- Lista -->
+        <CollectionView
+            x:Name="DepartmentsCollectionView"
+            ItemsSource="{Binding Departments}"
+            SelectionMode="Single"
+            SelectionChanged="DepartmentsCollectionView_SelectionChanged">
+
+            <CollectionView.EmptyView>
+                <VerticalStackLayout
+                    Padding="32"
+                    Spacing="8"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center">
+                    <Label
+                        Text="Nenhum departamento encontrado."
+                        FontAttributes="Bold"
+                        FontSize="16"
+                        HorizontalOptions="Center" />
+                    <Label
+                        Text="Toque em 'Novo' para cadastrar o primeiro departamento."
+                        FontSize="13"
+                        HorizontalOptions="Center"
+                        Opacity="0.7" />
+                </VerticalStackLayout>
+            </CollectionView.EmptyView>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame
+                        Padding="12"
+                        Margin="0,4"
+                        HasShadow="False"
+                        BorderColor="{DynamicResource Gray400}"
+                        BackgroundColor="{DynamicResource White}"
+                        CornerRadius="12">
+
+                        <Grid
+                            ColumnDefinitions="*,Auto"
+                            RowDefinitions="Auto,Auto"
+                            ColumnSpacing="8">
+
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Text="{Binding Name}"
+                                FontAttributes="Bold"
+                                FontSize="16" />
+
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Text="{Binding Description}"
+                                FontSize="13"
+                                Opacity="0.8"
+                                LineBreakMode="TailTruncation"
+                                MaxLines="2" />
+
+                            <Label
+                                Grid.RowSpan="2"
+                                Grid.Column="1"
+                                Text="›"
+                                FontSize="20"
+                                VerticalOptions="Center"
+                                HorizontalOptions="End"
+                                Opacity="0.5" />
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </VerticalStackLayout>
+</ContentPage>

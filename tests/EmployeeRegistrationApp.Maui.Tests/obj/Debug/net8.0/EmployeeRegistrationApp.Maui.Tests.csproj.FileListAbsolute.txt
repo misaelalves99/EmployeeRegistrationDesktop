@@ -1,0 +1,6 @@
+C:\Users\misae\Desktop\Projetos GitHub\employee-registration-net-maui-desktop\EmployeeRegistrationDesktop\tests\EmployeeRegistrationApp.Maui.Tests\bin\Debug\net8.0\CoverletSourceRootsMapping_EmployeeRegistrationApp.Maui.Tests
+C:\Users\misae\Desktop\Projetos GitHub\employee-registration-net-maui-desktop\EmployeeRegistrationDesktop\tests\EmployeeRegistrationApp.Maui.Tests\obj\Debug\net8.0\EmployeeRegistrationApp.Maui.Tests.csproj.AssemblyReference.cache
+C:\Users\misae\Desktop\Projetos GitHub\employee-registration-net-maui-desktop\EmployeeRegistrationDesktop\tests\EmployeeRegistrationApp.Maui.Tests\obj\Debug\net8.0\EmployeeRegistrationApp.Maui.Tests.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\misae\Desktop\Projetos GitHub\employee-registration-net-maui-desktop\EmployeeRegistrationDesktop\tests\EmployeeRegistrationApp.Maui.Tests\obj\Debug\net8.0\EmployeeRegistrationApp.Maui.Tests.AssemblyInfoInputs.cache
+C:\Users\misae\Desktop\Projetos GitHub\employee-registration-net-maui-desktop\EmployeeRegistrationDesktop\tests\EmployeeRegistrationApp.Maui.Tests\obj\Debug\net8.0\EmployeeRegistrationApp.Maui.Tests.AssemblyInfo.cs
+C:\Users\misae\Desktop\Projetos GitHub\employee-registration-net-maui-desktop\EmployeeRegistrationDesktop\tests\EmployeeRegistrationApp.Maui.Tests\obj\Debug\net8.0\EmployeeRegistrationApp.Maui.Tests.csproj.CoreCompileInputs.cache

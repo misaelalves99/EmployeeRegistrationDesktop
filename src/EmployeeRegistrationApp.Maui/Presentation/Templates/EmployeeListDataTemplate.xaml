@@ -1,0 +1,76 @@
+<!-- // src/EmployeeRegistrationApp.Maui/Presentation/Employees/Views/Templates/EmployeeListDataTemplate.xaml -->
+<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:EmployeeRegistrationApp.Maui.Presentation.Employees.ViewModels"
+    x:Class="EmployeeRegistrationApp.Maui.Presentation.Employees.Views.Templates.EmployeeListDataTemplate">
+
+    <!-- DataTemplate de item da lista -->
+    <DataTemplate x:Key="EmployeeListItemTemplate" x:DataType="vm:EmployeeListItemViewModel">
+        <Frame
+            Margin="0,0,0,10"
+            Padding="14"
+            CornerRadius="16"
+            HasShadow="False"
+            BorderColor="#1F2937"
+            BackgroundColor="#0B1220">
+
+            <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="*,Auto" RowSpacing="8">
+                <VerticalStackLayout Grid.Row="0" Grid.Column="0" Spacing="2">
+                    <Label
+                        Text="{Binding FullName}"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        TextColor="#E5E7EB"
+                        LineBreakMode="TailTruncation" />
+
+                    <Label
+                        Text="{Binding Email}"
+                        FontSize="12"
+                        TextColor="#9CA3AF"
+                        LineBreakMode="TailTruncation" />
+                </VerticalStackLayout>
+
+                <Frame
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Padding="10,6"
+                    CornerRadius="999"
+                    HasShadow="False"
+                    BackgroundColor="{Binding StatusBadgeColor}">
+                    <Label
+                        Text="{Binding StatusLabel}"
+                        FontSize="11"
+                        TextColor="#0B1220"
+                        FontAttributes="Bold" />
+                </Frame>
+
+                <Grid Grid.Row="1" Grid.ColumnSpan="2" ColumnDefinitions="*,*" ColumnSpacing="10">
+                    <Label
+                        Grid.Column="0"
+                        Text="{Binding DepartmentName}"
+                        FontSize="12"
+                        TextColor="#C7D2FE"
+                        LineBreakMode="TailTruncation" />
+
+                    <Label
+                        Grid.Column="1"
+                        Text="{Binding PositionName}"
+                        FontSize="12"
+                        TextColor="#A7F3D0"
+                        HorizontalTextAlignment="End"
+                        LineBreakMode="TailTruncation" />
+                </Grid>
+
+                <!-- Tap para abrir detalhes -->
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.OpenDetailsCommand}"
+                        CommandParameter="{Binding Id}" />
+                </Grid.GestureRecognizers>
+            </Grid>
+        </Frame>
+    </DataTemplate>
+
+</ResourceDictionary>

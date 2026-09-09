@@ -1,0 +1,25 @@
+// src/EmployeeRegistrationApp.Maui/DesignTime/Samples/SampleDashboard.json
+{
+  "totalEmployees": 42,
+  "activeEmployees": 36,
+  "inactiveEmployees": 6,
+  "newAdmissionsLast30Days": 5,
+  "departmentsHeadcount": [
+    {
+      "departmentName": "Tecnologia",
+      "headcount": 18
+    },
+    {
+      "departmentName": "Recursos Humanos",
+      "headcount": 6
+    },
+    {
+      "departmentName": "Financeiro",
+      "headcount": 8
+    },
+    {
+      "departmentName": "Comercial",
+      "headcount": 10
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+<!-- src/EmployeeRegistrationApp.Maui/Presentation/Settings/Views/SettingsPage.xaml -->
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EmployeeRegistrationApp.Maui.Presentation.Settings.Views.SettingsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Configurações">
+
+    <ContentPage.Resources>
+        <Style TargetType="Label" x:Key="PageTitle">
+            <Setter Property="FontSize" Value="22" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}" />
+        </Style>
+
+        <Style TargetType="Label" x:Key="PageSubtitle">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="TextColor" Value="{StaticResource SecondaryTextColor}" />
+        </Style>
+
+        <Style TargetType="Frame" x:Key="SettingsCard">
+            <Setter Property="CornerRadius" Value="18" />
+            <Setter Property="Padding" Value="16" />
+            <Setter Property="BackgroundColor" Value="{StaticResource CardBackgroundColor}" />
+            <Setter Property="HasShadow" Value="False" />
+            <Setter Property="Margin" Value="0,0,0,12" />
+        </Style>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <Grid Padding="24"
+              RowSpacing="20"
+              RowDefinitions="Auto,Auto,*">
+
+            <!-- Header -->
+            <VerticalStackLayout Grid.Row="0" Spacing="4">
+                <Label Text="Configurações"
+                       Style="{StaticResource PageTitle}" />
+
+                <Label Text="Gerencie os parâmetros globais do sistema e os dados da empresa."
+                       Style="{StaticResource PageSubtitle}" />
+            </VerticalStackLayout>
+
+            <!-- Resumo rápido -->
+            <Frame Grid.Row="1" Style="{StaticResource SettingsCard}">
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="Resumo"
+                           FontSize="14"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource PrimaryTextColor}" />
+
+                    <Label Text="{Binding CompanyNameSummary}"
+                           FontSize="13"
+                           TextColor="{StaticResource SecondaryTextColor}" />
+
+                    <Label Text="{Binding CurrentThemeSummary}"
+                           FontSize="13"
+                           TextColor="{StaticResource SecondaryTextColor}" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Cards de ações -->
+            <VerticalStackLayout Grid.Row="2" Spacing="12">
+
+                <!-- Configurações da empresa -->
+                <Frame Style="{StaticResource SettingsCard}">
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                        <VerticalStackLayout Spacing="2">
+                            <Label Text="Configurações da empresa"
+                                   FontSize="16"
+                                   FontAttributes="Bold"
+                                   TextColor="{StaticResource PrimaryTextColor}" />
+
+                            <Label Text="Nome fantasia, razão social e demais informações institucionais."
+                                   FontSize="13"
+                                   TextColor="{StaticResource SecondaryTextColor}" />
+                        </VerticalStackLayout>
+
+                        <Button Grid.Column="1"
+                                Text="Abrir"
+                                Command="{Binding OpenCompanySettingsCommand}"
+                                VerticalOptions="Center" />
+                    </Grid>
+                </Frame>
+
+                <!-- Tema / aparência -->
+                <Frame Style="{StaticResource SettingsCard}">
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                        <VerticalStackLayout Spacing="2">
+                            <Label Text="Tema da aplicação"
+                                   FontSize="16"
+                                   FontAttributes="Bold"
+                                   TextColor="{StaticResource PrimaryTextColor}" />
+
+                            <Label Text="{Binding CurrentThemeSummary}"
+                                   FontSize="13"
+                                   TextColor="{StaticResource SecondaryTextColor}" />
+                        </VerticalStackLayout>
+
+                        <Button Grid.Column="1"
+                                Text="{Binding ThemeToggleButtonText}"
+                                Command="{Binding ToggleThemeCommand}"
+                                VerticalOptions="Center" />
+                    </Grid>
+                </Frame>
+
+            </VerticalStackLayout>
+        </Grid>
+    </ScrollView>
+</ContentPage>

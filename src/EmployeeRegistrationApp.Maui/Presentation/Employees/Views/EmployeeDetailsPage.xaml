@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EmployeeRegistrationApp.Maui.Presentation.Employees.Views.EmployeeDetailsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Detalhes">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="BgPage">#0B1220</Color>
+            <Color x:Key="BgCard">#101A2E</Color>
+            <Color x:Key="TextPrimary">#E5E7EB</Color>
+            <Color x:Key="TextMuted">#94A3B8</Color>
+            <Color x:Key="Accent">#60A5FA</Color>
+            <Color x:Key="Danger">#F87171</Color>
+
+            <Style x:Key="CardFrameStyle" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="{StaticResource BgCard}" />
+                <Setter Property="BorderColor" Value="#1F2A44" />
+                <Setter Property="CornerRadius" Value="16" />
+                <Setter Property="HasShadow" Value="True" />
+                <Setter Property="Padding" Value="14" />
+                <Setter Property="Margin" Value="0,0,0,14" />
+            </Style>
+
+            <Style x:Key="TitleStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="18" />
+            </Style>
+
+            <Style x:Key="MutedStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource TextMuted}" />
+                <Setter Property="FontSize" Value="12" />
+            </Style>
+
+            <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource Accent}" />
+                <Setter Property="TextColor" Value="#0B1220" />
+                <Setter Property="CornerRadius" Value="14" />
+                <Setter Property="Padding" Value="14,10" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+
+            <Style x:Key="DangerButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource Danger}" />
+                <Setter Property="TextColor" Value="#0B1220" />
+                <Setter Property="CornerRadius" Value="14" />
+                <Setter Property="Padding" Value="14,10" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView BackgroundColor="{StaticResource BgPage}">
+        <VerticalStackLayout Padding="16" Spacing="12">
+
+            <Frame Style="{StaticResource CardFrameStyle}">
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="{Binding Employee.FullName}" Style="{StaticResource TitleStyle}" />
+                    <Label Text="{Binding Employee.Email}" Style="{StaticResource MutedStyle}" />
+                    <Label Text="{Binding Employee.Cpf, StringFormat='CPF: {0}'}" Style="{StaticResource MutedStyle}" />
+                    <Label Text="{Binding Employee.PhoneNumber, StringFormat='Telefone: {0}'}" Style="{StaticResource MutedStyle}" />
+                    <Label Text="{Binding Employee.DepartmentName, StringFormat='Departamento: {0}'}" Style="{StaticResource MutedStyle}" />
+                    <Label Text="{Binding Employee.PositionName, StringFormat='Cargo: {0}'}" Style="{StaticResource MutedStyle}" />
+                    <Label Text="{Binding Employee.ContractTypeLabel, StringFormat='Contrato: {0}'}" Style="{StaticResource MutedStyle}" />
+                    <Label Text="{Binding Employee.EmploymentStatusLabel, StringFormat='Status: {0}'}" Style="{StaticResource MutedStyle}" />
+                    <Label Text="{Binding Employee.IsActive, StringFormat='Ativo: {0}'}" Style="{StaticResource MutedStyle}" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{StaticResource CardFrameStyle}">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Ações" Style="{StaticResource TitleStyle}" FontSize="16"/>
+                    <Button Text="Editar" Style="{StaticResource PrimaryButtonStyle}" Command="{Binding EditCommand}" />
+                    <Button Text="Desativar" Style="{StaticResource DangerButtonStyle}" Command="{Binding DeactivateCommand}" />
+                    <Button Text="Reativar" Style="{StaticResource PrimaryButtonStyle}" Command="{Binding ReactivateCommand}" />
+                    <Button Text="Excluir" Style="{StaticResource DangerButtonStyle}" Command="{Binding DeleteCommand}" />
+                </VerticalStackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

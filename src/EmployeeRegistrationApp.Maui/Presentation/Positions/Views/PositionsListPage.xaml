@@ -1,0 +1,100 @@
+ // src/EmployeeRegistrationApp.Maui/Presentation/Positions/Views/PositionsListPage.xaml<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EmployeeRegistrationApp.Maui.Presentation.Positions.Views.PositionsListPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Cargos">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Text="Novo"
+            Priority="0"
+            Order="Primary"
+            Command="{Binding NewPositionCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <Grid RowDefinitions="Auto, *"
+              Padding="16">
+
+            <!-- Barra de busca -->
+            <SearchBar
+                Grid.Row="0"
+                Placeholder="Buscar cargos..."
+                Text="{Binding SearchTerm}" />
+
+            <!-- Lista de cargos -->
+            <CollectionView
+                Grid.Row="1"
+                Margin="0,12,0,0"
+                ItemsSource="{Binding Positions}"
+                SelectionMode="Single"
+                SelectionChanged="OnSelectionChanged">
+
+                <CollectionView.EmptyView>
+                    <VerticalStackLayout
+                        Padding="24"
+                        Spacing="8"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center">
+
+                        <Label
+                            Text="Nenhum cargo encontrado"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Center" />
+
+                        <Label
+                            Text="Cadastre um novo cargo ou ajuste o filtro de busca."
+                            FontSize="13"
+                            Opacity="0.7"
+                            HorizontalOptions="Center" />
+                    </VerticalStackLayout>
+                </CollectionView.EmptyView>
+
+                <CollectionView.ItemTemplate>
+                    <!-- Se você registrou o DataTemplate globalmente, pode usar StaticResource -->
+                    <!-- <StaticResource ResourceKey="PositionListItemTemplate" /> -->
+
+                    <!-- Template simples inline (fallback) -->
+                    <DataTemplate>
+                        <Frame
+                            Margin="0,0,0,10"
+                            Padding="12"
+                            HasShadow="False"
+                            CornerRadius="12"
+                            BorderColor="{DynamicResource Gray300}">
+                            <Grid ColumnDefinitions="*,Auto"
+                                  RowDefinitions="Auto,Auto"
+                                  ColumnSpacing="8"
+                                  RowSpacing="4">
+
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Text="{Binding Name}"
+                                    FontAttributes="Bold"
+                                    FontSize="16" />
+
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    Text="{Binding DepartmentName}"
+                                    FontSize="13"
+                                    Opacity="0.7" />
+
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.RowSpan="2"
+                                    Grid.Column="1"
+                                    VerticalOptions="Center"
+                                    Text="{Binding TypeDisplay}"
+                                    FontSize="13"
+                                    Opacity="0.7" />
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

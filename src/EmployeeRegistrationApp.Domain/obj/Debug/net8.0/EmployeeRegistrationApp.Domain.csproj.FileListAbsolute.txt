@@ -1,0 +1,4 @@
+C:\Users\misae\Desktop\Projetos GitHub\employee-registration-net-maui-desktop\EmployeeRegistrationDesktop\src\EmployeeRegistrationApp.Domain\obj\Debug\net8.0\EmployeeRegistrationApp.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\misae\Desktop\Projetos GitHub\employee-registration-net-maui-desktop\EmployeeRegistrationDesktop\src\EmployeeRegistrationApp.Domain\obj\Debug\net8.0\EmployeeRegistrationApp.Domain.AssemblyInfoInputs.cache
+C:\Users\misae\Desktop\Projetos GitHub\employee-registration-net-maui-desktop\EmployeeRegistrationDesktop\src\EmployeeRegistrationApp.Domain\obj\Debug\net8.0\EmployeeRegistrationApp.Domain.AssemblyInfo.cs
+C:\Users\misae\Desktop\Projetos GitHub\employee-registration-net-maui-desktop\EmployeeRegistrationDesktop\src\EmployeeRegistrationApp.Domain\obj\Debug\net8.0\EmployeeRegistrationApp.Domain.csproj.CoreCompileInputs.cache

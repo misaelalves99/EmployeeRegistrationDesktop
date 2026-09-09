@@ -1,0 +1,96 @@
+<!-- src/EmployeeRegistrationApp.Maui/Presentation/Settings/Views/CompanySettingsPage.xaml -->
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EmployeeRegistrationApp.Maui.Presentation.Settings.Views.CompanySettingsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Empresa">
+
+    <ContentPage.Resources>
+        <Style TargetType="Label" x:Key="FieldLabel">
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="TextColor" Value="{StaticResource SecondaryTextColor}" />
+        </Style>
+
+        <Style TargetType="Entry" x:Key="FieldEntry">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}" />
+        </Style>
+
+        <Style TargetType="Frame" x:Key="FormCard">
+            <Setter Property="CornerRadius" Value="18" />
+            <Setter Property="Padding" Value="18" />
+            <Setter Property="BackgroundColor" Value="{StaticResource CardBackgroundColor}" />
+            <Setter Property="HasShadow" Value="False" />
+        </Style>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <Grid Padding="24"
+              RowSpacing="20"
+              RowDefinitions="Auto,*,Auto">
+
+            <!-- Header -->
+            <VerticalStackLayout Grid.Row="0" Spacing="4">
+                <Label Text="Dados da empresa"
+                       FontSize="22"
+                       FontAttributes="Bold"
+                       TextColor="{StaticResource PrimaryTextColor}" />
+
+                <Label Text="Configure o nome fantasia, razão social e demais informações institucionais."
+                       FontSize="14"
+                       TextColor="{StaticResource SecondaryTextColor}" />
+            </VerticalStackLayout>
+
+            <!-- Formulário -->
+            <Frame Grid.Row="1" Style="{StaticResource FormCard}">
+                <VerticalStackLayout Spacing="14">
+
+                    <!-- Nome fantasia -->
+                    <VerticalStackLayout>
+                        <Label Text="Nome fantasia" Style="{StaticResource FieldLabel}" />
+                        <Entry Placeholder="Ex: Empresa Exemplo"
+                               Text="{Binding CompanyName}" 
+                               Style="{StaticResource FieldEntry}" />
+                    </VerticalStackLayout>
+
+                    <!-- Razão social -->
+                    <VerticalStackLayout>
+                        <Label Text="Razão social" Style="{StaticResource FieldLabel}" />
+                        <Entry Placeholder="Ex: Empresa Exemplo LTDA"
+                               Text="{Binding LegalName}"
+                               Style="{StaticResource FieldEntry}" />
+                    </VerticalStackLayout>
+
+                    <!-- Campos extras opcionais (texto livre) -->
+                    <VerticalStackLayout>
+                        <Label Text="Observações internas (opcional)" Style="{StaticResource FieldLabel}" />
+                        <Editor Placeholder="Informações adicionais sobre a empresa"
+                                AutoSize="TextChanges"
+                                HeightRequest="100"
+                                Text="{Binding InternalNotes}" />
+                    </VerticalStackLayout>
+
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Botões -->
+            <Grid Grid.Row="2"
+                  ColumnDefinitions="*,*"
+                  ColumnSpacing="12">
+
+                <Button Text="Cancelar"
+                        Command="{Binding CancelCommand}"
+                        BackgroundColor="{StaticResource SecondaryButtonBackgroundColor}"
+                        TextColor="{StaticResource SecondaryButtonTextColor}" />
+
+                <Button Grid.Column="1"
+                        Text="Salvar"
+                        Command="{Binding SaveCommand}"
+                        IsEnabled="{Binding CanSave}"
+                        IsBusy="{Binding IsBusy}" />
+            </Grid>
+
+        </Grid>
+    </ScrollView>
+</ContentPage>

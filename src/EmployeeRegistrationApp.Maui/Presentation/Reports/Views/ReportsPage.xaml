@@ -1,0 +1,134 @@
+<!-- src/EmployeeRegistrationApp.Maui/Presentation/Reports/Views/ReportsPage.xaml -->
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EmployeeRegistrationApp.Maui.Presentation.Reports.Views.ReportsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModels="clr-namespace:EmployeeRegistrationApp.Maui.Presentation.Reports.ViewModels"
+    Title="Relatórios">
+
+    <ContentPage.Resources>
+        <Style TargetType="Label" x:Key="SectionTitle">
+            <Setter Property="FontSize" Value="22" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}" />
+        </Style>
+
+        <Style TargetType="Label" x:Key="SectionSubtitle">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="TextColor" Value="{StaticResource SecondaryTextColor}" />
+        </Style>
+
+        <Style TargetType="Button" x:Key="ReportButton">
+            <Setter Property="HeightRequest" Value="52" />
+            <Setter Property="CornerRadius" Value="12" />
+            <Setter Property="BackgroundColor" Value="{StaticResource AccentColor}" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="Padding" Value="14,0" />
+        </Style>
+    </ContentPage.Resources>
+
+    <Grid Padding="24"
+          RowDefinitions="Auto,Auto,*"
+          RowSpacing="20">
+
+        <!-- Cabeçalho -->
+        <VerticalStackLayout Grid.Row="0" Spacing="4">
+            <Label Text="Relatórios e indicadores"
+                   Style="{StaticResource SectionTitle}" />
+
+            <Label Text="Acompanhe headcount, distribuição de cargos e visão geral da força de trabalho da empresa."
+                   Style="{StaticResource SectionSubtitle}" />
+        </VerticalStackLayout>
+
+        <!-- Resumo rápido -->
+        <HorizontalStackLayout Grid.Row="1" Spacing="12">
+            <Frame Padding="14"
+                   CornerRadius="14"
+                   BackgroundColor="{StaticResource CardBackgroundColor}"
+                   HasShadow="False"
+                   HorizontalOptions="FillAndExpand">
+                <VerticalStackLayout Spacing="2">
+                    <Label Text="Headcount por departamento"
+                           FontSize="13"
+                           TextColor="{StaticResource SecondaryTextColor}" />
+                    <Label Text="{Binding HeadcountSummary}"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource PrimaryTextColor}" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Padding="14"
+                   CornerRadius="14"
+                   BackgroundColor="{StaticResource CardBackgroundColor}"
+                   HasShadow="False"
+                   HorizontalOptions="FillAndExpand">
+                <VerticalStackLayout Spacing="2">
+                    <Label Text="Departamentos ativos"
+                           FontSize="13"
+                           TextColor="{StaticResource SecondaryTextColor}" />
+                    <Label Text="{Binding ActiveDepartmentsSummary}"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource PrimaryTextColor}" />
+                </VerticalStackLayout>
+            </Frame>
+        </HorizontalStackLayout>
+
+        <!-- Cartões de navegação para relatórios -->
+        <ScrollView Grid.Row="2">
+            <VerticalStackLayout Spacing="14">
+
+                <Frame Padding="16"
+                       CornerRadius="16"
+                       BackgroundColor="{StaticResource CardBackgroundColor}"
+                       HasShadow="False">
+                    <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto" ColumnSpacing="8">
+                        <VerticalStackLayout Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Spacing="4">
+                            <Label Text="Headcount por departamento"
+                                   FontAttributes="Bold"
+                                   FontSize="17"
+                                   TextColor="{StaticResource PrimaryTextColor}" />
+                            <Label Text="Veja quantos colaboradores existem em cada área, ativos e inativos, e identifique concentrações da equipe."
+                                   FontSize="13"
+                                   TextColor="{StaticResource SecondaryTextColor}" />
+                        </VerticalStackLayout>
+
+                        <Button Grid.Column="1"
+                                Grid.Row="1"
+                                Style="{StaticResource ReportButton}"
+                                Text="Abrir relatório"
+                                Command="{Binding OpenHeadcountReportCommand}" />
+                    </Grid>
+                </Frame>
+
+                <Frame Padding="16"
+                       CornerRadius="16"
+                       BackgroundColor="{StaticResource CardBackgroundColor}"
+                       HasShadow="False">
+                    <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto" ColumnSpacing="8">
+                        <VerticalStackLayout Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Spacing="4">
+                            <Label Text="Resumo de salários (futuro)"
+                                   FontAttributes="Bold"
+                                   FontSize="17"
+                                   TextColor="{StaticResource PrimaryTextColor}" />
+                            <Label Text="Planejado para consolidar salários médios, faixas e distribuição por cargo."
+                                   FontSize="13"
+                                   TextColor="{StaticResource SecondaryTextColor}" />
+                        </VerticalStackLayout>
+
+                        <Button Grid.Column="1"
+                                Grid.Row="1"
+                                Style="{StaticResource ReportButton}"
+                                Text="Em breve"
+                                IsEnabled="False" />
+                    </Grid>
+                </Frame>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+    </Grid>
+</ContentPage>

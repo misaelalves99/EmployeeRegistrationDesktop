@@ -1,0 +1,73 @@
+﻿<!-- src/EmployeeRegistrationApp.Maui/Resources/Styles/Controls.xaml -->
+<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!-- Botão primário -->
+    <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource Color.Primary}" />
+        <Setter Property="TextColor" Value="{StaticResource Color.TextOnPrimary}" />
+        <Setter Property="FontFamily" Value="{StaticResource FontFamily.SemiBold}" />
+        <Setter Property="FontSize" Value="{StaticResource FontSize.Body}" />
+        <Setter Property="CornerRadius" Value="{StaticResource Radius.Medium}" />
+        <Setter Property="Padding" Value="16,10" />
+        <Setter Property="BorderColor" Value="{StaticResource Color.PrimaryDark}" />
+        <Setter Property="BorderWidth" Value="1" />
+    </Style>
+
+    <!-- Torna o estilo primário o padrão para todos os botões -->
+    <Style TargetType="Button" BasedOn="{StaticResource PrimaryButtonStyle}" />
+
+    <!-- Botão secundário (por key) -->
+    <Style x:Key="SecondaryButtonStyle" TargetType="Button"
+           BasedOn="{StaticResource PrimaryButtonStyle}">
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="TextColor" Value="{StaticResource Color.PrimaryLight}" />
+        <Setter Property="BorderColor" Value="{StaticResource Color.BorderStrong}" />
+    </Style>
+
+    <!-- Entry padrão -->
+    <Style TargetType="Entry" x:Key="BaseEntryStyle">
+        <Setter Property="TextColor" Value="{StaticResource Color.TextPrimary}" />
+        <Setter Property="PlaceholderColor" Value="{StaticResource Color.InputPlaceholder}" />
+        <Setter Property="BackgroundColor" Value="{StaticResource Color.InputBackground}" />
+        <Setter Property="FontFamily" Value="{StaticResource FontFamily.Primary}" />
+        <Setter Property="FontSize" Value="{StaticResource FontSize.Body}" />
+        <Setter Property="HeightRequest" Value="44" />
+        <Setter Property="Margin" Value="0,4,0,4" />
+    </Style>
+
+    <Style TargetType="Entry" BasedOn="{StaticResource BaseEntryStyle}" />
+
+    <!-- Frame como card -->
+    <Style x:Key="CardFrameStyle" TargetType="Frame">
+        <Setter Property="BackgroundColor" Value="{StaticResource Color.CardBackground}" />
+        <Setter Property="CornerRadius" Value="{StaticResource Radius.Large}" />
+        <Setter Property="Padding" Value="{StaticResource Spacing.CardPadding}" />
+        <Setter Property="HasShadow" Value="True" />
+        <Setter Property="BorderColor" Value="{StaticResource Color.BorderSubtle}" />
+    </Style>
+
+    <!-- CollectionView padrão (lista de dashboard, listas de funcionários etc.) -->
+    <Style TargetType="CollectionView" x:Key="BaseCollectionViewStyle">
+        <Setter Property="ItemsLayout">
+            <Setter.Value>
+                <LinearItemsLayout Orientation="Vertical"
+                                   ItemSpacing="{StaticResource Spacing.StackMedium}" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Badge de status (usado no StatusBadge control) -->
+    <Style x:Key="StatusBadgeLabelStyle" TargetType="Label"
+           BasedOn="{StaticResource CaptionLabel}">
+        <Setter Property="BackgroundColor" Value="{StaticResource Color.BadgeBackground}" />
+        <Setter Property="TextColor" Value="{StaticResource Color.BadgeText}" />
+        <Setter Property="Padding" Value="8,4" />
+        <Setter Property="HorizontalOptions" Value="Start" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+    </Style>
+
+</ResourceDictionary>

@@ -1,0 +1,119 @@
+ // src/EmployeeRegistrationApp.Maui/Presentation/Positions/Views/PositionFormPage.xaml<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EmployeeRegistrationApp.Maui.Presentation.Positions.Views.PositionFormPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="{Binding PageTitle}">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="24"
+            Spacing="20">
+
+            <!-- Header -->
+            <VerticalStackLayout Spacing="4">
+                <Label
+                    Text="{Binding HeaderTitle}"
+                    FontAttributes="Bold"
+                    FontSize="22" />
+                <Label
+                    Text="{Binding HeaderSubtitle}"
+                    FontSize="13"
+                    Opacity="0.8" />
+            </VerticalStackLayout>
+
+            <!-- Nome do cargo -->
+            <VerticalStackLayout Spacing="4">
+                <Label
+                    Text="Nome do cargo"
+                    FontAttributes="Bold"
+                    FontSize="14" />
+                <Entry
+                    Text="{Binding Name}"
+                    Placeholder="Ex.: Desenvolvedor Backend Pleno"
+                    ReturnType="Next" />
+                <Label
+                    Text="{Binding NameError}"
+                    FontSize="12"
+                    TextColor="Red"
+                    IsVisible="{Binding HasNameError}" />
+            </VerticalStackLayout>
+
+            <!-- Departamento -->
+            <VerticalStackLayout Spacing="4">
+                <Label
+                    Text="Departamento"
+                    FontAttributes="Bold"
+                    FontSize="14" />
+                <Picker
+                    Title="Selecione o departamento"
+                    ItemsSource="{Binding Departments}"
+                    ItemDisplayBinding="{Binding Name}"
+                    SelectedItem="{Binding SelectedDepartment}" />
+            </VerticalStackLayout>
+
+            <!-- Tipo de cargo -->
+            <VerticalStackLayout Spacing="4">
+                <Label
+                    Text="Tipo"
+                    FontAttributes="Bold"
+                    FontSize="14" />
+                <Picker
+                    Title="Selecione o tipo"
+                    ItemsSource="{Binding PositionTypes}"
+                    SelectedItem="{Binding SelectedPositionType}" />
+            </VerticalStackLayout>
+
+            <!-- Faixa salarial básica -->
+            <VerticalStackLayout Spacing="4">
+                <Label
+                    Text="Salário base (R$)"
+                    FontAttributes="Bold"
+                    FontSize="14" />
+                <Entry
+                    Keyboard="Numeric"
+                    Text="{Binding BaseSalaryText}"
+                    Placeholder="Ex.: 6500,00" />
+            </VerticalStackLayout>
+
+            <!-- Descrição -->
+            <VerticalStackLayout Spacing="4">
+                <Label
+                    Text="Descrição"
+                    FontAttributes="Bold"
+                    FontSize="14" />
+                <Editor
+                    AutoSize="TextChanges"
+                    HeightRequest="120"
+                    Text="{Binding Description}"
+                    Placeholder="Resumo das responsabilidades deste cargo..." />
+            </VerticalStackLayout>
+
+            <!-- Ações -->
+            <HorizontalStackLayout
+                Spacing="12"
+                HorizontalOptions="End">
+
+                <Button
+                    Text="Cancelar"
+                    Command="{Binding CancelCommand}"
+                    BackgroundColor="{DynamicResource Gray200}"
+                    TextColor="Black" />
+
+                <Button
+                    Text="Salvar"
+                    Command="{Binding SaveCommand}"
+                    IsEnabled="{Binding CanSave}"
+                    BackgroundColor="{DynamicResource Primary}"
+                    TextColor="White" />
+            </HorizontalStackLayout>
+
+            <!-- Busy indicator simples -->
+            <ActivityIndicator
+                IsRunning="{Binding IsBusy}"
+                IsVisible="{Binding IsBusy}"
+                HorizontalOptions="Center" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,55 @@
+<!-- src/EmployeeRegistrationApp.Maui/Presentation/Common/Controls/SearchBarControl.xaml -->
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="EmployeeRegistrationApp.Maui.Presentation.Common.Controls.SearchBarControl"
+    x:Name="Root"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Grid Padding="10,8" BackgroundColor="#020617">
+        <Grid HeightRequest="40" ColumnDefinitions="Auto,*,Auto" BackgroundColor="#020617">
+
+            <Border Grid.Column="0" BackgroundColor="#020617" StrokeThickness="0" Padding="4,0" VerticalOptions="Center">
+                <Label Text="🔍" FontSize="18" VerticalOptions="Center" HorizontalOptions="Center" TextColor="#6b7280" />
+            </Border>
+
+            <Border Grid.Column="1" StrokeThickness="1" Stroke="#374151" BackgroundColor="#020617" StrokeShape="RoundRectangle 999" VerticalOptions="Center">
+                <Grid Padding="10,0">
+                    <Entry
+                        x:Name="SearchEntry"
+                        Text="{Binding Text, Source={x:Reference Root}}"
+                        Placeholder="{Binding Placeholder, Source={x:Reference Root}}"
+                        TextColor="#e5e7eb"
+                        PlaceholderColor="#6b7280"
+                        FontSize="13"
+                        BackgroundColor="Transparent"
+                        Completed="OnEntryCompleted" />
+                </Grid>
+            </Border>
+
+            <Border
+                x:Name="ActionBorder"
+                Grid.Column="2"
+                Margin="6,0,0,0"
+                Padding="10,6"
+                StrokeThickness="0"
+                StrokeShape="RoundRectangle 999"
+                BackgroundColor="#2563eb"
+                VerticalOptions="Center">
+
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnActionTapped" />
+                </Border.GestureRecognizers>
+
+                <Label
+                    x:Name="ActionLabel"
+                    Text="Buscar"
+                    FontSize="12"
+                    FontAttributes="Bold"
+                    TextColor="White"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center" />
+            </Border>
+        </Grid>
+    </Grid>
+</ContentView>

@@ -1,0 +1,76 @@
+<!-- src/EmployeeRegistrationApp.Maui/Presentation/Dashboard/Views/DashboardPage.xaml -->
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EmployeeRegistrationApp.Maui.Presentation.Dashboard.Views.DashboardPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:EmployeeRegistrationApp.Maui.Presentation.Dashboard.ViewModels"
+    xmlns:controls="clr-namespace:EmployeeRegistrationApp.Maui.Presentation.Common.Controls"
+    x:DataType="vm:DashboardViewModel"
+    BackgroundColor="{StaticResource ColorBackgroundPage}">
+
+    <Grid Padding="24">
+        <ActivityIndicator
+            IsRunning="{Binding IsBusy}"
+            IsVisible="{Binding IsBusy}"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Color="{StaticResource ColorPrimary}" />
+
+        <ScrollView>
+            <VerticalStackLayout Spacing="24" Padding="0,4,0,24">
+
+                <Grid ColumnDefinitions="*,Auto">
+                    <VerticalStackLayout Spacing="4">
+                        <Label
+                            Text="Dashboard de Pessoas"
+                            FontSize="24"
+                            FontAttributes="Bold"
+                            TextColor="{StaticResource ColorTextPrimary}" />
+                        <Label
+                            Text="Visão geral de headcount, departamentos e posições ativas."
+                            FontSize="13"
+                            TextColor="{StaticResource ColorTextSecondary}" />
+                    </VerticalStackLayout>
+
+                    <Button
+                        Grid.Column="1"
+                        Text="Atualizar"
+                        Command="{Binding RefreshCommand}"
+                        HeightRequest="36"
+                        CornerRadius="999"
+                        BackgroundColor="{StaticResource ColorPrimary}"
+                        TextColor="{StaticResource ColorOnPrimary}"
+                        FontSize="12"
+                        Margin="8,0,0,0" />
+                </Grid>
+
+                <Grid ColumnDefinitions="*,*,*,*" ColumnSpacing="12">
+                    <controls:MetricCard Grid.Column="0" Title="Total de funcionários" Value="{Binding TotalEmployees}" Subtitle="Todos os vínculos" Icon="👥" AccentColor="{StaticResource ColorPrimary}" />
+                    <controls:MetricCard Grid.Column="1" Title="Ativos" Value="{Binding ActiveEmployees}" Subtitle="Trabalhando atualmente" Icon="✅" AccentColor="{StaticResource ColorSuccess}" />
+                    <controls:MetricCard Grid.Column="2" Title="Inativos" Value="{Binding InactiveEmployees}" Subtitle="Desligados / afastados" Icon="⚠️" AccentColor="{StaticResource ColorWarning}" />
+                    <controls:MetricCard Grid.Column="3" Title="Departamentos" Value="{Binding DepartmentsCount}" Subtitle="Áreas organizadas" Icon="🏢" AccentColor="{StaticResource ColorInfo}" />
+                </Grid>
+
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                    <controls:MetricCard Grid.Column="0" Title="Cargos cadastrados" Value="{Binding PositionsCount}" Subtitle="Níveis e funções" Icon="📌" AccentColor="{StaticResource ColorPrimarySoft}" />
+                    <controls:MetricCard Grid.Column="1" Title="Média salarial" Value="{Binding AverageSalaryDisplay}" Subtitle="Base global" Icon="💰" AccentColor="{StaticResource ColorAccent}" />
+                </Grid>
+
+                <Border
+                    Padding="16"
+                    BackgroundColor="{StaticResource ColorCardBackground}"
+                    Stroke="{StaticResource ColorBorderSubtle}"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 18">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Resumo de headcount" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource ColorTextPrimary}" />
+                        <Label Text="{Binding HeadcountSummary}" FontSize="13" TextColor="{StaticResource ColorTextSecondary}" />
+                        <Label Text="{Binding LastUpdatedDisplay}" FontSize="11" TextColor="{StaticResource ColorTextMuted}" />
+                    </VerticalStackLayout>
+                </Border>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

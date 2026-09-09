@@ -1,0 +1,113 @@
+ // src/EmployeeRegistrationApp.Maui/Presentation/Departments/Views/DepartmentDetailsPage.xaml<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EmployeeRegistrationApp.Maui.Presentation.Departments.Views.DepartmentDetailsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Detalhes do Departamento">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Text="Editar"
+            Priority="0"
+            Order="Primary"
+            Command="{Binding EditCommand}" />
+
+        <ToolbarItem
+            Text="Excluir"
+            Priority="1"
+            Order="Primary"
+            Command="{Binding DeleteCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="24"
+            Spacing="20">
+
+            <!-- Cabeçalho -->
+            <VerticalStackLayout Spacing="4">
+                <Label
+                    Text="{Binding Name}"
+                    FontAttributes="Bold"
+                    FontSize="22" />
+
+                <Label
+                    Text="{Binding CodeDisplay}"
+                    FontSize="13"
+                    Opacity="0.8" />
+            </VerticalStackLayout>
+
+            <!-- Resumo -->
+            <Frame
+                Padding="16"
+                HasShadow="False"
+                CornerRadius="12"
+                BorderColor="{DynamicResource Gray400}"
+                BackgroundColor="{DynamicResource White}">
+                <Grid
+                    ColumnDefinitions="*,*"
+                    RowDefinitions="Auto,Auto"
+                    ColumnSpacing="16"
+                    RowSpacing="8">
+
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Text="Funcionários ativos"
+                        FontSize="13"
+                        Opacity="0.7" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Text="{Binding ActiveEmployeesCount}"
+                        FontAttributes="Bold"
+                        FontSize="20" />
+
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Text="Total de funcionários"
+                        FontSize="13"
+                        Opacity="0.7" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Text="{Binding TotalEmployeesCount}"
+                        FontAttributes="Bold"
+                        FontSize="20" />
+                </Grid>
+            </Frame>
+
+            <!-- Descrição -->
+            <VerticalStackLayout Spacing="4">
+                <Label
+                    Text="Descrição"
+                    FontAttributes="Bold"
+                    FontSize="14" />
+                <Label
+                    Text="{Binding Description}"
+                    FontSize="14"
+                    Opacity="0.9" />
+            </VerticalStackLayout>
+
+            <!-- Ações -->
+            <HorizontalStackLayout
+                Spacing="12"
+                HorizontalOptions="End">
+
+                <Button
+                    Text="Voltar"
+                    Command="{Binding BackCommand}"
+                    BackgroundColor="{DynamicResource Gray200}"
+                    TextColor="Black" />
+
+                <Button
+                    Text="Editar"
+                    Command="{Binding EditCommand}"
+                    BackgroundColor="{DynamicResource Primary}"
+                    TextColor="White" />
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

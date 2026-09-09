@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EmployeeRegistrationApp.Maui.Presentation.Employees.Views.EmployeesListPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Colaboradores">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="BgPage">#0B1220</Color>
+            <Color x:Key="BgCard">#101A2E</Color>
+            <Color x:Key="TextPrimary">#E5E7EB</Color>
+            <Color x:Key="TextMuted">#94A3B8</Color>
+            <Color x:Key="Accent">#60A5FA</Color>
+            <Color x:Key="Danger">#F87171</Color>
+
+            <Style x:Key="CardFrameStyle" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="{StaticResource BgCard}" />
+                <Setter Property="BorderColor" Value="#1F2A44" />
+                <Setter Property="CornerRadius" Value="16" />
+                <Setter Property="HasShadow" Value="True" />
+                <Setter Property="Padding" Value="14" />
+                <Setter Property="Margin" Value="0,0,0,12" />
+            </Style>
+
+            <Style x:Key="TitleStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+
+            <Style x:Key="MutedStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource TextMuted}" />
+                <Setter Property="FontSize" Value="12" />
+            </Style>
+
+            <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource Accent}" />
+                <Setter Property="TextColor" Value="#0B1220" />
+                <Setter Property="CornerRadius" Value="14" />
+                <Setter Property="Padding" Value="14,10" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid BackgroundColor="{StaticResource BgPage}" RowDefinitions="Auto,Auto,* ,Auto" Padding="16">
+
+        <!-- Header -->
+        <VerticalStackLayout Grid.Row="0" Spacing="6">
+            <Label Text="Colaboradores" Style="{StaticResource TitleStyle}" FontSize="20"/>
+            <Label Text="Liste, busque e acesse os detalhes dos colaboradores." Style="{StaticResource MutedStyle}" />
+        </VerticalStackLayout>
+
+        <!-- Search -->
+        <SearchBar
+            Grid.Row="1"
+            Placeholder="Buscar por nome, e-mail ou departamento..."
+            Text="{Binding SearchText}"
+            Margin="0,12,0,12" />
+
+        <!-- List -->
+        <RefreshView
+            Grid.Row="2"
+            IsRefreshing="{Binding IsRefreshing}"
+            Command="{Binding RefreshCommand}">
+
+            <CollectionView
+                ItemsSource="{Binding Employees}"
+                SelectionMode="None">
+
+                <CollectionView.EmptyView>
+                    <VerticalStackLayout Padding="20" Spacing="8">
+                        <Label Text="Nenhum colaborador encontrado." Style="{StaticResource TitleStyle}" />
+                        <Label Text="Tente ajustar a busca ou cadastre um novo colaborador." Style="{StaticResource MutedStyle}" />
+                    </VerticalStackLayout>
+                </CollectionView.EmptyView>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Style="{StaticResource CardFrameStyle}">
+                            <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="*,Auto" RowSpacing="6">
+
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Text="{Binding FullName}"
+                                    Style="{StaticResource TitleStyle}" />
+
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    Text="{Binding IsActive, StringFormat='Ativo: {0}'}"
+                                    Style="{StaticResource MutedStyle}"
+                                    HorizontalOptions="End" />
+
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    Text="{Binding Email}"
+                                    Style="{StaticResource MutedStyle}" />
+
+                                <HorizontalStackLayout Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Spacing="10">
+                                    <Label Text="{Binding DepartmentName, StringFormat='Depto: {0}'}" Style="{StaticResource MutedStyle}" />
+                                    <Label Text="{Binding PositionName, StringFormat='Cargo: {0}'}" Style="{StaticResource MutedStyle}" />
+                                </HorizontalStackLayout>
+
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.OpenDetailsCommand}"
+                                        CommandParameter="{Binding .}" />
+                                </Frame.GestureRecognizers>
+
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+        </RefreshView>
+
+        <!-- CTA -->
+        <Button
+            Grid.Row="3"
+            Text="Novo colaborador"
+            Style="{StaticResource PrimaryButtonStyle}"
+            Command="{Binding NewEmployeeCommand}" />
+
+    </Grid>
+</ContentPage>

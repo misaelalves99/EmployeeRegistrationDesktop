@@ -1,0 +1,24 @@
+﻿<!-- src/EmployeeRegistrationApp.Application/EmployeeRegistrationApp.Application.csproj -->
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+
+		<RootNamespace>EmployeeRegistrationApp.Application</RootNamespace>
+		<AssemblyName>EmployeeRegistrationApp.Application</AssemblyName>
+		<LangVersion>latest</LangVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="AutoMapper" Version="8.0.0" />
+	  <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<!-- Application DEPENDE do Domain -->
+		<ProjectReference Include="..\EmployeeRegistrationApp.Domain\EmployeeRegistrationApp.Domain.csproj" />
+	</ItemGroup>
+
+</Project>

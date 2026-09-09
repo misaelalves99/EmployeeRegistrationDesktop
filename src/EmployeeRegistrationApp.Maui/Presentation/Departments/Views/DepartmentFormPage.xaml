@@ -1,0 +1,78 @@
+ // src/EmployeeRegistrationApp.Maui/Presentation/Departments/Views/DepartmentFormPage.xaml<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EmployeeRegistrationApp.Maui.Presentation.Departments.Views.DepartmentFormPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="{Binding PageTitle}">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="24"
+            Spacing="20">
+
+            <!-- Cabeçalho -->
+            <VerticalStackLayout Spacing="4">
+                <Label
+                    Text="{Binding HeaderTitle}"
+                    FontAttributes="Bold"
+                    FontSize="22" />
+
+                <Label
+                    Text="{Binding HeaderSubtitle}"
+                    FontSize="13"
+                    Opacity="0.8" />
+            </VerticalStackLayout>
+
+            <!-- Nome -->
+            <VerticalStackLayout Spacing="4">
+                <Label
+                    Text="Nome do departamento"
+                    FontAttributes="Bold"
+                    FontSize="14" />
+                <Entry
+                    Text="{Binding Name}"
+                    Placeholder="Ex: Tecnologia da Informação"
+                    FontSize="14" />
+                <Label
+                    Text="{Binding NameError}"
+                    FontSize="12"
+                    TextColor="Red"
+                    IsVisible="{Binding HasNameError}" />
+            </VerticalStackLayout>
+
+            <!-- Descrição -->
+            <VerticalStackLayout Spacing="4">
+                <Label
+                    Text="Descrição"
+                    FontAttributes="Bold"
+                    FontSize="14" />
+                <Editor
+                    Text="{Binding Description}"
+                    AutoSize="TextChanges"
+                    HeightRequest="120"
+                    FontSize="14"
+                    Placeholder="Resumo das responsabilidades do departamento..." />
+            </VerticalStackLayout>
+
+            <!-- Ações -->
+            <HorizontalStackLayout
+                Spacing="12"
+                HorizontalOptions="End">
+
+                <Button
+                    Text="Cancelar"
+                    Command="{Binding CancelCommand}"
+                    BackgroundColor="{DynamicResource Gray200}"
+                    TextColor="Black" />
+
+                <Button
+                    Text="Salvar"
+                    Command="{Binding SaveCommand}"
+                    IsEnabled="{Binding CanSave}"
+                    BackgroundColor="{DynamicResource Primary}"
+                    TextColor="White" />
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
