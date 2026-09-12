@@ -1,4 +1,4 @@
- // src/EmployeeRegistrationApp.Maui/Presentation/Positions/Views/PositionDetailsPage.xaml<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
     x:Class="EmployeeRegistrationApp.Maui.Presentation.Positions.Views.PositionDetailsPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
@@ -41,7 +41,7 @@
                 Padding="16"
                 HasShadow="False"
                 CornerRadius="12"
-                BorderColor="{DynamicResource Gray400}">
+                BorderColor="{DynamicResource Color.BorderStrong}">
                 <Grid
                     ColumnDefinitions="*,*"
                     RowDefinitions="Auto,Auto"
@@ -118,14 +118,12 @@
 
                 <Button
                     Text="Voltar"
-                    Command="{Binding BackCommand}"
-                    BackgroundColor="{DynamicResource Gray200}"
-                    TextColor="Black" />
+                    Command="{Binding BackCommand}" Style="{StaticResource SecondaryButtonStyle}" />
 
                 <Button
                     Text="Editar"
                     Command="{Binding EditCommand}"
-                    BackgroundColor="{DynamicResource Primary}"
+                    BackgroundColor="{DynamicResource Color.Primary}"
                     TextColor="White" />
             </HorizontalStackLayout>
 

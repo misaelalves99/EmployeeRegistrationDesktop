@@ -7,6 +7,7 @@ using EmployeeRegistrationApp.Maui.Core.Base;
 using EmployeeRegistrationApp.Maui.Core.Services.Dialogs;
 using EmployeeRegistrationApp.Maui.Core.Services.Navigation;
 using Microsoft.Maui.Controls;
+using EmployeeRegistrationApp.Maui.Core.Config;
 
 namespace EmployeeRegistrationApp.Maui.Presentation.Employees.ViewModels
 {
@@ -114,7 +115,7 @@ namespace EmployeeRegistrationApp.Maui.Presentation.Employees.ViewModels
         {
             if (Employee == null) return;
 
-            var confirm = await _dialogService.ShowConfirmAsync(
+            var confirm = await _dialogService.ShowConfirmationAsync(
                 "Excluir colaborador",
                 "Tem certeza que deseja excluir este colaborador?");
 

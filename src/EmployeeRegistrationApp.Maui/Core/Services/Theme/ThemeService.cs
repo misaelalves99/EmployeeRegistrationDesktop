@@ -12,7 +12,7 @@ namespace EmployeeRegistrationApp.Maui.Core.Services.Theme
 {
     /// <summary>
     /// Implementação padrão de IThemeService.
-    /// Usa Application.Current.UserAppTheme + Preferences para persistir
+    /// Usa Microsoft.Maui.Controls.Application.Current.UserAppTheme + Preferences para persistir
     /// a escolha de tema entre execuções.
     /// </summary>
     public sealed class ThemeService : IThemeService
@@ -128,13 +128,13 @@ namespace EmployeeRegistrationApp.Maui.Core.Services.Theme
             {
                 MainThread.BeginInvokeOnMainThread(() =>
                 {
-                    if (Application.Current is null)
+                    if (Microsoft.Maui.Controls.Application.Current is null)
                     {
-                        Debug.WriteLine("[THEME] Application.Current é nulo, não foi possível aplicar tema.");
+                        Debug.WriteLine("[THEME] Microsoft.Maui.Controls.Application.Current é nulo, não foi possível aplicar tema.");
                         return;
                     }
 
-                    Application.Current.UserAppTheme = theme;
+                    Microsoft.Maui.Controls.Application.Current.UserAppTheme = theme;
                 });
 
                 if (raiseEvent)

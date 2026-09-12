@@ -1,4 +1,4 @@
-﻿// src/EmployeeRegistrationApp.Infrastructure/DependencyInjection/InfrastructureDependencyInjection.cs
+// src/EmployeeRegistrationApp.Infrastructure/DependencyInjection/InfrastructureDependencyInjection.cs
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -24,19 +24,33 @@ namespace EmployeeRegistrationApp.Infrastructure.DependencyInjection
             services.AddScoped<IUserAccountRepository, InMemoryUserAccountRepository>();
 
             // ✅ UnitOfWork no-op (sem EF)
-            services.AddScoped<IUnitOfWork, NoOpUnitOfWork>();
+            services.AddScoped<IUnitOfWork, InMemoryUnitOfWork>();
 
             return services;
         }
 
         private sealed class NoOpUnitOfWork : IUnitOfWork, IDisposable
         {
-            public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+            public Task<int> SaveChangesAsync()
                 => Task.FromResult(0);
 
             public void Dispose()
             {
                 // no-op
+            }
+        }
+
+        /// <summary>
+        /// Unit of work for the in-memory persistence mode.
+        /// In-memory repositories apply changes immediately, so commit is a no-op.
+        /// </summary>
+        private sealed class InMemoryUnitOfWork : IUnitOfWork
+        {
+            public Task<int> SaveChangesAsync() => Task.FromResult(0);
+
+            public void Dispose()
+            {
+                // No resources are owned by the in-memory unit of work.
             }
         }
     }

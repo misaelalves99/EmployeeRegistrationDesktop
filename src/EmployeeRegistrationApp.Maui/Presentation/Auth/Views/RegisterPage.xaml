@@ -1,4 +1,3 @@
-<!-- src/EmployeeRegistrationApp.Maui/Presentation/Auth/Views/RegisterPage.xaml -->
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
     x:Class="EmployeeRegistrationApp.Maui.Presentation.Auth.Views.RegisterPage"
@@ -6,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:vm="clr-namespace:EmployeeRegistrationApp.Maui.Presentation.Auth.ViewModels"
     x:DataType="vm:RegisterViewModel"
-    BackgroundColor="{StaticResource ColorBackgroundPage}">
+    BackgroundColor="{StaticResource Color.PageBackground}">
 
     <Grid Padding="32">
         <!-- Overlay de carregamento -->
@@ -15,7 +14,7 @@
             IsVisible="{Binding IsBusy}"
             HorizontalOptions="Center"
             VerticalOptions="Center"
-            Color="{StaticResource ColorPrimary}" />
+            Color="{StaticResource Color.Primary}" />
 
         <Grid
             ColumnDefinitions="2*,*"
@@ -29,7 +28,7 @@
                 Grid.Column="0"
                 Padding="32"
                 Margin="0,0,24,0"
-                BackgroundColor="{StaticResource ColorPanelBackground}"
+                BackgroundColor="{StaticResource Color.BrandSurface}"
                 StrokeThickness="0"
                 StrokeShape="RoundRectangle 24">
                 <VerticalStackLayout Spacing="14" VerticalOptions="Center">
@@ -37,36 +36,36 @@
                         Text="Crie sua conta administrativa"
                         FontSize="22"
                         FontAttributes="Bold"
-                        TextColor="{StaticResource ColorTextPrimary}" />
+                        TextColor="{StaticResource Color.TextPrimary}" />
 
                     <Label
                         Text="A conta de cadastro permite acesso ao dashboard completo de gestão de funcionários, departamentos, cargos e relatórios."
                         FontSize="13"
-                        TextColor="{StaticResource ColorTextSecondary}" />
+                        TextColor="{StaticResource Color.TextSecondary}" />
 
                     <VerticalStackLayout Spacing="10">
                         <HorizontalStackLayout Spacing="8">
-                            <Label Text="•" TextColor="{StaticResource ColorPrimary}" />
+                            <Label Text="•" TextColor="{StaticResource Color.Primary}" />
                             <Label
                                 Text="Controle de headcount por departamento."
                                 FontSize="12"
-                                TextColor="{StaticResource ColorTextSecondary}" />
+                                TextColor="{StaticResource Color.TextSecondary}" />
                         </HorizontalStackLayout>
 
                         <HorizontalStackLayout Spacing="8">
-                            <Label Text="•" TextColor="{StaticResource ColorPrimary}" />
+                            <Label Text="•" TextColor="{StaticResource Color.Primary}" />
                             <Label
                                 Text="Gestão de cargos, salários e status de vínculo."
                                 FontSize="12"
-                                TextColor="{StaticResource ColorTextSecondary}" />
+                                TextColor="{StaticResource Color.TextSecondary}" />
                         </HorizontalStackLayout>
 
                         <HorizontalStackLayout Spacing="8">
-                            <Label Text="•" TextColor="{StaticResource ColorPrimary}" />
+                            <Label Text="•" TextColor="{StaticResource Color.Primary}" />
                             <Label
                                 Text="Relatórios estratégicos para RH e diretoria."
                                 FontSize="12"
-                                TextColor="{StaticResource ColorTextSecondary}" />
+                                TextColor="{StaticResource Color.TextSecondary}" />
                         </HorizontalStackLayout>
                     </VerticalStackLayout>
                 </VerticalStackLayout>
@@ -76,11 +75,11 @@
             <Border
                 Grid.Column="1"
                 Padding="28"
-                BackgroundColor="{StaticResource ColorCardBackground}"
+                BackgroundColor="{StaticResource Color.CardBackground}"
                 StrokeThickness="1"
-                Stroke="{StaticResource ColorBorderSubtle}"
+                Stroke="{StaticResource Color.BorderSubtle}"
                 StrokeShape="RoundRectangle 24"
-                Shadow="{StaticResource ShadowCard}">
+                Shadow="{StaticResource Shadow.Card}">
                 <ScrollView>
                     <VerticalStackLayout Spacing="18">
 
@@ -90,25 +89,25 @@
                                 Text="Criar conta"
                                 FontSize="22"
                                 FontAttributes="Bold"
-                                TextColor="{StaticResource ColorTextPrimary}" />
+                                TextColor="{StaticResource Color.TextPrimary}" />
                             <Label
                                 Text="Preencha os dados abaixo para configurar o primeiro usuário administrador."
                                 FontSize="13"
-                                TextColor="{StaticResource ColorTextSecondary}" />
+                                TextColor="{StaticResource Color.TextSecondary}" />
                         </VerticalStackLayout>
 
                         <!-- Mensagem de erro -->
                         <Border
                             IsVisible="{Binding HasError}"
-                            BackgroundColor="{StaticResource ColorDangerSoft}"
-                            Stroke="{StaticResource ColorDanger}"
+                            BackgroundColor="{StaticResource Color.DangerSoft}"
+                            Stroke="{StaticResource Color.Danger}"
                             StrokeThickness="1"
                             Padding="8"
                             StrokeShape="RoundRectangle 12">
                             <Label
                                 Text="{Binding ErrorMessage}"
                                 FontSize="12"
-                                TextColor="{StaticResource ColorDangerStrong}" />
+                                TextColor="{StaticResource Color.Danger}" />
                         </Border>
 
                         <!-- Nome completo -->
@@ -116,13 +115,13 @@
                             <Label
                                 Text="Nome completo"
                                 FontSize="13"
-                                TextColor="{StaticResource ColorTextSecondary}" />
+                                TextColor="{StaticResource Color.TextSecondary}" />
                             <Entry
                                 Text="{Binding FullName}"
                                 Placeholder="Seu nome completo"
-                                TextColor="{StaticResource ColorTextPrimary}"
-                                PlaceholderColor="{StaticResource ColorTextMuted}"
-                                BackgroundColor="{StaticResource ColorInputBackground}"
+                                TextColor="{StaticResource Color.TextPrimary}"
+                                PlaceholderColor="{StaticResource Color.TextMuted}"
+                                BackgroundColor="{StaticResource Color.InputBackground}"
                                 HeightRequest="42" />
                         </VerticalStackLayout>
 
@@ -131,14 +130,14 @@
                             <Label
                                 Text="E-mail corporativo"
                                 FontSize="13"
-                                TextColor="{StaticResource ColorTextSecondary}" />
+                                TextColor="{StaticResource Color.TextSecondary}" />
                             <Entry
                                 Text="{Binding Email}"
                                 Placeholder="seu.email@empresa.com"
                                 Keyboard="Email"
-                                TextColor="{StaticResource ColorTextPrimary}"
-                                PlaceholderColor="{StaticResource ColorTextMuted}"
-                                BackgroundColor="{StaticResource ColorInputBackground}"
+                                TextColor="{StaticResource Color.TextPrimary}"
+                                PlaceholderColor="{StaticResource Color.TextMuted}"
+                                BackgroundColor="{StaticResource Color.InputBackground}"
                                 HeightRequest="42" />
                         </VerticalStackLayout>
 
@@ -147,14 +146,14 @@
                             <Label
                                 Text="Senha"
                                 FontSize="13"
-                                TextColor="{StaticResource ColorTextSecondary}" />
+                                TextColor="{StaticResource Color.TextSecondary}" />
                             <Entry
                                 Text="{Binding Password}"
                                 Placeholder="Crie uma senha segura"
                                 IsPassword="True"
-                                TextColor="{StaticResource ColorTextPrimary}"
-                                PlaceholderColor="{StaticResource ColorTextMuted}"
-                                BackgroundColor="{StaticResource ColorInputBackground}"
+                                TextColor="{StaticResource Color.TextPrimary}"
+                                PlaceholderColor="{StaticResource Color.TextMuted}"
+                                BackgroundColor="{StaticResource Color.InputBackground}"
                                 HeightRequest="42" />
                         </VerticalStackLayout>
 
@@ -163,14 +162,14 @@
                             <Label
                                 Text="Confirmar senha"
                                 FontSize="13"
-                                TextColor="{StaticResource ColorTextSecondary}" />
+                                TextColor="{StaticResource Color.TextSecondary}" />
                             <Entry
                                 Text="{Binding ConfirmPassword}"
                                 Placeholder="Repita a senha"
                                 IsPassword="True"
-                                TextColor="{StaticResource ColorTextPrimary}"
-                                PlaceholderColor="{StaticResource ColorTextMuted}"
-                                BackgroundColor="{StaticResource ColorInputBackground}"
+                                TextColor="{StaticResource Color.TextPrimary}"
+                                PlaceholderColor="{StaticResource Color.TextMuted}"
+                                BackgroundColor="{StaticResource Color.InputBackground}"
                                 HeightRequest="42" />
                         </VerticalStackLayout>
 
@@ -178,12 +177,12 @@
                         <HorizontalStackLayout Spacing="6" Padding="0,4,0,0">
                             <CheckBox
                                 IsChecked="{Binding AcceptTerms}"
-                                Color="{StaticResource ColorPrimary}" />
+                                Color="{StaticResource Color.Primary}" />
                             <Label
                                 Text="Concordo com os termos de uso deste sistema interno."
                                 FontSize="11"
                                 VerticalOptions="Center"
-                                TextColor="{StaticResource ColorTextSecondary}" />
+                                TextColor="{StaticResource Color.TextSecondary}" />
                         </HorizontalStackLayout>
 
                         <!-- Botão registrar -->
@@ -193,8 +192,8 @@
                             IsEnabled="{Binding CanRegister}"
                             HeightRequest="44"
                             CornerRadius="999"
-                            BackgroundColor="{StaticResource ColorPrimary}"
-                            TextColor="{StaticResource ColorOnPrimary}"
+                            BackgroundColor="{StaticResource Color.Primary}"
+                            TextColor="{StaticResource Color.TextOnPrimary}"
                             FontAttributes="Bold" />
 
                         <!-- Já tem conta -->
@@ -204,11 +203,11 @@
                             <Label
                                 Text="Já possui uma conta?"
                                 FontSize="12"
-                                TextColor="{StaticResource ColorTextSecondary}" />
+                                TextColor="{StaticResource Color.TextSecondary}" />
                             <Label
                                 Text="Ir para login"
                                 FontSize="12"
-                                TextColor="{StaticResource ColorPrimarySoft}"
+                                TextColor="{StaticResource Color.PrimaryLight}"
                                 FontAttributes="Bold">
                                 <Label.GestureRecognizers>
                                     <TapGestureRecognizer

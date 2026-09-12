@@ -58,6 +58,8 @@ namespace EmployeeRegistrationApp.Maui.Presentation.Reports.ViewModels
             RefreshCommand = new AsyncCommand(LoadDataAsync);
         }
 
+        public Task InitializeAsync() => LoadDataAsync();
+
         private async Task LoadDataAsync()
         {
             if (IsBusy) return;
@@ -68,7 +70,7 @@ namespace EmployeeRegistrationApp.Maui.Presentation.Reports.ViewModels
 
                 SalarySummaryDto summary = await _reportAppService.GetSalarySummaryAsync();
 
-                TotalSalary = summary.TotalSalary;
+                TotalSalary = summary.TotalPayroll;
                 AverageSalary = summary.AverageSalary;
                 MinSalary = summary.MinSalary;
                 MaxSalary = summary.MaxSalary;

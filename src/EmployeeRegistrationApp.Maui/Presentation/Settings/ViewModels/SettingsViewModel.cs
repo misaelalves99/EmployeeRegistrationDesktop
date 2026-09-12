@@ -6,6 +6,7 @@ using EmployeeRegistrationApp.Maui.Core.Base;
 using EmployeeRegistrationApp.Maui.Core.Services.Navigation;
 using EmployeeRegistrationApp.Maui.Core.Services.Notifications;
 using EmployeeRegistrationApp.Maui.Core.Services.Theme;
+using EmployeeRegistrationApp.Maui.Core.Config;
 
 namespace EmployeeRegistrationApp.Maui.Presentation.Settings.ViewModels
 {
@@ -96,7 +97,7 @@ namespace EmployeeRegistrationApp.Maui.Presentation.Settings.ViewModels
         private Task OpenCompanySettingsAsync()
         {
             // route absoluta no Shell (ajuste se seu AppShell usar outro path)
-            return _navigationService.NavigateToAsync("//Settings/CompanySettingsPage");
+            return _navigationService.NavigateToAsync(NavigationRoutes.CompanySettingsPage);
         }
 
         private async Task ToggleThemeAsync()

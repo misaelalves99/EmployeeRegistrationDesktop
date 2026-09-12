@@ -5,6 +5,7 @@ using EmployeeRegistrationApp.Application.DTOs.Dashboard;
 using EmployeeRegistrationApp.Application.Interfaces.Services;
 using EmployeeRegistrationApp.Maui.Core.Base;
 using EmployeeRegistrationApp.Maui.Core.Services.Navigation;
+using EmployeeRegistrationApp.Maui.Core.Config;
 
 namespace EmployeeRegistrationApp.Maui.Presentation.Reports.ViewModels
 {
@@ -64,9 +65,9 @@ namespace EmployeeRegistrationApp.Maui.Presentation.Reports.ViewModels
         }
 
         private Task OpenHeadcountReportAsync()
-            => _navigationService.NavigateToAsync("//Reports/HeadcountByDepartmentPage");
+            => _navigationService.NavigateToAsync(NavigationRoutes.HeadcountByDepartmentPage);
 
         private Task OpenSalarySummaryReportAsync()
-            => _navigationService.NavigateToAsync("//Reports/SalarySummaryPage");
+            => _navigationService.NavigateToAsync(NavigationRoutes.SalarySummaryPage);
     }
 }

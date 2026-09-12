@@ -1,35 +1,36 @@
-<!-- src/EmployeeRegistrationApp.Maui/Presentation/Reports/Views/SalarySummaryPage.xaml -->
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
     x:Class="EmployeeRegistrationApp.Maui.Presentation.Reports.Views.SalarySummaryPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewModels="clr-namespace:EmployeeRegistrationApp.Maui.Presentation.Reports.ViewModels"
-    Title="Resumo de salários">
+    Title="Resumo de salários"
+    xmlns:converters="clr-namespace:EmployeeRegistrationApp.Maui.Presentation.Converters">
 
     <ContentPage.Resources>
+        <converters:MoneyToCurrencyStringConverter x:Key="MoneyToCurrencyStringConverter" />
         <Style TargetType="Label" x:Key="PageTitle">
             <Setter Property="FontSize" Value="22" />
             <Setter Property="FontAttributes" Value="Bold" />
-            <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}" />
+            <Setter Property="TextColor" Value="{StaticResource Color.TextPrimary}" />
         </Style>
 
         <Style TargetType="Label" x:Key="PageSubtitle">
             <Setter Property="FontSize" Value="14" />
-            <Setter Property="TextColor" Value="{StaticResource SecondaryTextColor}" />
+            <Setter Property="TextColor" Value="{StaticResource Color.TextSecondary}" />
         </Style>
 
         <Style TargetType="Frame" x:Key="SummaryCard">
             <Setter Property="CornerRadius" Value="16" />
             <Setter Property="Padding" Value="14" />
-            <Setter Property="BackgroundColor" Value="{StaticResource CardBackgroundColor}" />
+            <Setter Property="BackgroundColor" Value="{StaticResource Color.CardBackground}" />
             <Setter Property="HasShadow" Value="False" />
         </Style>
 
         <Style TargetType="Frame" x:Key="DepartmentCard">
             <Setter Property="CornerRadius" Value="16" />
             <Setter Property="Padding" Value="14" />
-            <Setter Property="BackgroundColor" Value="{StaticResource CardBackgroundColor}" />
+            <Setter Property="BackgroundColor" Value="{StaticResource Color.CardBackground}" />
             <Setter Property="HasShadow" Value="False" />
         </Style>
     </ContentPage.Resources>
@@ -53,10 +54,10 @@
                 <VerticalStackLayout Spacing="2">
                     <Label Text="Massa salarial total"
                            FontSize="12"
-                           TextColor="{StaticResource SecondaryTextColor}" />
+                           TextColor="{StaticResource Color.TextSecondary}" />
                     <Label FontSize="18"
                            FontAttributes="Bold"
-                           TextColor="{StaticResource PrimaryTextColor}"
+                           TextColor="{StaticResource Color.TextPrimary}"
                            Text="{Binding TotalPayroll, Converter={StaticResource MoneyToCurrencyStringConverter}}" />
                 </VerticalStackLayout>
             </Frame>
@@ -65,10 +66,10 @@
                 <VerticalStackLayout Spacing="2">
                     <Label Text="Salário médio"
                            FontSize="12"
-                           TextColor="{StaticResource SecondaryTextColor}" />
+                           TextColor="{StaticResource Color.TextSecondary}" />
                     <Label FontSize="18"
                            FontAttributes="Bold"
-                           TextColor="{StaticResource PrimaryTextColor}"
+                           TextColor="{StaticResource Color.TextPrimary}"
                            Text="{Binding AverageSalary, Converter={StaticResource MoneyToCurrencyStringConverter}}" />
                 </VerticalStackLayout>
             </Frame>
@@ -87,7 +88,7 @@
                                          VerticalOptions="Center">
                         <Label Text="Nenhum dado de salário encontrado para o filtro atual."
                                FontSize="14"
-                               TextColor="{StaticResource SecondaryTextColor}"
+                               TextColor="{StaticResource Color.TextSecondary}"
                                HorizontalTextAlignment="Center" />
                     </VerticalStackLayout>
                 </CollectionView.EmptyView>
@@ -106,7 +107,7 @@
                                        Text="{Binding DepartmentName}"
                                        FontSize="16"
                                        FontAttributes="Bold"
-                                       TextColor="{StaticResource PrimaryTextColor}" />
+                                       TextColor="{StaticResource Color.TextPrimary}" />
 
                                 <!-- Folha do depto -->
                                 <Label Grid.Row="0"
@@ -114,7 +115,7 @@
                                        FontSize="15"
                                        FontAttributes="Bold"
                                        HorizontalTextAlignment="End"
-                                       TextColor="{StaticResource PrimaryTextColor}"
+                                       TextColor="{StaticResource Color.TextPrimary}"
                                        Text="{Binding TotalDepartmentPayroll, Converter={StaticResource MoneyToCurrencyStringConverter}}" />
 
                                 <!-- Linha de detalhes -->
@@ -125,36 +126,36 @@
                                     <VerticalStackLayout Spacing="2">
                                         <Label Text="Médio"
                                                FontSize="11"
-                                               TextColor="{StaticResource SecondaryTextColor}" />
+                                               TextColor="{StaticResource Color.TextSecondary}" />
                                         <Label FontSize="13"
-                                               TextColor="{StaticResource PrimaryTextColor}"
+                                               TextColor="{StaticResource Color.TextPrimary}"
                                                Text="{Binding AverageSalary, Converter={StaticResource MoneyToCurrencyStringConverter}}" />
                                     </VerticalStackLayout>
 
                                     <VerticalStackLayout Spacing="2">
                                         <Label Text="Mínimo"
                                                FontSize="11"
-                                               TextColor="{StaticResource SecondaryTextColor}" />
+                                               TextColor="{StaticResource Color.TextSecondary}" />
                                         <Label FontSize="13"
-                                               TextColor="{StaticResource PrimaryTextColor}"
+                                               TextColor="{StaticResource Color.TextPrimary}"
                                                Text="{Binding MinSalary, Converter={StaticResource MoneyToCurrencyStringConverter}}" />
                                     </VerticalStackLayout>
 
                                     <VerticalStackLayout Spacing="2">
                                         <Label Text="Máximo"
                                                FontSize="11"
-                                               TextColor="{StaticResource SecondaryTextColor}" />
+                                               TextColor="{StaticResource Color.TextSecondary}" />
                                         <Label FontSize="13"
-                                               TextColor="{StaticResource PrimaryTextColor}"
+                                               TextColor="{StaticResource Color.TextPrimary}"
                                                Text="{Binding MaxSalary, Converter={StaticResource MoneyToCurrencyStringConverter}}" />
                                     </VerticalStackLayout>
 
                                     <VerticalStackLayout Spacing="2">
                                         <Label Text="% folha"
                                                FontSize="11"
-                                               TextColor="{StaticResource SecondaryTextColor}" />
+                                               TextColor="{StaticResource Color.TextSecondary}" />
                                         <Label FontSize="13"
-                                               TextColor="{StaticResource PrimaryTextColor}"
+                                               TextColor="{StaticResource Color.TextPrimary}"
                                                Text="{Binding PercentageOfTotal, StringFormat='{0:P1}'}" />
                                     </VerticalStackLayout>
                                 </HorizontalStackLayout>

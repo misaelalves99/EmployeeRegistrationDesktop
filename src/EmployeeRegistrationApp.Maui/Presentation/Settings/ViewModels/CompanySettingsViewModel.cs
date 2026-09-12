@@ -122,7 +122,7 @@ public sealed class CompanySettingsViewModel : ViewModelBase
                 // Mapear outros campos se existirem (ex: Notes = InternalNotes)
             };
 
-            await _settingsAppService.UpdateCompanySettingsAsync(dto);
+            await _settingsAppService.SaveCompanySettingsAsync(dto);
 
             await _toastService.ShowSuccess("Configurações da empresa salvas com sucesso.");
             await _navigationService.GoBackAsync();

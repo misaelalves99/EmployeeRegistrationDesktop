@@ -11,7 +11,7 @@ namespace EmployeeRegistrationApp.Maui.Core.Services.Dialogs
     /// </summary>
     public sealed class DialogService : IDialogService
     {
-        private Page? MainPage => Application.Current?.MainPage;
+        private Page? MainPage => Microsoft.Maui.Controls.Application.Current?.MainPage;
 
         public Task ShowInfoAsync(string title, string message, string accept = "OK")
             => ShowAlertInternalAsync(title, message, accept);

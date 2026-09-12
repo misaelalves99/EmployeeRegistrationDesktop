@@ -1,4 +1,4 @@
-﻿// src/EmployeeRegistrationApp.Maui/App.xaml.cs
+// src/EmployeeRegistrationApp.Maui/App.xaml.cs
 using EmployeeRegistrationApp.Infrastructure.Repositories.InMemory;
 using EmployeeRegistrationApp.Maui.Core.Services.Theme;
 using EmployeeRegistrationApp.Maui.Presentation.Auth.Views;
@@ -6,7 +6,7 @@ using Microsoft.Maui.Controls;
 
 namespace EmployeeRegistrationApp.Maui;
 
-public partial class App : Application
+public partial class App : Microsoft.Maui.Controls.Application
 {
     private readonly IThemeService _themeService;
 
@@ -20,7 +20,7 @@ public partial class App : Application
         _themeService = themeService;
 
         // Tema inicial
-        _themeService.ApplyInitialTheme();
+        _ = _themeService.ApplyInitialThemeAsync();
 
         // ✅ Seed do "banco" in-memory (agora com DI correto)
         database.SeedIfEmpty();
@@ -29,5 +29,5 @@ public partial class App : Application
         MainPage = new NavigationPage(loginPage);
     }
 
-    public static new App Current => (App)Application.Current!;
+    public static new App Current => (App)Microsoft.Maui.Controls.Application.Current!;
 }

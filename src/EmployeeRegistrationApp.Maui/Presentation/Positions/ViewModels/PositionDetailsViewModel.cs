@@ -200,7 +200,7 @@ namespace EmployeeRegistrationApp.Maui.Presentation.Positions.ViewModels
                     "Cargo excluído",
                     "O cargo foi excluído com sucesso.");
 
-                await _navigationService.GoToAsync(NavigationRoutes.PositionsList, popToRoot: true);
+                await _navigationService.GoToRootAsync(NavigationRoutes.PositionsList);
             }
             catch (Exception ex)
             {

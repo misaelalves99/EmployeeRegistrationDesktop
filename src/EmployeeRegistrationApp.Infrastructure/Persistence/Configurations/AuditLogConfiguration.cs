@@ -20,7 +20,7 @@ namespace EmployeeRegistrationApp.Infrastructure.Persistence.Configurations
             builder.Property(a => a.Id)
                 .ValueGeneratedOnAdd();
 
-            builder.Property(a => a.TimestampUtc)
+            builder.Property(a => a.Timestamp)
                 .IsRequired();
 
             builder.Property(a => a.UserName)
@@ -43,7 +43,7 @@ namespace EmployeeRegistrationApp.Infrastructure.Persistence.Configurations
                 .HasColumnType("TEXT");
 
             // Índices para facilitar consultas por data e usuário
-            builder.HasIndex(a => a.TimestampUtc);
+            builder.HasIndex(a => a.Timestamp);
             builder.HasIndex(a => a.UserName);
             builder.HasIndex(a => a.EntityName);
         }

@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using AutoMapper;
 
-using EmployeeRegistrationApp.Application.AutoMapper;
+using EmployeeRegistrationApp.Application.AutoMapper.Employees;
 using EmployeeRegistrationApp.Application.Interfaces.Services;
 using EmployeeRegistrationApp.Application.Services.Departments;
 using EmployeeRegistrationApp.Application.Services.Employees;
@@ -35,8 +35,8 @@ namespace EmployeeRegistrationApp.Application.DependencyInjection
             services.AddScoped<ISettingsAppService, SettingsAppService>();
 
             // AutoMapper: varre todo o assembly da Application
-            // a partir do ApplicationMappingProfile
-            services.AddAutoMapper(typeof(ApplicationMappingProfile).Assembly);
+            // a partir do EmployeeApplicationProfile
+            services.AddAutoMapper(typeof(EmployeeApplicationProfile).Assembly);
 
             return services;
         }

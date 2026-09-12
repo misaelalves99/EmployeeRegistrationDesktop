@@ -1,4 +1,4 @@
-﻿// src/EmployeeRegistrationApp.Application/Services/Reports/ReportAppService.cs
+// src/EmployeeRegistrationApp.Application/Services/Reports/ReportAppService.cs
 using AutoMapper;
 using EmployeeRegistrationApp.Application.DTOs.Dashboard;
 using EmployeeRegistrationApp.Application.DTOs.Reports;
@@ -86,7 +86,7 @@ namespace EmployeeRegistrationApp.Application.Services.Reports
                 {
                     var dept = g.Key;
                     var activeCount = g.Count(x => x.IsActive);
-                    var inactiveCount = g.Count - activeCount;
+                    var inactiveCount = g.Count() - activeCount;
 
                     return new HeadcountByDepartmentDto
                     {
@@ -123,12 +123,11 @@ namespace EmployeeRegistrationApp.Application.Services.Reports
             {
                 return new SalarySummaryDto
                 {
-                    TotalSalary = 0m,
+                    TotalPayroll = 0m,
                     AverageSalary = 0m,
                     MinSalary = 0m,
                     MaxSalary = 0m,
                     EmployeesCount = 0,
-                    DepartmentName = "—"
                 };
             }
 
@@ -136,9 +135,8 @@ namespace EmployeeRegistrationApp.Application.Services.Reports
 
             return new SalarySummaryDto
             {
-                DepartmentName = "Geral",
                 EmployeesCount = employees.Count,
-                TotalSalary = salaries.Sum(),
+                TotalPayroll = salaries.Sum(),
                 AverageSalary = salaries.Average(),
                 MinSalary = salaries.Min(),
                 MaxSalary = salaries.Max()

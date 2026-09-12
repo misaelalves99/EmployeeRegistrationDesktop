@@ -39,9 +39,7 @@ namespace EmployeeRegistrationApp.Infrastructure.Identity
                     options.Lockout.AllowedForNewUsers = true;
                 })
                 .AddRoles<IdentityRole<Guid>>()          // Suporte a perfis (Admin, HR, Manager, etc.)
-                .AddEntityFrameworkStores<AppDbContext>() // Usa o DbContext de Infraestrutura (SQLite)
-                .AddSignInManager()                       // SignInManager para validar login/senha
-                .AddDefaultTokenProviders();              // Tokens (reset de senha, etc.)
+                .AddEntityFrameworkStores<AppDbContext>(); // Usa o DbContext de Infraestrutura (SQLite)
 
             return services;
         }

@@ -18,7 +18,7 @@ namespace EmployeeRegistrationApp.Application.Profiles
                 .ForMember(d => d.DepartmentId, opt => opt.MapFrom(s => s.DefaultDepartmentId))
                 .ForMember(d => d.DepartmentName, opt => opt.MapFrom(s => s.DefaultDepartment != null ? s.DefaultDepartment.Name : null))
                 .ForMember(d => d.CreatedAt, opt => opt.MapFrom(s => s.CreatedAt))
-                .ForMember(d => d.LastModifiedAt, opt => opt.MapFrom(s => s.LastModifiedAt));
+                .ForMember(d => d.LastModifiedAt, opt => opt.MapFrom(s => s.UpdatedAt));
 
             // DTO -> Domain
             CreateMap<PositionDto, Position>()

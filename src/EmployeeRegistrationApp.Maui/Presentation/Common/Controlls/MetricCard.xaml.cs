@@ -41,7 +41,14 @@ namespace EmployeeRegistrationApp.Maui.Presentation.Common.Controls
                 typeof(MetricCard),
                 "??");
 
-        public static readonly BindableProperty TrendTextProperty =
+
+        public static readonly BindableProperty AccentColorProperty =
+            BindableProperty.Create(
+                nameof(AccentColor),
+                typeof(Microsoft.Maui.Graphics.Color),
+                typeof(MetricCard),
+                Microsoft.Maui.Graphics.Color.FromArgb("#6b7280"));
+public static readonly BindableProperty TrendTextProperty =
             BindableProperty.Create(
                 nameof(TrendText),
                 typeof(string),
@@ -57,7 +64,7 @@ namespace EmployeeRegistrationApp.Maui.Presentation.Common.Controls
                 null,
                 propertyChanged: OnTrendChanged);
 
-        // ========== Propriedades públicas ==========
+        // ========== Propriedades pï¿½blicas ==========
 
         public string Title
         {
@@ -83,8 +90,14 @@ namespace EmployeeRegistrationApp.Maui.Presentation.Common.Controls
             set => SetValue(IconProperty, value);
         }
 
-        /// <summary>
-        /// Texto de tendência (ex.: "+12% vs mês anterior").
+
+        public Microsoft.Maui.Graphics.Color AccentColor
+        {
+            get => (Microsoft.Maui.Graphics.Color)GetValue(AccentColorProperty);
+            set => SetValue(AccentColorProperty, value);
+        }
+/// <summary>
+        /// Texto de tendï¿½ncia (ex.: "+12% vs mï¿½s anterior").
         /// </summary>
         public string TrendText
         {

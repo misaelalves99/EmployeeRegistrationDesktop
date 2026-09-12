@@ -1,4 +1,4 @@
- // src/EmployeeRegistrationApp.Maui/Presentation/Positions/Views/PositionFormPage.xaml<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
     x:Class="EmployeeRegistrationApp.Maui.Presentation.Positions.Views.PositionFormPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
@@ -96,15 +96,13 @@
 
                 <Button
                     Text="Cancelar"
-                    Command="{Binding CancelCommand}"
-                    BackgroundColor="{DynamicResource Gray200}"
-                    TextColor="Black" />
+                    Command="{Binding CancelCommand}" Style="{StaticResource SecondaryButtonStyle}" />
 
                 <Button
                     Text="Salvar"
                     Command="{Binding SaveCommand}"
                     IsEnabled="{Binding CanSave}"
-                    BackgroundColor="{DynamicResource Primary}"
+                    BackgroundColor="{DynamicResource Color.Primary}"
                     TextColor="White" />
             </HorizontalStackLayout>
 

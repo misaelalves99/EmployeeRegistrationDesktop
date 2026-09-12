@@ -1,27 +1,29 @@
-﻿// src/EmployeeRegistrationApp.Application/Interfaces/Repositories/IEmployeeRepository.cs
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using EmployeeRegistrationApp.Application.DTOs.Common;
-using EmployeeRegistrationApp.Application.DTOs.Employees;
+using EmployeeRegistrationApp.Domain.Entities;
 
 namespace EmployeeRegistrationApp.Application.Interfaces.Repositories
 {
     public interface IEmployeeRepository
     {
-        Task<EmployeeDetailsDto?> GetByIdAsync(Guid id, CancellationToken ct = default);
+        Task<Employee?> GetByIdAsync(
+            Guid id,
+            CancellationToken cancellationToken = default);
 
-        Task<PagedResultDto<EmployeeListItemDto>> GetPagedAsync(
-            int page,
-            int pageSize,
-            string? search,
-            bool? isActive,
-            Guid? departmentId,
-            CancellationToken ct = default
-        );
+        Task<IReadOnlyList<Employee>> GetAllAsync(
+            CancellationToken cancellationToken = default);
 
-        Task AddAsync(EmployeeDetailsDto employee, CancellationToken ct = default);
-        Task UpdateAsync(EmployeeDetailsDto employee, CancellationToken ct = default);
-        Task DeleteAsync(Guid id, CancellationToken ct = default);
+        IQueryable<Employee> Query();
+
+        Task AddAsync(
+            Employee employee,
+            CancellationToken cancellationToken = default);
+
+        void Update(Employee employee);
+
+        void Remove(Employee employee);
     }
 }

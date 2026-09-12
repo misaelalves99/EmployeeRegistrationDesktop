@@ -1,4 +1,4 @@
-﻿<!-- src/EmployeeRegistrationApp.Maui/Platforms/Windows/App.xaml -->
+<!-- src/EmployeeRegistrationApp.Maui/Platforms/Windows/App.xaml -->
 <maui:MauiWinUIApplication
     x:Class="EmployeeRegistrationApp.Maui.WinUI.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"

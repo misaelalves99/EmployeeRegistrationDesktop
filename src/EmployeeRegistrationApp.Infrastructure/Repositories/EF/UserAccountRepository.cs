@@ -1,11 +1,11 @@
-﻿// src/EmployeeRegistrationApp.Infrastructure/Repositories/EF/UserAccountRepository.cs
+// src/EmployeeRegistrationApp.Infrastructure/Repositories/EF/UserAccountRepository.cs
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
 using EmployeeRegistrationApp.Application.Interfaces.Repositories;
-using EmployeeRegistrationApp.Domain.Entities;               // ✅ agora usa Entities
+using EmployeeRegistrationApp.Domain.Users;
 using EmployeeRegistrationApp.Infrastructure.Persistence;
 
 namespace EmployeeRegistrationApp.Infrastructure.Repositories.EF

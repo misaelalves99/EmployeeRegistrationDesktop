@@ -19,9 +19,9 @@ namespace EmployeeRegistrationApp.Infrastructure.UnitOfWork
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        public Task<int> SaveChangesAsync()
         {
-            return _context.SaveChangesAsync(cancellationToken);
+            return _context.SaveChangesAsync();
         }
 
         public void Dispose()

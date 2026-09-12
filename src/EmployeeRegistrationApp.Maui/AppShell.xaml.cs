@@ -1,4 +1,4 @@
-﻿// src/EmployeeRegistrationApp.Maui/AppShell.xaml.cs
+// src/EmployeeRegistrationApp.Maui/AppShell.xaml.cs
 using EmployeeRegistrationApp.Maui.Presentation.Dashboard.Views;
 using EmployeeRegistrationApp.Maui.Presentation.Employees.Views;
 using EmployeeRegistrationApp.Maui.Presentation.Departments.Views;
@@ -40,12 +40,10 @@ public partial class AppShell : Shell
         Routing.RegisterRoute("positions/form", typeof(PositionFormPage));
 
         // Relatórios
-        Routing.RegisterRoute("reports/main", typeof(ReportsPage));
         Routing.RegisterRoute("reports/headcount", typeof(HeadcountByDepartmentPage));
         Routing.RegisterRoute("reports/salary-summary", typeof(SalarySummaryPage));
 
         // Configurações
-        Routing.RegisterRoute("settings/main", typeof(SettingsPage));
         Routing.RegisterRoute("settings/company", typeof(CompanySettingsPage));
     }
 }

@@ -1,13 +1,12 @@
 // src/EmployeeRegistrationApp.Maui/Presentation/Common/Controls/SearchBarControl.xaml.cs
-using AndroidX.ConstraintLayout.Utils.Widget;
 using Microsoft.Maui.Controls;
 using System.Windows.Input;
 
 namespace EmployeeRegistrationApp.Maui.Presentation.Common.Controls
 {
     /// <summary>
-    /// Barra de busca reutilizável para listas (Employees, Departments, etc.).
-    /// Exibe ícone de busca, Entry e botão "Buscar".
+    /// Barra de busca reutilizï¿½vel para listas (Employees, Departments, etc.).
+    /// Exibe ï¿½cone de busca, Entry e botï¿½o "Buscar".
     /// </summary>
     public partial class SearchBarControl : ContentView
     {
@@ -52,7 +51,7 @@ namespace EmployeeRegistrationApp.Maui.Presentation.Common.Controls
                 default(object));
 
         // ============================
-        // Propriedades públicas
+        // Propriedades pï¿½blicas
         // ============================
 
         /// <summary>
@@ -74,7 +73,7 @@ namespace EmployeeRegistrationApp.Maui.Presentation.Common.Controls
         }
 
         /// <summary>
-        /// Command executado quando o usuário toca em "Buscar" ou aperta Enter.
+        /// Command executado quando o usuï¿½rio toca em "Buscar" ou aperta Enter.
         /// </summary>
         public ICommand SearchCommand
         {
@@ -83,8 +82,8 @@ namespace EmployeeRegistrationApp.Maui.Presentation.Common.Controls
         }
 
         /// <summary>
-        /// Parâmetro opcional do SearchCommand.
-        /// Se não for definido, o próprio Text será usado como parâmetro.
+        /// Parï¿½metro opcional do SearchCommand.
+        /// Se nï¿½o for definido, o prï¿½prio Text serï¿½ usado como parï¿½metro.
         /// </summary>
         public object SearchCommandParameter
         {
@@ -126,7 +125,7 @@ namespace EmployeeRegistrationApp.Maui.Presentation.Common.Controls
 
         private void UpdateActionVisual()
         {
-            // Aqui você pode evoluir para "Limpar" se tiver texto,
+            // Aqui vocï¿½ pode evoluir para "Limpar" se tiver texto,
             // por enquanto mantemos sempre "Buscar" para simplificar.
             ActionLabel.Text = "Buscar";
         }

@@ -53,8 +53,6 @@ public static class MauiProgram
         builder.Services.AddSingleton<IThemeService, ThemeService>();
         builder.Services.AddSingleton<IAuthService, AuthService>();
         builder.Services.AddSingleton<IToastService, ToastService>();
-        builder.Services.AddSingleton<AppConfig>();
-
         // ViewModels
         builder.Services.AddTransient<LoginViewModel>();
         builder.Services.AddTransient<RegisterViewModel>();

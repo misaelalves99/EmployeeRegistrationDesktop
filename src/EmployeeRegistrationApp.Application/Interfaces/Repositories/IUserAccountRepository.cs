@@ -1,7 +1,7 @@
-﻿// src/EmployeeRegistrationApp.Application/Interfaces/Repositories/IUserAccountRepository.cs
+// src/EmployeeRegistrationApp.Application/Interfaces/Repositories/IUserAccountRepository.cs
 using System;
 using System.Threading.Tasks;
-using EmployeeRegistrationApp.Domain.Entities;
+using EmployeeRegistrationApp.Domain.Users;
 
 namespace EmployeeRegistrationApp.Application.Interfaces.Repositories
 {

@@ -151,7 +151,7 @@ namespace EmployeeRegistrationApp.Maui.Presentation.Auth.ViewModels
                 }
 
                 await _toastService.ShowSuccess("Conta criada com sucesso. Faça login para acessar o painel.");
-                await _navigationService.NavigateToAsync(NavigationRoutes.Login);
+                await _navigationService.NavigateToAsync(NavigationRoutes.Root.Login);
             }
             catch (Exception ex)
             {
@@ -171,7 +171,7 @@ namespace EmployeeRegistrationApp.Maui.Presentation.Auth.ViewModels
                 return;
 
             ClearError();
-            await _navigationService.NavigateToAsync(NavigationRoutes.Login);
+            await _navigationService.NavigateToAsync(NavigationRoutes.Root.Login);
         }
 
         private void ClearError()

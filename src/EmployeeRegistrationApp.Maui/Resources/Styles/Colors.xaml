@@ -1,4 +1,3 @@
-﻿<!-- src/EmployeeRegistrationApp.Maui/Resources/Styles/Colors.xaml -->
 <?xml version="1.0" encoding="utf-8" ?>
 <ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
@@ -18,6 +17,7 @@
     <Color x:Key="Color.Success">#22C55E</Color>
     <Color x:Key="Color.Warning">#EAB308</Color>
     <Color x:Key="Color.Danger">#EF4444</Color>
+    <Color x:Key="Color.DangerSoft">#1FEF4444</Color>
     <Color x:Key="Color.Info">#38BDF8</Color>
 
     <!-- Fundo / superfícies -->
@@ -26,6 +26,7 @@
     <Color x:Key="Color.Surface">#020617</Color>
     <Color x:Key="Color.SurfaceElevated">#020617</Color>
     <Color x:Key="Color.CardBackground">#020617</Color>
+    <Color x:Key="Color.BrandSurface">#0C1A33</Color>
 
     <!-- Bordas e divisores -->
     <Color x:Key="Color.BorderSubtle">#1F2937</Color>

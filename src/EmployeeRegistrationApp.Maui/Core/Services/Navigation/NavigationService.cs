@@ -12,7 +12,7 @@ namespace EmployeeRegistrationApp.Maui.Core.Services.Navigation
         private readonly Dictionary<string, object> _globalParameters = new();
 
         private Shell Shell =>
-            Application.Current?.MainPage as Shell
+            Microsoft.Maui.Controls.Application.Current?.MainPage as Shell
             ?? throw new InvalidOperationException("MainPage não é um Shell.");
 
         public Task NavigateToAsync(string route, IDictionary<string, object>? parameters = null)

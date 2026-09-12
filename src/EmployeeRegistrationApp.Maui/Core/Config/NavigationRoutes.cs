@@ -36,7 +36,7 @@ public static class NavigationRoutes
 
     // Reports
     public const string ReportsPage = "reports";
-    public const string HeadcountByDepartmentPage = "reports/headcount-by-department";
+    public const string HeadcountByDepartmentPage = "reports/headcount";
     public const string SalarySummaryPage = "reports/salary-summary";
 
     // Settings

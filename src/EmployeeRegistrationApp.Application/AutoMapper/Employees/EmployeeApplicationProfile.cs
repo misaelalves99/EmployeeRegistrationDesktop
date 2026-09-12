@@ -25,7 +25,6 @@ namespace EmployeeRegistrationApp.Application.AutoMapper.Employees
 
             // Domain -> DTO (detalhes)
             CreateMap<Employee, EmployeeDetailsDto>()
-                .ForMember(d => d.Cpf, opt => opt.MapFrom(s => s.Cpf.ToString()))
                 .ForMember(d => d.Email, opt => opt.MapFrom(s => s.Email.Address))
                 .ForMember(d => d.PhoneNumber, opt => opt.MapFrom(s => s.Phone != null ? s.Phone.ToString() : null))
                 .ForMember(d => d.SalaryAmount, opt => opt.MapFrom(s => s.Salary.Amount))
@@ -39,8 +38,6 @@ namespace EmployeeRegistrationApp.Application.AutoMapper.Employees
 
             // Domain -> DTO (listagem)
             CreateMap<Employee, EmployeeListItemDto>()
-                .ForMember(d => d.Cpf, opt => opt.MapFrom(s => s.Cpf.ToString()))
-                .ForMember(d => d.Email, opt => opt.MapFrom(s => s.Email.Address))
                 .ForMember(d => d.DepartmentName, opt => opt.MapFrom(s => s.Department != null ? s.Department.Name : null))
                 .ForMember(d => d.PositionName, opt => opt.MapFrom(s => s.Position != null ? s.Position.Name : null))
                 .ForMember(d => d.SalaryAmount, opt => opt.MapFrom(s => s.Salary.Amount))
@@ -48,10 +45,11 @@ namespace EmployeeRegistrationApp.Application.AutoMapper.Employees
                 .ForMember(d => d.IsActive, opt => opt.MapFrom(s => s.IsActive));
 
             // DTO -> Domain (criar/atualizar)
-            CreateMap<EmployeeDto, Employee>()
-                .ForAllMembers(opt => opt.Ignore())
-                .AfterMap((src, dest) =>
-                {
+            var employeeDtoToEmployee = CreateMap<EmployeeDto, Employee>();
+
+            employeeDtoToEmployee.ForAllMembers(opt => opt.Ignore());
+
+            employeeDtoToEmployee.AfterMap((src, dest) =>                {
                     // ==========
                     // Nome (suporta UI que envia só FullName)
                     // ==========
@@ -91,7 +89,7 @@ namespace EmployeeRegistrationApp.Application.AutoMapper.Employees
                         ? null
                         : PhoneNumber.Create(src.PhoneNumber);
 
-                    dest.UpdateContact(phone);
+                    dest.UpdateContact(Email.Create(src.Email), phone);
 
                     // ==========
                     // Contrato

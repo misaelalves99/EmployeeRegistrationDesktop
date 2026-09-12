@@ -75,7 +75,7 @@ namespace EmployeeRegistrationApp.Application.Services.Settings
                 await _repository.UpdateAsync(entity, CancellationToken.None);
             }
 
-            await _unitOfWork.SaveChangesAsync(CancellationToken.None);
+            await _unitOfWork.SaveChangesAsync();
 
             return _mapper.Map<CompanySettingsDto>(entity);
         }

@@ -14,15 +14,17 @@ namespace EmployeeRegistrationApp.Application.AutoMapper.Departments
                 .ForMember(d => d.LastModifiedBy, opt => opt.MapFrom(s => s.UpdatedBy))
                 .ForMember(d => d.Headcount, opt => opt.MapFrom(s => s.Employees.Count));
 
-            CreateMap<DepartmentDto, Department>()
-                .ForAllMembers(opt => opt.Ignore())
-                .AfterMap((src, dest) =>
-                {
-                    dest.UpdateInfo(src.Name ?? string.Empty, src.Code, src.Description);
+            var departmentDtoToDepartment = CreateMap<DepartmentDto, Department>();
 
-                    if (src.IsActive) dest.Activate();
-                    else dest.Deactivate();
-                });
+            departmentDtoToDepartment.ForAllMembers(opt => opt.Ignore());
+
+            departmentDtoToDepartment.AfterMap((src, dest) =>
+            {
+                dest.UpdateInfo(src.Name ?? string.Empty, src.Code, src.Description);
+
+                if (src.IsActive) dest.Activate();
+                else dest.Deactivate();
+            });
         }
     }
 }

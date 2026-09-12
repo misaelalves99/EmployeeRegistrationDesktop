@@ -1,5 +1,6 @@
 ﻿// src/EmployeeRegistrationApp.Infrastructure/Persistence/Configurations/UserAccountConfiguration.cs
 using EmployeeRegistrationApp.Domain.Entities;
+using EmployeeRegistrationApp.Domain.Users;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

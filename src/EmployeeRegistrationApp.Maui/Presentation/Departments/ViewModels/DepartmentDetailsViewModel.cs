@@ -68,8 +68,8 @@ namespace EmployeeRegistrationApp.Maui.Presentation.Departments.ViewModels
                 Description = dto.Description ?? string.Empty;
 
                 // se não existir no seu DTO, comente essas linhas
-                ActiveEmployeesCount = dto.ActiveEmployeesCount ?? 0;
-                TotalEmployeesCount = dto.TotalEmployeesCount ?? 0;
+                ActiveEmployeesCount = dto.Headcount;
+                TotalEmployeesCount = dto.Headcount;
 
                 Title = $"Departamento - {Name}";
             }

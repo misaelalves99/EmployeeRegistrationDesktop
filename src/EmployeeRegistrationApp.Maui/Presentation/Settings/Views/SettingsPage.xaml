@@ -1,4 +1,3 @@
-<!-- src/EmployeeRegistrationApp.Maui/Presentation/Settings/Views/SettingsPage.xaml -->
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
     x:Class="EmployeeRegistrationApp.Maui.Presentation.Settings.Views.SettingsPage"
@@ -10,18 +9,18 @@
         <Style TargetType="Label" x:Key="PageTitle">
             <Setter Property="FontSize" Value="22" />
             <Setter Property="FontAttributes" Value="Bold" />
-            <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}" />
+            <Setter Property="TextColor" Value="{StaticResource Color.TextPrimary}" />
         </Style>
 
         <Style TargetType="Label" x:Key="PageSubtitle">
             <Setter Property="FontSize" Value="14" />
-            <Setter Property="TextColor" Value="{StaticResource SecondaryTextColor}" />
+            <Setter Property="TextColor" Value="{StaticResource Color.TextSecondary}" />
         </Style>
 
         <Style TargetType="Frame" x:Key="SettingsCard">
             <Setter Property="CornerRadius" Value="18" />
             <Setter Property="Padding" Value="16" />
-            <Setter Property="BackgroundColor" Value="{StaticResource CardBackgroundColor}" />
+            <Setter Property="BackgroundColor" Value="{StaticResource Color.CardBackground}" />
             <Setter Property="HasShadow" Value="False" />
             <Setter Property="Margin" Value="0,0,0,12" />
         </Style>
@@ -47,15 +46,15 @@
                     <Label Text="Resumo"
                            FontSize="14"
                            FontAttributes="Bold"
-                           TextColor="{StaticResource PrimaryTextColor}" />
+                           TextColor="{StaticResource Color.TextPrimary}" />
 
                     <Label Text="{Binding CompanyNameSummary}"
                            FontSize="13"
-                           TextColor="{StaticResource SecondaryTextColor}" />
+                           TextColor="{StaticResource Color.TextSecondary}" />
 
                     <Label Text="{Binding CurrentThemeSummary}"
                            FontSize="13"
-                           TextColor="{StaticResource SecondaryTextColor}" />
+                           TextColor="{StaticResource Color.TextSecondary}" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -69,11 +68,11 @@
                             <Label Text="Configurações da empresa"
                                    FontSize="16"
                                    FontAttributes="Bold"
-                                   TextColor="{StaticResource PrimaryTextColor}" />
+                                   TextColor="{StaticResource Color.TextPrimary}" />
 
                             <Label Text="Nome fantasia, razão social e demais informações institucionais."
                                    FontSize="13"
-                                   TextColor="{StaticResource SecondaryTextColor}" />
+                                   TextColor="{StaticResource Color.TextSecondary}" />
                         </VerticalStackLayout>
 
                         <Button Grid.Column="1"
@@ -90,11 +89,11 @@
                             <Label Text="Tema da aplicação"
                                    FontSize="16"
                                    FontAttributes="Bold"
-                                   TextColor="{StaticResource PrimaryTextColor}" />
+                                   TextColor="{StaticResource Color.TextPrimary}" />
 
                             <Label Text="{Binding CurrentThemeSummary}"
                                    FontSize="13"
-                                   TextColor="{StaticResource SecondaryTextColor}" />
+                                   TextColor="{StaticResource Color.TextSecondary}" />
                         </VerticalStackLayout>
 
                         <Button Grid.Column="1"

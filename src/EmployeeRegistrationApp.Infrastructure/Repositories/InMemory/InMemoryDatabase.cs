@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using EmployeeRegistrationApp.Domain.Entities;
+using EmployeeRegistrationApp.Domain.Users;
 using EmployeeRegistrationApp.Domain.Enums;
 using EmployeeRegistrationApp.Domain.ValueObjects;
 

@@ -59,7 +59,7 @@ namespace EmployeeRegistrationApp.Maui.Presentation.Converters
             }
 
             // Outro tipo: tenta converter para decimal
-            if (decimal.TryParse(Convert.ToString(value, CultureInfo.InvariantCulture), NumberStyles.Number, CultureInfo.InvariantCulture, out var parsed))
+            if (decimal.TryParse(System.Convert.ToString(value, CultureInfo.InvariantCulture), NumberStyles.Number, CultureInfo.InvariantCulture, out var parsed))
             {
                 return string.Format(targetCulture, "{0:C}", parsed);
             }

@@ -24,27 +24,48 @@ namespace EmployeeRegistrationApp.Infrastructure.Repositories.EF
             _context = context;
         }
 
-        public async Task AddAsync(AuditLog auditLog, CancellationToken cancellationToken = default)
+        public async Task AddAsync(AuditLog auditLog)
         {
             if (auditLog is null) throw new ArgumentNullException(nameof(auditLog));
 
-            await _context.AuditLogs.AddAsync(auditLog, cancellationToken);
+            await _context.AuditLogs.AddAsync(auditLog);
         }
 
         /// <summary>
         /// Retorna os logs mais recentes (por padrão 100).
         /// </summary>
-        public async Task<IReadOnlyList<AuditLog>> GetRecentAsync(
-            int take = 100,
-            CancellationToken cancellationToken = default)
+        public async Task<IReadOnlyList<AuditLog>> GetRecentAsync(int take = 50)
         {
-            if (take <= 0) take = 100;
+            if (take <= 0) take = 50;
 
             return await _context.AuditLogs
                 .AsNoTracking()
-                .OrderByDescending(l => l.TimestampUtc)
+                .OrderByDescending(l => l.Timestamp)
                 .Take(take)
-                .ToListAsync(cancellationToken);
+                .ToListAsync();
+        }
+
+        public async Task<IReadOnlyList<AuditLog>> GetByUserAsync(string userId, int take = 100)
+        {
+            if (take <= 0) take = 100;
+
+            userId = (userId ?? string.Empty).Trim();
+
+            IQueryable<AuditLog> query = _context.AuditLogs.AsNoTracking();
+
+            if (Guid.TryParse(userId, out var parsedUserId))
+            {
+                query = query.Where(x => x.UserId == parsedUserId || x.UserName == userId);
+            }
+            else
+            {
+                query = query.Where(x => x.UserName == userId);
+            }
+
+            return await query
+                .OrderByDescending(x => x.Timestamp)
+                .Take(take)
+                .ToListAsync();
         }
 
         /// <summary>

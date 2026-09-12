@@ -1,5 +1,6 @@
 ﻿// src/EmployeeRegistrationApp.Infrastructure/Persistence/AppDbContext.cs
 using EmployeeRegistrationApp.Domain.Entities;
+using EmployeeRegistrationApp.Domain.Users;
 using EmployeeRegistrationApp.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;

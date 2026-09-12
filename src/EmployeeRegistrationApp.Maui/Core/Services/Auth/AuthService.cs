@@ -1,9 +1,9 @@
-﻿// src/EmployeeRegistrationApp.Maui/Core/Services/Auth/AuthService.cs
+// src/EmployeeRegistrationApp.Maui/Core/Services/Auth/AuthService.cs
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using EmployeeRegistrationApp.Application.Interfaces.Repositories;
-using EmployeeRegistrationApp.Domain.Entities;
+using EmployeeRegistrationApp.Domain.Users;
 using EmployeeRegistrationApp.Domain.ValueObjects;
 using Microsoft.Maui.Storage;
 
@@ -73,10 +73,10 @@ public sealed class AuthService : IAuthService
         if (account is null)
         {
             var email = userNameOrEmail.Contains("@", StringComparison.Ordinal)
-                ? Email.Create(userNameOrEmail)
-                : Email.Create($"{userNameOrEmail.Trim().ToLowerInvariant()}@employeeapp.local");
+                ? EmployeeRegistrationApp.Domain.ValueObjects.Email.Create(userNameOrEmail)
+                : EmployeeRegistrationApp.Domain.ValueObjects.Email.Create($"{userNameOrEmail.Trim().ToLowerInvariant()}@employeeapp.local");
 
-            account = new UserAccount(userNameOrEmail.Trim(), email, isActive: true);
+            account = new UserAccount(userNameOrEmail.Trim(), email, System.Guid.NewGuid().ToString("N"), "Employee");
             await _userAccountRepository.AddAsync(account);
         }
 
@@ -111,7 +111,7 @@ public sealed class AuthService : IAuthService
         if (await _userAccountRepository.ExistsByEmailAsync(email.Trim()))
             return false;
 
-        var account = new UserAccount(fullName.Trim(), Email.Create(email.Trim()), isActive: true);
+        var account = new UserAccount(fullName.Trim(), EmployeeRegistrationApp.Domain.ValueObjects.Email.Create(email.Trim()), System.Guid.NewGuid().ToString("N"), "Employee");
         await _userAccountRepository.AddAsync(account);
 
         _isAuthenticated = true;

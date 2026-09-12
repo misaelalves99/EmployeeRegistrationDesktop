@@ -1,4 +1,3 @@
-﻿// src/EmployeeRegistrationApp.Application/Services/Departments/DepartmentAppService.cs
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,10 +49,18 @@ namespace EmployeeRegistrationApp.Application.Services.Departments
             return _mapper.Map<DepartmentDto>(entity);
         }
 
-        public async Task<DepartmentDto?> UpdateAsync(Guid id, DepartmentDto dto)
+        public async Task<DepartmentDto> UpdateAsync(DepartmentDto dto)
         {
-            var entity = await _departmentRepository.GetByIdAsync(id);
-            if (entity is null) return null;
+            if (!dto.Id.HasValue || dto.Id.Value == Guid.Empty)
+                throw new ArgumentException(
+                    "Department Id is required for update.",
+                    nameof(dto));
+
+            var entity = await _departmentRepository.GetByIdAsync(dto.Id.Value);
+
+            if (entity is null)
+                throw new InvalidOperationException(
+                    $"Department '{dto.Id.Value}' was not found.");
 
             _mapper.Map(dto, entity);
 
@@ -63,14 +70,15 @@ namespace EmployeeRegistrationApp.Application.Services.Departments
             return _mapper.Map<DepartmentDto>(entity);
         }
 
-        public async Task<bool> DeleteAsync(Guid id)
+        public async Task DeleteAsync(Guid id)
         {
             var entity = await _departmentRepository.GetByIdAsync(id);
-            if (entity is null) return false;
+
+            if (entity is null)
+                return;
 
             await _departmentRepository.DeleteAsync(entity);
             await _unitOfWork.SaveChangesAsync();
-            return true;
         }
     }
 }

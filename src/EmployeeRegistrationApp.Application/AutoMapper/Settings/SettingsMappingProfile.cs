@@ -19,8 +19,8 @@ namespace EmployeeRegistrationApp.Application.AutoMapper
                 .ForMember(d => d.PrimaryPhone, opt => opt.MapFrom(s => s.PrimaryPhone != null ? s.PrimaryPhone.Digits : null))
                 .ForMember(d => d.CreatedAt, opt => opt.MapFrom(s => s.CreatedAt))
                 .ForMember(d => d.CreatedBy, opt => opt.MapFrom(s => s.CreatedBy))
-                .ForMember(d => d.LastModifiedAt, opt => opt.MapFrom(s => s.UpdatedAt))
-                .ForMember(d => d.LastModifiedBy, opt => opt.MapFrom(s => s.UpdatedBy));
+                .ForMember(d => d.UpdatedAt, opt => opt.MapFrom(s => s.UpdatedAt))
+                .ForMember(d => d.UpdatedBy, opt => opt.MapFrom(s => s.UpdatedBy));
 
             // DTO -> Domain
             CreateMap<CompanySettingsDto, CompanySettings>()
@@ -48,9 +48,9 @@ namespace EmployeeRegistrationApp.Application.AutoMapper
                     );
 
                     // Auditoria (opcional — depende se sua UI preenche isso)
-                    if (!string.IsNullOrWhiteSpace(src.LastModifiedBy))
+                    if (!string.IsNullOrWhiteSpace(src.UpdatedBy))
                     {
-                        dest.TouchAudit(src.LastModifiedBy!);
+                        dest.TouchAudit(src.UpdatedBy!);
                     }
                 });
         }

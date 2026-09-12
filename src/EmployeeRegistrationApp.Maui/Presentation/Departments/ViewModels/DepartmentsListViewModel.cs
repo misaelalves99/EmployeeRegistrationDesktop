@@ -132,7 +132,7 @@ namespace EmployeeRegistrationApp.Maui.Presentation.Departments.ViewModels
             return _navigationService.GoToAsync(NavigationRoutes.DepartmentFormPage);
         }
 
-        private Task OpenDetailsAsync(DepartmentDto? department)
+        public Task OpenDetailsAsync(DepartmentDto? department)
         {
             if (department is null)
                 return Task.CompletedTask;

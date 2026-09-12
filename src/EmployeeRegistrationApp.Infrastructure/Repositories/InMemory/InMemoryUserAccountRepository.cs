@@ -1,9 +1,9 @@
-﻿// src/EmployeeRegistrationApp.Infrastructure/Repositories/InMemory/InMemoryUserAccountRepository.cs
+// src/EmployeeRegistrationApp.Infrastructure/Repositories/InMemory/InMemoryUserAccountRepository.cs
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 using EmployeeRegistrationApp.Application.Interfaces.Repositories;
-using EmployeeRegistrationApp.Domain.Entities;
+using EmployeeRegistrationApp.Domain.Users;
 
 namespace EmployeeRegistrationApp.Infrastructure.Repositories.InMemory
 {

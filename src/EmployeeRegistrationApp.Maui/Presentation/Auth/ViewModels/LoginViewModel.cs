@@ -115,13 +115,13 @@ namespace EmployeeRegistrationApp.Maui.Presentation.Auth.ViewModels
                 {
                     HasErrors = true;
                     ErrorMessage = "Informe um e-mail válido.";
-                    _toastService.ShowWarning(ErrorMessage);
+                    await _toastService.ShowInfoAsync(ErrorMessage);
                     return;
                 }
 
-                var result = await _authService.LoginAsync(Email, Password, RememberMe);
+                var succeeded = await _authService.SignInAsync(Email, Password);
 
-                if (result.Succeeded)
+                if (succeeded)
                 {
                     _toastService.ShowSuccess("Bem-vindo(a) de volta!");
                     await _navigationService.NavigateToDashboardAsync();
@@ -129,9 +129,7 @@ namespace EmployeeRegistrationApp.Maui.Presentation.Auth.ViewModels
                 else
                 {
                     HasErrors = true;
-                    ErrorMessage = string.IsNullOrWhiteSpace(result.ErrorMessage)
-                        ? "Não foi possível realizar o login. Verifique suas credenciais."
-                        : result.ErrorMessage;
+                    ErrorMessage = "Não foi possível realizar o login. Verifique suas credenciais.";
 
                     _toastService.ShowError(ErrorMessage);
                 }

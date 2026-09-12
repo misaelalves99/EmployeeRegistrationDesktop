@@ -1,10 +1,10 @@
-﻿<!-- src/EmployeeRegistrationApp.Maui/EmployeeRegistrationApp.Maui.csproj -->
+<!-- src/EmployeeRegistrationApp.Maui/EmployeeRegistrationApp.Maui.csproj -->
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net8.0-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks>net10.0-android;net10.0-ios;net10.0-maccatalyst</TargetFrameworks>
 		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">
-			$(TargetFrameworks);net8.0-windows10.0.19041.0
+			$(TargetFrameworks);net10.0-windows10.0.19041.0
 		</TargetFrameworks>
 
 		<OutputType>Exe</OutputType>
@@ -45,10 +45,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.Maui" Version="8.0.1" />
-		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.1" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="15.0.1" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.101" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.11" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -60,19 +59,19 @@
 		</MauiXaml>
 
 		<!-- ✅ Corrigido: Controls -->
-		<MauiXaml Update="Presentation\Common\Controls\AppShellHeader.xaml">
+		<MauiXaml Update="Presentation\Common\Controlls\AppShellHeader.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
-		<MauiXaml Update="Presentation\Common\Controls\FilterChip.xaml">
+		<MauiXaml Update="Presentation\Common\Controlls\FilterChip.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
-		<MauiXaml Update="Presentation\Common\Controls\MetricCard.xaml">
+		<MauiXaml Update="Presentation\Common\Controlls\MetricCard.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
-		<MauiXaml Update="Presentation\Common\Controls\SearchBarControl.xaml">
+		<MauiXaml Update="Presentation\Common\Controlls\SearchBarControl.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
-		<MauiXaml Update="Presentation\Common\Controls\StatusBadge.xaml">
+		<MauiXaml Update="Presentation\Common\Controlls\StatusBadge.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 
@@ -165,210 +164,3 @@
 	</ItemGroup>
 
 </Project>
-<!-- src/EmployeeRegistrationApp.Maui/EmployeeRegistrationApp.Maui.csproj -->
-<Project Sdk="Microsoft.NET.Sdk">
-
-	<PropertyGroup>
-		<TargetFrameworks>net8.0-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
-		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">
-			$(TargetFrameworks);net8.0-windows10.0.19041.0
-		</TargetFrameworks>
-
-		<OutputType>Exe</OutputType>
-		<RootNamespace>EmployeeRegistrationApp.Maui</RootNamespace>
-		<AssemblyName>EmployeeRegistrationApp.Maui</AssemblyName>
-
-		<UseMaui>true</UseMaui>
-		<SingleProject>true</SingleProject>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
-		<LangVersion>latest</LangVersion>
-
-		<ApplicationTitle>EmployeeRegistrationApp.Maui</ApplicationTitle>
-		<ApplicationId>com.companyname.employeeregistrationapp.maui</ApplicationId>
-
-		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
-		<ApplicationVersion>1</ApplicationVersion>
-
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
-		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
-	</PropertyGroup>
-
-	<ItemGroup>
-		<MauiIcon Include="Resources\AppIcon\appicon.svg"
-				  ForegroundFile="Resources\AppIcon\appiconfg.svg"
-				  Color="#512BD4" />
-
-		<MauiSplashScreen Include="Resources\Splash\splash.svg"
-						  Color="#512BD4"
-						  BaseSize="128,128" />
-
-		<MauiImage Include="Resources\Images\*" />
-		<MauiImage Update="Resources\Images\dotnet_bot.png"
-				   Resize="True"
-				   BaseSize="300,185" />
-
-		<MauiFont Include="Resources\Fonts\*" />
-
-		<MauiAsset Include="Resources\Raw\**"
-				   LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.Maui" Version="8.0.1" />
-		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.1" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<MauiXaml Update="Presentation\Auth\Views\LoginPage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-		<MauiXaml Update="Presentation\Auth\Views\RegisterPage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-
-		<!-- ✅ Corrigido: Controls -->
-		<MauiXaml Update="Presentation\Common\Controls\AppShellHeader.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-		<MauiXaml Update="Presentation\Common\Controls\FilterChip.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-		<MauiXaml Update="Presentation\Common\Controls\MetricCard.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-		<MauiXaml Update="Presentation\Common\Controls\SearchBarControl.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-		<MauiXaml Update="Presentation\Common\Controls\StatusBadge.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-
-		<MauiXaml Update="Presentation\Dashboard\Views\DashboardPage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-
-		<MauiXaml Update="Presentation\Departments\Views\DepartmentDetailsPage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-		<MauiXaml Update="Presentation\Departments\Views\DepartmentFormPage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-		<MauiXaml Update="Presentation\Departments\Views\DepartmentsListPage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-
-		<MauiXaml Update="Presentation\Employees\EmployeeReactivatePage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-		<MauiXaml Update="Presentation\Employees\Views\EmployeeDetailsPage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-		<MauiXaml Update="Presentation\Employees\Views\EmployeeFormPage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-		<MauiXaml Update="Presentation\Employees\Views\EmployeesListPage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-
-		<MauiXaml Update="Presentation\Positions\Views\PositionDetailsPage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-		<MauiXaml Update="Presentation\Positions\Views\PositionFormPage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-		<MauiXaml Update="Presentation\Positions\Views\PositionsListPage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-
-		<MauiXaml Update="Presentation\Reports\Views\HeadcountByDepartmentPage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-		<MauiXaml Update="Presentation\Reports\Views\ReportsPage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-		<MauiXaml Update="Presentation\Reports\Views\SalarySummaryPage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-
-		<MauiXaml Update="Presentation\Settings\Views\CompanySettingsPage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-		<MauiXaml Update="Presentation\Settings\Views\SettingsPage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-
-		<MauiXaml Update="Presentation\Templates\DepartmentListDataTemplate.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-		<MauiXaml Update="Presentation\Templates\EmployeeListDataTemplate.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-		<MauiXaml Update="Presentation\Templates\PositionListDataTemplate.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-
-		<MauiXaml Update="Resources\Styles\Controls.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-		<MauiXaml Update="Resources\Styles\Spacing.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-		<MauiXaml Update="Resources\Styles\Theme.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-		<MauiXaml Update="Resources\Styles\Typography.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-	</ItemGroup>
-
-	<ItemGroup>
-		<Folder Include="Presentation\Templates\" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\EmployeeRegistrationApp.Application\EmployeeRegistrationApp.Application.csproj" />
-		<ProjectReference Include="..\EmployeeRegistrationApp.Domain\EmployeeRegistrationApp.Domain.csproj" />
-		<ProjectReference Include="..\EmployeeRegistrationApp.Infrastructure\EmployeeRegistrationApp.Infrastructure.csproj" />
-	</ItemGroup>
-
-</Project>
-<!-- src/EmployeeRegistrationApp.Maui/EmployeeRegistrationApp.Maui.csproj -->
-<ItemGroup>
-  <MauiXaml Update="Presentation\Common\Controls\AppShellHeader.xaml">
-    <Generator>MSBuild:Compile</Generator>
-  </MauiXaml>
-  <MauiXaml Update="Presentation\Common\Controls\FilterChip.xaml">
-    <Generator>MSBuild:Compile</Generator>
-  </MauiXaml>
-  <MauiXaml Update="Presentation\Common\Controls\MetricCard.xaml">
-    <Generator>MSBuild:Compile</Generator>
-  </MauiXaml>
-  <MauiXaml Update="Presentation\Common\Controls\SearchBarControl.xaml">
-    <Generator>MSBuild:Compile</Generator>
-  </MauiXaml>
-  <MauiXaml Update="Presentation\Common\Controls\StatusBadge.xaml">
-    <Generator>MSBuild:Compile</Generator>
-  </MauiXaml>
-</ItemGroup>
-	<MauiXaml Update="Presentation\Common\Controls\AppShellHeader.xaml">
-		<Generator>MSBuild:Compile</Generator>
-	</MauiXaml>
-	<MauiXaml Update="Presentation\Common\Controls\FilterChip.xaml">
-		<Generator>MSBuild:Compile</Generator>
-	</MauiXaml>
-	<MauiXaml Update="Presentation\Common\Controls\MetricCard.xaml">
-		<Generator>MSBuild:Compile</Generator>
-	</MauiXaml>
-	<MauiXaml Update="Presentation\Common\Controls\SearchBarControl.xaml">
-		<Generator>MSBuild:Compile</Generator>
-	</MauiXaml>
-	<MauiXaml Update="Presentation\Common\Controls\StatusBadge.xaml">
-		<Generator>MSBuild:Compile</Generator>
-	

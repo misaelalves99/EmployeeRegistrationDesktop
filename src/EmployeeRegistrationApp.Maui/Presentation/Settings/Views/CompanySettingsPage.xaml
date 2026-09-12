@@ -1,4 +1,3 @@
-<!-- src/EmployeeRegistrationApp.Maui/Presentation/Settings/Views/CompanySettingsPage.xaml -->
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
     x:Class="EmployeeRegistrationApp.Maui.Presentation.Settings.Views.CompanySettingsPage"
@@ -9,18 +8,18 @@
     <ContentPage.Resources>
         <Style TargetType="Label" x:Key="FieldLabel">
             <Setter Property="FontSize" Value="13" />
-            <Setter Property="TextColor" Value="{StaticResource SecondaryTextColor}" />
+            <Setter Property="TextColor" Value="{StaticResource Color.TextSecondary}" />
         </Style>
 
         <Style TargetType="Entry" x:Key="FieldEntry">
             <Setter Property="FontSize" Value="14" />
-            <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}" />
+            <Setter Property="TextColor" Value="{StaticResource Color.TextPrimary}" />
         </Style>
 
         <Style TargetType="Frame" x:Key="FormCard">
             <Setter Property="CornerRadius" Value="18" />
             <Setter Property="Padding" Value="18" />
-            <Setter Property="BackgroundColor" Value="{StaticResource CardBackgroundColor}" />
+            <Setter Property="BackgroundColor" Value="{StaticResource Color.CardBackground}" />
             <Setter Property="HasShadow" Value="False" />
         </Style>
     </ContentPage.Resources>
@@ -35,11 +34,11 @@
                 <Label Text="Dados da empresa"
                        FontSize="22"
                        FontAttributes="Bold"
-                       TextColor="{StaticResource PrimaryTextColor}" />
+                       TextColor="{StaticResource Color.TextPrimary}" />
 
                 <Label Text="Configure o nome fantasia, razão social e demais informações institucionais."
                        FontSize="14"
-                       TextColor="{StaticResource SecondaryTextColor}" />
+                       TextColor="{StaticResource Color.TextSecondary}" />
             </VerticalStackLayout>
 
             <!-- Formulário -->
@@ -80,9 +79,7 @@
                   ColumnSpacing="12">
 
                 <Button Text="Cancelar"
-                        Command="{Binding CancelCommand}"
-                        BackgroundColor="{StaticResource SecondaryButtonBackgroundColor}"
-                        TextColor="{StaticResource SecondaryButtonTextColor}" />
+                        Command="{Binding CancelCommand}" Style="{StaticResource SecondaryButtonStyle}" />
 
                 <Button Grid.Column="1"
                         Text="Salvar"

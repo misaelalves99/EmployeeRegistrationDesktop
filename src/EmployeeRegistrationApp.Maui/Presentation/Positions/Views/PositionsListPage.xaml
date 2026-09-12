@@ -1,4 +1,4 @@
- // src/EmployeeRegistrationApp.Maui/Presentation/Positions/Views/PositionsListPage.xaml<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
     x:Class="EmployeeRegistrationApp.Maui.Presentation.Positions.Views.PositionsListPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
@@ -62,7 +62,7 @@
                             Padding="12"
                             HasShadow="False"
                             CornerRadius="12"
-                            BorderColor="{DynamicResource Gray300}">
+                            BorderColor="{DynamicResource Color.BorderSubtle}">
                             <Grid ColumnDefinitions="*,Auto"
                                   RowDefinitions="Auto,Auto"
                                   ColumnSpacing="8"
@@ -87,7 +87,7 @@
                                     Grid.RowSpan="2"
                                     Grid.Column="1"
                                     VerticalOptions="Center"
-                                    Text="{Binding TypeDisplay}"
+                                    Text="{Binding Type}"
                                     FontSize="13"
                                     Opacity="0.7" />
                             </Grid>
