@@ -1,4 +1,6 @@
-﻿// src/EmployeeRegistrationApp.Maui/MauiProgram.cs
+using EmployeeRegistrationApp.Maui.Core.Services.Departments;
+using EmployeeRegistrationApp.Application.Interfaces.Services;
+// src/EmployeeRegistrationApp.Maui/MauiProgram.cs
 using CommunityToolkit.Maui;
 using EmployeeRegistrationApp.Application.DependencyInjection;
 using EmployeeRegistrationApp.Infrastructure.DependencyInjection;
@@ -106,6 +108,20 @@ public static class MauiProgram
         builder.Services.AddTransient<CompanySettingsPage>();
 
         // ✅ build 1x
+        var departmentApiBaseAddress =
+            Environment.GetEnvironmentVariable("EMPLOYEE_REGISTRATION_DEPARTMENT_API_BASE_ADDRESS")
+            ?? "https://localhost:5001/api/";
+
+        builder.Services.AddScoped<IDepartmentAppService>(_ =>
+        {
+            var client = new HttpClient
+            {
+                BaseAddress = new Uri(departmentApiBaseAddress, UriKind.Absolute),
+                Timeout = TimeSpan.FromSeconds(15)
+            };
+
+            return new RemoteDepartmentAppService(client);
+        });
         var app = builder.Build();
 
         // ✅ seed depois do build (mesmo container)
