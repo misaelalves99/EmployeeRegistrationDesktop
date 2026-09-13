@@ -48,7 +48,7 @@
 
         <!-- Header -->
         <VerticalStackLayout Grid.Row="0" Spacing="6">
-            <Label Text="Colaboradores" Style="{StaticResource TitleStyle}" FontSize="20"/>
+            <Label Text="Colaboradores" Style="{StaticResource TitleStyle}" FontSize="20" SemanticProperties.HeadingLevel="Level1"/>
             <Label Text="Liste, busque e acesse os detalhes dos colaboradores." Style="{StaticResource MutedStyle}" />
         </VerticalStackLayout>
 
@@ -106,11 +106,15 @@
                                     <Label Text="{Binding PositionName, StringFormat='Cargo: {0}'}" Style="{StaticResource MutedStyle}" />
                                 </HorizontalStackLayout>
 
-                                <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer
-                                        Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.OpenDetailsCommand}"
-                                        CommandParameter="{Binding .}" />
-                                </Frame.GestureRecognizers>
+                                <Button
+                                    Grid.Row="2"
+                                    Grid.Column="1"
+                                    Text="Detalhes"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.OpenDetailsCommand}"
+                                    CommandParameter="{Binding .}"
+                                    SemanticProperties.Hint="Abre os detalhes do colaborador selecionado"
+                                    HorizontalOptions="End"
+                                    VerticalOptions="Center" />
 
                             </Grid>
                         </Frame>

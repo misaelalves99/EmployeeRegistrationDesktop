@@ -7,7 +7,35 @@
     x:DataType="vm:RegisterViewModel"
     BackgroundColor="{StaticResource Color.PageBackground}">
 
-    <Grid Padding="32">
+    <Grid x:Name="RootLayout" Padding="32">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="WindowStates">
+                <VisualState x:Name="Wide">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="900" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter TargetName="AuthGrid" Property="Grid.ColumnDefinitions" Value="2*,*" />
+                        <Setter TargetName="BrandPanel" Property="IsVisible" Value="True" />
+                        <Setter TargetName="BrandPanel" Property="Grid.Column" Value="0" />
+                        <Setter TargetName="BrandPanel" Property="Margin" Value="0,0,24,0" />
+                        <Setter TargetName="FormPanel" Property="Grid.Column" Value="1" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Narrow">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter TargetName="AuthGrid" Property="Grid.ColumnDefinitions" Value="*" />
+                        <Setter TargetName="BrandPanel" Property="IsVisible" Value="False" />
+                        <Setter TargetName="BrandPanel" Property="Grid.Column" Value="0" />
+                        <Setter TargetName="BrandPanel" Property="Margin" Value="0" />
+                        <Setter TargetName="FormPanel" Property="Grid.Column" Value="0" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
         <!-- Overlay de carregamento -->
         <ActivityIndicator
             IsRunning="{Binding IsBusy}"
@@ -17,6 +45,7 @@
             Color="{StaticResource Color.Primary}" />
 
         <Grid
+            x:Name="AuthGrid"
             ColumnDefinitions="2*,*"
             RowDefinitions="*"
             MaximumWidthRequest="1024"
@@ -25,6 +54,7 @@
 
             <!-- Lado esquerdo: painel de branding -->
             <Border
+                x:Name="BrandPanel"
                 Grid.Column="0"
                 Padding="32"
                 Margin="0,0,24,0"
@@ -73,6 +103,7 @@
 
             <!-- Lado direito: formulário -->
             <Border
+                x:Name="FormPanel"
                 Grid.Column="1"
                 Padding="28"
                 BackgroundColor="{StaticResource Color.CardBackground}"
@@ -87,6 +118,7 @@
                         <VerticalStackLayout Spacing="6">
                             <Label
                                 Text="Criar conta"
+                                SemanticProperties.HeadingLevel="Level1"
                                 FontSize="22"
                                 FontAttributes="Bold"
                                 TextColor="{StaticResource Color.TextPrimary}" />
@@ -118,6 +150,7 @@
                                 TextColor="{StaticResource Color.TextSecondary}" />
                             <Entry
                                 Text="{Binding FullName}"
+                                SemanticProperties.Description="Nome completo"
                                 Placeholder="Seu nome completo"
                                 TextColor="{StaticResource Color.TextPrimary}"
                                 PlaceholderColor="{StaticResource Color.TextMuted}"
@@ -133,6 +166,7 @@
                                 TextColor="{StaticResource Color.TextSecondary}" />
                             <Entry
                                 Text="{Binding Email}"
+                                SemanticProperties.Description="E-mail corporativo"
                                 Placeholder="seu.email@empresa.com"
                                 Keyboard="Email"
                                 TextColor="{StaticResource Color.TextPrimary}"
@@ -149,6 +183,7 @@
                                 TextColor="{StaticResource Color.TextSecondary}" />
                             <Entry
                                 Text="{Binding Password}"
+                                SemanticProperties.Description="Senha"
                                 Placeholder="Crie uma senha segura"
                                 IsPassword="True"
                                 TextColor="{StaticResource Color.TextPrimary}"
@@ -165,6 +200,7 @@
                                 TextColor="{StaticResource Color.TextSecondary}" />
                             <Entry
                                 Text="{Binding ConfirmPassword}"
+                                SemanticProperties.Description="Confirmar senha"
                                 Placeholder="Repita a senha"
                                 IsPassword="True"
                                 TextColor="{StaticResource Color.TextPrimary}"
@@ -188,6 +224,7 @@
                         <!-- Botão registrar -->
                         <Button
                             Text="Criar conta"
+                            SemanticProperties.Hint="Cria a conta administrativa com os dados informados"
                             Command="{Binding RegisterCommand}"
                             IsEnabled="{Binding CanRegister}"
                             HeightRequest="44"

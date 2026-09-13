@@ -16,6 +16,7 @@
                 <Grid Padding="10,0">
                     <Entry
                         x:Name="SearchEntry"
+                        SemanticProperties.Description="Campo de busca"
                         Text="{Binding Text, Source={x:Reference Root}}"
                         Placeholder="{Binding Placeholder, Source={x:Reference Root}}"
                         TextColor="#e5e7eb"
@@ -26,29 +27,22 @@
                 </Grid>
             </Border>
 
-            <Border
-                x:Name="ActionBorder"
+            <Button
+                x:Name="ActionLabel"
                 Grid.Column="2"
                 Margin="6,0,0,0"
                 Padding="10,6"
-                StrokeThickness="0"
-                StrokeShape="RoundRectangle 999"
+                Text="Buscar"
+                FontSize="12"
+                FontAttributes="Bold"
+                TextColor="White"
                 BackgroundColor="#2563eb"
-                VerticalOptions="Center">
-
-                <Border.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="OnActionTapped" />
-                </Border.GestureRecognizers>
-
-                <Label
-                    x:Name="ActionLabel"
-                    Text="Buscar"
-                    FontSize="12"
-                    FontAttributes="Bold"
-                    TextColor="White"
-                    VerticalOptions="Center"
-                    HorizontalOptions="Center" />
-            </Border>
+                CornerRadius="999"
+                VerticalOptions="Center"
+                Command="{Binding Source={x:Reference Root}, Path=SearchCommand}"
+                CommandParameter="{Binding Source={x:Reference Root}, Path=SearchCommandParameter}"
+                SemanticProperties.Description="Buscar"
+                SemanticProperties.Hint="Executa a busca com o texto informado" />
         </Grid>
     </Grid>
 </ContentView>

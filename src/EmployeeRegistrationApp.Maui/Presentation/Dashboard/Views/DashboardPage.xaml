@@ -9,6 +9,35 @@
     BackgroundColor="{StaticResource Color.PageBackground}">
 
     <Grid Padding="24">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="WindowStates">
+                <VisualState x:Name="Wide">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1000" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter TargetName="PrimaryMetricsGrid" Property="Grid.ColumnDefinitions" Value="*,*,*,*" />
+                        <Setter TargetName="MetricActive" Property="Grid.Column" Value="1" />
+                        <Setter TargetName="MetricInactive" Property="Grid.Column" Value="2" />
+                        <Setter TargetName="MetricDepartments" Property="Grid.Column" Value="3" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Compact">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter TargetName="PrimaryMetricsGrid" Property="Grid.ColumnDefinitions" Value="*,*" />
+                        <Setter TargetName="PrimaryMetricsGrid" Property="Grid.RowDefinitions" Value="Auto,Auto" />
+                        <Setter TargetName="MetricActive" Property="Grid.Column" Value="1" />
+                        <Setter TargetName="MetricInactive" Property="Grid.Row" Value="1" />
+                        <Setter TargetName="MetricInactive" Property="Grid.Column" Value="0" />
+                        <Setter TargetName="MetricDepartments" Property="Grid.Row" Value="1" />
+                        <Setter TargetName="MetricDepartments" Property="Grid.Column" Value="1" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
         <ActivityIndicator
             IsRunning="{Binding IsBusy}"
             IsVisible="{Binding IsBusy}"
@@ -23,6 +52,7 @@
                     <VerticalStackLayout Spacing="4">
                         <Label
                             Text="Dashboard de Pessoas"
+                            SemanticProperties.HeadingLevel="Level1"
                             FontSize="24"
                             FontAttributes="Bold"
                             TextColor="{StaticResource Color.TextPrimary}" />
@@ -44,11 +74,11 @@
                         Margin="8,0,0,0" />
                 </Grid>
 
-                <Grid ColumnDefinitions="*,*,*,*" ColumnSpacing="12">
-                    <controls:MetricCard Grid.Column="0" Title="Total de funcionários" Value="{Binding TotalEmployees}" Subtitle="Todos os vínculos" Icon="👥" AccentColor="{StaticResource Color.Primary}" />
-                    <controls:MetricCard Grid.Column="1" Title="Ativos" Value="{Binding ActiveEmployees}" Subtitle="Trabalhando atualmente" Icon="✅" AccentColor="{StaticResource Color.Success}" />
-                    <controls:MetricCard Grid.Column="2" Title="Inativos" Value="{Binding InactiveEmployees}" Subtitle="Desligados / afastados" Icon="⚠️" AccentColor="{StaticResource Color.Warning}" />
-                    <controls:MetricCard Grid.Column="3" Title="Departamentos" Value="{Binding DepartmentsCount}" Subtitle="Áreas organizadas" Icon="🏢" AccentColor="{StaticResource Color.Info}" />
+                <Grid x:Name="PrimaryMetricsGrid" ColumnDefinitions="*,*,*,*" RowDefinitions="Auto" ColumnSpacing="12" RowSpacing="12">
+                    <controls:MetricCard x:Name="MetricTotal" Grid.Column="0" Title="Total de funcionários" Value="{Binding TotalEmployees}" Subtitle="Todos os vínculos" Icon="👥" AccentColor="{StaticResource Color.Primary}" />
+                    <controls:MetricCard x:Name="MetricActive" Grid.Column="1" Title="Ativos" Value="{Binding ActiveEmployees}" Subtitle="Trabalhando atualmente" Icon="✅" AccentColor="{StaticResource Color.Success}" />
+                    <controls:MetricCard x:Name="MetricInactive" Grid.Column="2" Title="Inativos" Value="{Binding InactiveEmployees}" Subtitle="Desligados / afastados" Icon="⚠️" AccentColor="{StaticResource Color.Warning}" />
+                    <controls:MetricCard x:Name="MetricDepartments" Grid.Column="3" Title="Departamentos" Value="{Binding DepartmentsCount}" Subtitle="Áreas organizadas" Icon="🏢" AccentColor="{StaticResource Color.Info}" />
                 </Grid>
 
                 <Grid ColumnDefinitions="*,*" ColumnSpacing="12">

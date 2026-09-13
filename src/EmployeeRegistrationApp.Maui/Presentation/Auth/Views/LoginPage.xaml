@@ -11,7 +11,33 @@
         <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
     </ContentPage.Resources>
 
-    <Grid Padding="32">
+    <Grid x:Name="RootLayout" Padding="32">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="WindowStates">
+                <VisualState x:Name="Wide">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="900" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter TargetName="AuthGrid" Property="Grid.ColumnDefinitions" Value="*,2*" />
+                        <Setter TargetName="BrandPanel" Property="IsVisible" Value="True" />
+                        <Setter TargetName="BrandPanel" Property="Grid.Column" Value="1" />
+                        <Setter TargetName="BrandPanel" Property="Margin" Value="24,0,0,0" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Narrow">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter TargetName="AuthGrid" Property="Grid.ColumnDefinitions" Value="*" />
+                        <Setter TargetName="BrandPanel" Property="IsVisible" Value="False" />
+                        <Setter TargetName="BrandPanel" Property="Grid.Column" Value="0" />
+                        <Setter TargetName="BrandPanel" Property="Margin" Value="0" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
         <!-- Overlay de carregamento -->
         <ActivityIndicator
             IsRunning="{Binding IsBusy}"
@@ -22,6 +48,7 @@
 
         <!-- Layout principal -->
         <Grid
+            x:Name="AuthGrid"
             ColumnDefinitions="*,2*"
             RowDefinitions="*"
             MaximumWidthRequest="1024"
@@ -44,6 +71,7 @@
                         <VerticalStackLayout Spacing="6">
                             <Label
                                 Text="Bem-vindo de volta 👋"
+                                SemanticProperties.HeadingLevel="Level1"
                                 FontSize="24"
                                 FontAttributes="Bold"
                                 TextColor="{StaticResource Color.TextPrimary}" />
@@ -76,6 +104,7 @@
                                 TextColor="{StaticResource Color.TextSecondary}" />
                             <Entry
                                 Text="{Binding Email}"
+                                SemanticProperties.Description="E-mail"
                                 Placeholder="seu.email@empresa.com"
                                 Keyboard="Email"
                                 ClearButtonVisibility="WhileEditing"
@@ -93,6 +122,7 @@
                                 TextColor="{StaticResource Color.TextSecondary}" />
                             <Entry
                                 Text="{Binding Password}"
+                                SemanticProperties.Description="Senha"
                                 Placeholder="Digite sua senha"
                                 IsPassword="True"
                                 ClearButtonVisibility="WhileEditing"
@@ -128,6 +158,7 @@
                         <!-- Botão login -->
                         <Button
                             Text="Entrar"
+                            SemanticProperties.Hint="Entra no sistema com as credenciais informadas"
                             Command="{Binding LoginCommand}"
                             IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBoolConverter}}"
                             HeightRequest="44"
@@ -178,6 +209,7 @@
 
             <!-- Lado direito: painel visual / branding -->
             <Border
+                x:Name="BrandPanel"
                 Grid.Column="1"
                 Padding="32"
                 Margin="24,0,0,0"
