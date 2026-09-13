@@ -1,4 +1,4 @@
-﻿// src/EmployeeRegistrationApp.Application/Profiles/PositionApplicationProfile.cs
+// src/EmployeeRegistrationApp.Application/Profiles/PositionApplicationProfile.cs
 using AutoMapper;
 using EmployeeRegistrationApp.Application.DTOs.Positions;
 using EmployeeRegistrationApp.Domain.Entities;
@@ -32,7 +32,15 @@ namespace EmployeeRegistrationApp.Application.Profiles
                             : null,
                         dto.Code,
                         dto.Description,
-                        dto.IsActive));
+                        dto.IsActive))
+                .ForMember(d => d.PositionType, opt => opt.Ignore())
+                .ForMember(d => d.BaseSalary, opt => opt.Ignore())
+                .ForMember(d => d.DefaultDepartmentId, opt => opt.Ignore())
+                .ForMember(d => d.DefaultDepartment, opt => opt.Ignore())
+                .ForMember(d => d.Employees, opt => opt.Ignore())
+                .ForMember(d => d.CreatedBy, opt => opt.Ignore())
+                .ForMember(d => d.UpdatedAt, opt => opt.Ignore())
+                .ForMember(d => d.UpdatedBy, opt => opt.Ignore());
         }
     }
 }

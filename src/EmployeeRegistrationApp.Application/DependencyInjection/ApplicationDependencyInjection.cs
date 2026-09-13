@@ -1,4 +1,4 @@
-﻿// src/EmployeeRegistrationApp.Application/DependencyInjection/ApplicationDependencyInjection.cs
+// src/EmployeeRegistrationApp.Application/DependencyInjection/ApplicationDependencyInjection.cs
 using Microsoft.Extensions.DependencyInjection;
 using AutoMapper;
 
@@ -36,7 +36,7 @@ namespace EmployeeRegistrationApp.Application.DependencyInjection
 
             // AutoMapper: varre todo o assembly da Application
             // a partir do EmployeeApplicationProfile
-            services.AddAutoMapper(typeof(EmployeeApplicationProfile).Assembly);
+            services.AddAutoMapper(_ => { }, typeof(EmployeeApplicationProfile).Assembly);
 
             return services;
         }

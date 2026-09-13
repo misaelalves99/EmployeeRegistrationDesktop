@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using AutoMapper;
 using EmployeeRegistrationApp.Application.DTOs.Employees;
@@ -21,7 +21,9 @@ namespace EmployeeRegistrationApp.Application.AutoMapper.Employees
                 .ForMember(d => d.SalaryCurrency, opt => opt.MapFrom(s => s.Salary.Currency))
                 .ForMember(d => d.DepartmentId, opt => opt.MapFrom(s => s.DepartmentId))
                 .ForMember(d => d.PositionId, opt => opt.MapFrom(s => s.PositionId))
-                .ForMember(d => d.FullName, opt => opt.MapFrom(s => s.FullName));
+                .ForMember(d => d.FullName, opt => opt.MapFrom(s => s.FullName))
+                .ForMember(d => d.AdmissionDate, opt => opt.MapFrom(s => s.HireDate))
+                .ForMember(d => d.BaseSalary, opt => opt.MapFrom(s => s.Salary.Amount));
 
             // Domain -> DTO (detalhes)
             CreateMap<Employee, EmployeeDetailsDto>()

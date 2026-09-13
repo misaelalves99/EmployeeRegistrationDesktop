@@ -1,5 +1,6 @@
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
 using EmployeeRegistrationApp.Application.DTOs.Departments;
@@ -71,7 +72,8 @@ public sealed class RemoteDepartmentAppServiceContractTests
     [Fact]
     public async Task Update_missing_id_fails_before_http()
     {
-        var dto = CreateDto() with { Id = null };
+        var dto = CreateDto();
+        dto.Id = null;
         using var handler = StubHandler.Json(HttpStatusCode.OK, dto);
         using var client = CreateClient(handler);
         var sut = new ProductionEquivalentRemoteDepartmentAppService(client);
