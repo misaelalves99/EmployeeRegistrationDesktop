@@ -1,14 +1,25 @@
-﻿// tests/EmployeeRegistrationApp.Domain.Tests/DomainSmokeTests.cs
+using EmployeeRegistrationApp.Domain.Entities;
 using Xunit;
 
-namespace EmployeeRegistrationApp.Domain.Tests
+namespace EmployeeRegistrationApp.Domain.Tests;
+
+public sealed class DomainSmokeTests
 {
-    public sealed class DomainSmokeTests
+    [Fact]
+    public void Department_Normalizes_identity_fields_and_changes_active_state()
     {
-        [Fact]
-        public void DomainTests_ProjectBuilds()
-        {
-            Assert.True(true);
-        }
+        var department = new Department("  Tecnologia  ", " ti ", "  Plataforma  ");
+
+        Assert.Equal("Tecnologia", department.Name);
+        Assert.Equal("TI", department.Code);
+        Assert.Equal("Plataforma", department.Description);
+        Assert.True(department.IsActive);
+
+        department.Deactivate();
+        Assert.False(department.IsActive);
+
+        department.Activate();
+        Assert.True(department.IsActive);
+        Assert.NotNull(department.UpdatedAt);
     }
 }
