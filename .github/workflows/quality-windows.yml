@@ -1,0 +1,77 @@
+name: quality-windows
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    name: Windows quality
+    runs-on: windows-latest
+    timeout-minutes: 30
+
+    env:
+      DOTNET_NOLOGO: true
+      DOTNET_CLI_TELEMETRY_OPTOUT: true
+      NUGET_PACKAGES: ${{ github.workspace }}\.nuget\packages
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+          cache: true
+          cache-dependency-path: |
+            **/*.csproj
+            **/packages.lock.json
+
+      - name: Setup .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Install MAUI Windows workload
+        shell: pwsh
+        run: dotnet workload install maui-windows --skip-manifest-update
+
+      - name: Restore native project references
+        shell: pwsh
+        run: |
+          dotnet restore src/EmployeeRegistrationApp.Domain/EmployeeRegistrationApp.Domain.csproj
+          dotnet restore src/EmployeeRegistrationApp.Application/EmployeeRegistrationApp.Application.csproj
+          dotnet restore src/EmployeeRegistrationApp.Infrastructure/EmployeeRegistrationApp.Infrastructure.csproj
+
+      - name: Restore MAUI Windows target
+        shell: pwsh
+        run: dotnet restore src/EmployeeRegistrationApp.Maui/EmployeeRegistrationApp.Maui.csproj --no-dependencies -p:TargetFramework=net10.0-windows10.0.19041.0 -p:RuntimeIdentifierOverride=win-x64
+
+      - name: Restore approved tests
+        shell: pwsh
+        run: |
+          dotnet restore tests/EmployeeRegistrationApp.App.Tests/EmployeeRegistrationApp.App.Tests.csproj
+          dotnet restore tests/EmployeeRegistrationApp.Domain.Tests/EmployeeRegistrationApp.Domain.Tests.csproj
+          dotnet restore tests/EmployeeRegistrationApp.Maui.Tests/EmployeeRegistrationApp.Maui.Tests.csproj
+
+      - name: Build MAUI Windows target
+        shell: pwsh
+        run: dotnet build src/EmployeeRegistrationApp.Maui/EmployeeRegistrationApp.Maui.csproj -c Release -f net10.0-windows10.0.19041.0 -p:RuntimeIdentifierOverride=win-x64 -p:PublishReadyToRun=false --no-restore
+
+      - name: Test application
+        shell: pwsh
+        run: dotnet test tests/EmployeeRegistrationApp.App.Tests/EmployeeRegistrationApp.App.Tests.csproj -c Release --no-restore
+
+      - name: Test domain
+        shell: pwsh
+        run: dotnet test tests/EmployeeRegistrationApp.Domain.Tests/EmployeeRegistrationApp.Domain.Tests.csproj -c Release --no-restore
+
+      - name: Test MAUI contracts
+        shell: pwsh
+        run: dotnet test tests/EmployeeRegistrationApp.Maui.Tests/EmployeeRegistrationApp.Maui.Tests.csproj -c Release --no-restore

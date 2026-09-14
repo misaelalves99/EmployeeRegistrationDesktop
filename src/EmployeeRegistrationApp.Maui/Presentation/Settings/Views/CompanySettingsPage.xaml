@@ -84,8 +84,7 @@
                 <Button Grid.Column="1"
                         Text="Salvar"
                         Command="{Binding SaveCommand}"
-                        IsEnabled="{Binding CanSave}"
-                        IsBusy="{Binding IsBusy}" />
+                        IsEnabled="{Binding CanSave}" />
             </Grid>
 
         </Grid>

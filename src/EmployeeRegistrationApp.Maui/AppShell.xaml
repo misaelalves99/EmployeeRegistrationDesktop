@@ -9,13 +9,7 @@
        xmlns:sets="clr-namespace:EmployeeRegistrationApp.Maui.Presentation.Settings.Views"
        x:Class="EmployeeRegistrationApp.Maui.AppShell"
        Shell.FlyoutBehavior="Locked">
-
-    <!-- Rotas de navegação (para usar com ShellNavigationService) -->
-    <Shell.RouteHost>
-        <ShellContent Route="dashboard" ContentTemplate="{DataTemplate dash:DashboardPage}" />
-    </Shell.RouteHost>
-
-    <TabBar>
+<TabBar>
 
         <!-- Dashboard -->
         <ShellContent
