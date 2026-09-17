@@ -139,6 +139,9 @@
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 
+				<MauiXaml Update="Resources\Styles\Colors.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
 		<MauiXaml Update="Resources\Styles\Controls.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
