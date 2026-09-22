@@ -133,26 +133,35 @@
                         </VerticalStackLayout>
 
                         <!-- Lembrar-me / Esqueci minha senha (futuro) -->
-                        <Grid ColumnDefinitions="*,Auto" Padding="0,4,0,0">
-                            <HorizontalStackLayout
+                        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12" Padding="0,4,0,0">
+                            <Grid
                                 Grid.Column="0"
-                                Spacing="6">
+                                ColumnDefinitions="Auto,*"
+                                ColumnSpacing="6">
                                 <CheckBox
+                                    Grid.Column="0"
                                     IsChecked="{Binding RememberMe}"
                                     Color="{StaticResource Color.Primary}" />
                                 <Label
+                                    Grid.Column="1"
                                     Text="Lembrar-me neste dispositivo"
                                     FontSize="12"
                                     VerticalOptions="Center"
+                                    LineBreakMode="TailTruncation"
                                     TextColor="{StaticResource Color.TextSecondary}" />
-                            </HorizontalStackLayout>
+                            </Grid>
 
                             <Label
                                 Grid.Column="1"
                                 Text="Esqueci minha senha"
                                 FontSize="12"
                                 TextColor="{StaticResource Color.PrimaryLight}"
-                                VerticalOptions="Center" />
+                                VerticalOptions="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding NavigateToForgotPasswordCommand}" />
+                                </Label.GestureRecognizers>
+                            </Label>
                         </Grid>
 
                         <!-- Botão login -->

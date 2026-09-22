@@ -9,6 +9,7 @@ namespace EmployeeRegistrationApp.Maui;
 public partial class App : Microsoft.Maui.Controls.Application
 {
     private readonly IThemeService _themeService;
+    private readonly System.IServiceProvider _serviceProvider;
 
     public App(
         IThemeService themeService,
@@ -18,6 +19,7 @@ public partial class App : Microsoft.Maui.Controls.Application
         InitializeComponent();
 
         _themeService = themeService;
+        _serviceProvider = serviceProvider;
 
         // Tema inicial
         _ = _themeService.ApplyInitialThemeAsync();
@@ -25,13 +27,17 @@ public partial class App : Microsoft.Maui.Controls.Application
         // ✅ Seed do "banco" in-memory (agora com DI correto)
         database.SeedIfEmpty();
 
-        // ✅ Fluxo inicial
-        var loginPage = (LoginPage)(
-            serviceProvider.GetService(typeof(LoginPage))
-            ?? throw new System.InvalidOperationException("LoginPage service could not be resolved."));
-
-        MainPage = new NavigationPage(loginPage);
+        // Fluxo inicial materializado em CreateWindow após a inicialização do App.
     }
 
+
+    protected override Microsoft.Maui.Controls.Window CreateWindow(Microsoft.Maui.IActivationState? activationState)
+    {
+        var loginPage = (LoginPage)(
+            _serviceProvider.GetService(typeof(LoginPage))
+            ?? throw new System.InvalidOperationException("LoginPage service could not be resolved."));
+
+        return new Microsoft.Maui.Controls.Window(new NavigationPage(loginPage));
+    }
     public static new App Current => (App)Microsoft.Maui.Controls.Application.Current!;
 }
