@@ -24,8 +24,30 @@
     <x:Double x:Key="Spacing.StackLarge">20</x:Double>
 
     <!-- Raio de borda padrão para cards/botões -->
-    <x:Double x:Key="Radius.Small">6</x:Double>
-    <x:Double x:Key="Radius.Medium">10</x:Double>
-    <x:Double x:Key="Radius.Large">16</x:Double>
+    <x:Double x:Key="Radius.Small">8</x:Double>
+    <x:Double x:Key="Radius.Medium">12</x:Double>
+    <x:Double x:Key="Radius.Large">18</x:Double>
+
+    <!-- Stage16 desktop sizing / density foundation -->
+    <x:Double x:Key="Spacing.XXXL">48</x:Double>
+
+    <Thickness x:Key="Spacing.PagePadding">24</Thickness>
+    <Thickness x:Key="Spacing.PagePaddingWide">32</Thickness>
+    <Thickness x:Key="Spacing.ControlPadding">16,10</Thickness>
+    <Thickness x:Key="Spacing.ControlMargin">0,4</Thickness>
+    <Thickness x:Key="Spacing.CompactButtonPadding">14,8</Thickness>
+    <Thickness x:Key="Spacing.AuthCardPadding">28</Thickness>
+    <Thickness x:Key="Spacing.EmptyStatePadding">24</Thickness>
+
+    <x:Double x:Key="Radius.XLarge">24</x:Double>
+    <x:Double x:Key="Radius.Pill">999</x:Double>
+
+    <x:Double x:Key="Control.Height.Compact">36</x:Double>
+    <x:Double x:Key="Control.Height.Standard">44</x:Double>
+    <x:Double x:Key="Control.Height.Comfortable">48</x:Double>
+
+    <x:Double x:Key="Content.MaxWidth.Desktop">1200</x:Double>
+    <x:Double x:Key="Content.MaxWidth.Auth">1024</x:Double>
+    <x:Double x:Key="Content.MaxWidth.Form">640</x:Double>
 
 </ResourceDictionary>

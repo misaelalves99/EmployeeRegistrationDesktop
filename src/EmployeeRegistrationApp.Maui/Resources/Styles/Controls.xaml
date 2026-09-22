@@ -12,11 +12,12 @@
         <Setter Property="BackgroundColor" Value="{StaticResource Color.Primary}" />
         <Setter Property="TextColor" Value="{StaticResource Color.TextOnPrimary}" />
         <Setter Property="FontFamily" Value="{StaticResource FontFamily.SemiBold}" />
-        <Setter Property="FontSize" Value="{StaticResource FontSize.Body}" />
+        <Setter Property="FontSize" Value="{StaticResource FontSize.Button}" />
         <Setter Property="CornerRadius" Value="{StaticResource Radius.Medium}" />
-        <Setter Property="Padding" Value="16,10" />
-        <Setter Property="BorderColor" Value="{StaticResource Color.PrimaryDark}" />
-        <Setter Property="BorderWidth" Value="1" />
+        <Setter Property="HeightRequest" Value="{StaticResource Control.Height.Standard}" />
+        <Setter Property="Padding" Value="{StaticResource Spacing.ControlPadding}" />
+        <Setter Property="BorderColor" Value="{StaticResource Color.Primary}" />
+        <Setter Property="BorderWidth" Value="0" />
     </Style>
 
     <!-- Torna o estilo primário o padrão para todos os botões -->
@@ -28,6 +29,28 @@
         <Setter Property="BackgroundColor" Value="Transparent" />
         <Setter Property="TextColor" Value="{StaticResource Color.PrimaryLight}" />
         <Setter Property="BorderColor" Value="{StaticResource Color.BorderStrong}" />
+        <Setter Property="BorderWidth" Value="1" />
+    </Style>
+
+    <Style x:Key="TertiaryButtonStyle" TargetType="Button"
+           BasedOn="{StaticResource PrimaryButtonStyle}">
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="TextColor" Value="{StaticResource Color.TextSecondary}" />
+        <Setter Property="BorderWidth" Value="0" />
+    </Style>
+
+    <Style x:Key="DangerButtonStyle" TargetType="Button"
+           BasedOn="{StaticResource PrimaryButtonStyle}">
+        <Setter Property="BackgroundColor" Value="{StaticResource Color.Danger}" />
+        <Setter Property="TextColor" Value="{StaticResource Color.TextOnPrimary}" />
+        <Setter Property="BorderColor" Value="{StaticResource Color.Danger}" />
+    </Style>
+
+    <Style x:Key="CompactButtonStyle" TargetType="Button"
+           BasedOn="{StaticResource PrimaryButtonStyle}">
+        <Setter Property="HeightRequest" Value="{StaticResource Control.Height.Compact}" />
+        <Setter Property="Padding" Value="{StaticResource Spacing.CompactButtonPadding}" />
+        <Setter Property="FontSize" Value="{StaticResource FontSize.Caption}" />
     </Style>
 
     <!-- Entry padrão -->
@@ -37,11 +60,44 @@
         <Setter Property="BackgroundColor" Value="{StaticResource Color.InputBackground}" />
         <Setter Property="FontFamily" Value="{StaticResource FontFamily.Primary}" />
         <Setter Property="FontSize" Value="{StaticResource FontSize.Body}" />
-        <Setter Property="HeightRequest" Value="44" />
-        <Setter Property="Margin" Value="0,4,0,4" />
+        <Setter Property="HeightRequest" Value="{StaticResource Control.Height.Standard}" />
+        <Setter Property="Margin" Value="{StaticResource Spacing.ControlMargin}" />
     </Style>
 
     <Style TargetType="Entry" BasedOn="{StaticResource BaseEntryStyle}" />
+
+    <Style TargetType="Editor">
+        <Setter Property="TextColor" Value="{StaticResource Color.TextPrimary}" />
+        <Setter Property="PlaceholderColor" Value="{StaticResource Color.InputPlaceholder}" />
+        <Setter Property="BackgroundColor" Value="{StaticResource Color.InputBackground}" />
+        <Setter Property="FontFamily" Value="{StaticResource FontFamily.Primary}" />
+        <Setter Property="FontSize" Value="{StaticResource FontSize.Body}" />
+    </Style>
+
+    <Style TargetType="Picker">
+        <Setter Property="TextColor" Value="{StaticResource Color.TextPrimary}" />
+        <Setter Property="BackgroundColor" Value="{StaticResource Color.InputBackground}" />
+        <Setter Property="FontFamily" Value="{StaticResource FontFamily.Primary}" />
+        <Setter Property="FontSize" Value="{StaticResource FontSize.Body}" />
+        <Setter Property="HeightRequest" Value="{StaticResource Control.Height.Standard}" />
+    </Style>
+
+    <Style TargetType="SearchBar">
+        <Setter Property="TextColor" Value="{StaticResource Color.TextPrimary}" />
+        <Setter Property="PlaceholderColor" Value="{StaticResource Color.InputPlaceholder}" />
+        <Setter Property="BackgroundColor" Value="{StaticResource Color.InputBackground}" />
+        <Setter Property="FontFamily" Value="{StaticResource FontFamily.Primary}" />
+        <Setter Property="FontSize" Value="{StaticResource FontSize.Body}" />
+        <Setter Property="HeightRequest" Value="{StaticResource Control.Height.Standard}" />
+    </Style>
+
+    <Style TargetType="CheckBox">
+        <Setter Property="Color" Value="{StaticResource Color.Primary}" />
+    </Style>
+
+    <Style TargetType="ActivityIndicator">
+        <Setter Property="Color" Value="{StaticResource Color.Primary}" />
+    </Style>
 
     <!-- Frame como card -->
     <Style x:Key="CardFrameStyle" TargetType="Frame">
@@ -62,12 +118,15 @@
         </Setter>
     </Style>
 
+    <Style TargetType="CollectionView"
+           BasedOn="{StaticResource BaseCollectionViewStyle}" />
+
     <!-- Badge de status (usado no StatusBadge control) -->
     <Style x:Key="StatusBadgeLabelStyle" TargetType="Label"
            BasedOn="{StaticResource CaptionLabel}">
         <Setter Property="BackgroundColor" Value="{StaticResource Color.BadgeBackground}" />
         <Setter Property="TextColor" Value="{StaticResource Color.BadgeText}" />
-        <Setter Property="Padding" Value="8,4" />
+        <Setter Property="Padding" Value="10,5" />
         <Setter Property="HorizontalOptions" Value="Start" />
         <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="HorizontalTextAlignment" Value="Center" />
@@ -78,11 +137,11 @@
 
         x:Key="Shadow.Card"
 
-        Brush="{StaticResource Color.BorderStrong}"
+        Brush="{StaticResource Color.Shadow}"
 
-        Opacity="0.30"
+        Opacity="0.28"
 
-        Radius="16"
+        Radius="20"
 
         Offset="0,8" />
 

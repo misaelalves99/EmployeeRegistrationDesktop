@@ -3,14 +3,14 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
     <!-- Paleta principal (dark enterprise) -->
-    <Color x:Key="Color.Primary">#2563EB</Color>
+    <Color x:Key="Color.Primary">#3B82F6</Color>
     <!-- azul principal -->
-    <Color x:Key="Color.PrimaryDark">#1D4ED8</Color>
+    <Color x:Key="Color.PrimaryDark">#2563EB</Color>
     <Color x:Key="Color.PrimaryLight">#60A5FA</Color>
 
     <Color x:Key="Color.Secondary">#0EA5E9</Color>
     <!-- azul ciano (destaques) -->
-    <Color x:Key="Color.Accent">#F97316</Color>
+    <Color x:Key="Color.Accent">#F59E0B</Color>
     <!-- laranja (alertas suaves) -->
 
     <!-- Estados -->
@@ -21,34 +21,43 @@
     <Color x:Key="Color.Info">#38BDF8</Color>
 
     <!-- Fundo / superfícies -->
-    <Color x:Key="Color.PageBackground">#020617</Color>
+    <Color x:Key="Color.PageBackground">#070B14</Color>
     <!-- quase preto -->
-    <Color x:Key="Color.Surface">#020617</Color>
-    <Color x:Key="Color.SurfaceElevated">#020617</Color>
-    <Color x:Key="Color.CardBackground">#020617</Color>
+    <Color x:Key="Color.Surface">#0B1220</Color>
+    <Color x:Key="Color.SurfaceElevated">#111827</Color>
+    <Color x:Key="Color.CardBackground">#0F172A</Color>
     <Color x:Key="Color.BrandSurface">#0C1A33</Color>
 
     <!-- Bordas e divisores -->
-    <Color x:Key="Color.BorderSubtle">#1F2937</Color>
-    <Color x:Key="Color.BorderStrong">#374151</Color>
+    <Color x:Key="Color.BorderSubtle">#243044</Color>
+    <Color x:Key="Color.BorderStrong">#3B4A61</Color>
     <Color x:Key="Color.Divider">#1E293B</Color>
 
     <!-- Texto -->
-    <Color x:Key="Color.TextPrimary">#E5E7EB</Color>
+    <Color x:Key="Color.TextPrimary">#F8FAFC</Color>
     <!-- cinza bem claro -->
-    <Color x:Key="Color.TextSecondary">#9CA3AF</Color>
-    <Color x:Key="Color.TextMuted">#6B7280</Color>
+    <Color x:Key="Color.TextSecondary">#CBD5E1</Color>
+    <Color x:Key="Color.TextMuted">#94A3B8</Color>
     <Color x:Key="Color.TextOnPrimary">#FFFFFF</Color>
 
     <!-- Inputs -->
-    <Color x:Key="Color.InputBackground">#020617</Color>
-    <Color x:Key="Color.InputBorder">#1F2937</Color>
-    <Color x:Key="Color.InputPlaceholder">#6B7280</Color>
-    <Color x:Key="Color.InputFocusedBorder">#2563EB</Color>
+    <Color x:Key="Color.InputBackground">#0B1220</Color>
+    <Color x:Key="Color.InputBorder">#334155</Color>
+    <Color x:Key="Color.InputPlaceholder">#64748B</Color>
+    <Color x:Key="Color.InputFocusedBorder">#60A5FA</Color>
 
     <!-- Outros -->
     <Color x:Key="Color.Overlay">#80000000</Color>
     <Color x:Key="Color.BadgeBackground">#1E293B</Color>
     <Color x:Key="Color.BadgeText">#E5E7EB</Color>
+
+    <!-- Foundation tokens: interaction / elevation -->
+    <Color x:Key="Color.PrimarySoft">#263B82F6</Color>
+    <Color x:Key="Color.SurfaceHover">#172033</Color>
+    <Color x:Key="Color.SurfacePressed">#1E293B</Color>
+    <Color x:Key="Color.FocusRing">#663B82F6</Color>
+    <Color x:Key="Color.DisabledBackground">#1E293B</Color>
+    <Color x:Key="Color.DisabledText">#64748B</Color>
+    <Color x:Key="Color.Shadow">#000000</Color>
 
 </ResourceDictionary>
