@@ -1,4 +1,5 @@
-﻿namespace EmployeeRegistrationApp.Maui
+﻿using Microsoft.Maui.Controls;
+namespace EmployeeRegistrationApp.Maui
 {
     public partial class MainPage : ContentPage
     {

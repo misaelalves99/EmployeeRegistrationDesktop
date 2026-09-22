@@ -1,4 +1,5 @@
-﻿// src/EmployeeRegistrationApp.Maui/Core/Services/Theme/IThemeService.cs
+﻿using Microsoft.Maui.Controls;
+// src/EmployeeRegistrationApp.Maui/Core/Services/Theme/IThemeService.cs
 using System;
 using System.Threading.Tasks;
 using Microsoft.Maui;

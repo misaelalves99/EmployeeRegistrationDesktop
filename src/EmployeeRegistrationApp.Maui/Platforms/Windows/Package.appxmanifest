@@ -29,7 +29,7 @@
 	<Applications>
 		<Application Id="App"
 					 Executable="$targetnametoken$.exe"
-					 EntryPoint="EmployeeRegistrationApp.Maui.WinUI.App">
+					 EntryPoint="$targetentrypoint$">
 			<uap:VisualElements
 				DisplayName="Employee Registration Desktop"
 				Description="Gestão de funcionários em ambiente desktop"
@@ -43,5 +43,6 @@
 
 	<Capabilities>
 		<Capability Name="internetClient" />
+		<rescap:Capability Name="runFullTrust" />
 	</Capabilities>
 </Package>

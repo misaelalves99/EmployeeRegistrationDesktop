@@ -1,3 +1,4 @@
+using Microsoft.Maui.Controls;
 // src/EmployeeRegistrationApp.Maui/Presentation/Reports/Views/ReportsPage.xaml.cs
 using EmployeeRegistrationApp.Maui.Presentation.Reports.ViewModels;
 

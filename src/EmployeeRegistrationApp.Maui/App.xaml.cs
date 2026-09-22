@@ -13,7 +13,7 @@ public partial class App : Microsoft.Maui.Controls.Application
     public App(
         IThemeService themeService,
         InMemoryDatabase database,
-        LoginPage loginPage)
+        System.IServiceProvider serviceProvider)
     {
         InitializeComponent();
 
@@ -26,6 +26,10 @@ public partial class App : Microsoft.Maui.Controls.Application
         database.SeedIfEmpty();
 
         // ✅ Fluxo inicial
+        var loginPage = (LoginPage)(
+            serviceProvider.GetService(typeof(LoginPage))
+            ?? throw new System.InvalidOperationException("LoginPage service could not be resolved."));
+
         MainPage = new NavigationPage(loginPage);
     }
 
