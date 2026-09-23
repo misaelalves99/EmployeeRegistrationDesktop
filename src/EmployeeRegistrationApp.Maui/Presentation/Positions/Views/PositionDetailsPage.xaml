@@ -41,6 +41,7 @@
                 Padding="16"
                 HasShadow="False"
                 CornerRadius="12"
+                BackgroundColor="{AppThemeBinding Light={StaticResource Color.CardBackground.Light}, Dark={StaticResource Color.CardBackground}}"
                 BorderColor="{DynamicResource Color.BorderStrong}">
                 <Grid
                     ColumnDefinitions="*,*"

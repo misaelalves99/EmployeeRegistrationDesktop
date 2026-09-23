@@ -49,5 +49,5 @@ public static class AppConfig
     /// Indica se o tema dark deve ser aplicado como padrão.
     /// Pode ser combinado com ThemeService.
     /// </summary>
-    public static bool UseDarkThemeByDefault { get; set; } = true;
+    public static bool UseDarkThemeByDefault { get; set; } = false;
 }

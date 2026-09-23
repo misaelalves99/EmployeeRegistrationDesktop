@@ -110,21 +110,24 @@ public static class MauiProgram
         builder.Services.AddTransient<SettingsPage>();
         builder.Services.AddTransient<CompanySettingsPage>();
 
-        // ✅ build 1x
+        // Department source: local/in-memory in demo mode.
+        // Remote is opt-in for non-demo runs through an explicit environment variable.
         var departmentApiBaseAddress =
-            Environment.GetEnvironmentVariable("EMPLOYEE_REGISTRATION_DEPARTMENT_API_BASE_ADDRESS")
-            ?? "https://localhost:5001/api/";
+            Environment.GetEnvironmentVariable("EMPLOYEE_REGISTRATION_DEPARTMENT_API_BASE_ADDRESS");
 
-        builder.Services.AddScoped<IDepartmentAppService>(_ =>
+        if (!AppConfig.IsDemoMode && !string.IsNullOrWhiteSpace(departmentApiBaseAddress))
         {
-            var client = new HttpClient
+            builder.Services.AddScoped<IDepartmentAppService>(_ =>
             {
-                BaseAddress = new Uri(departmentApiBaseAddress, UriKind.Absolute),
-                Timeout = TimeSpan.FromSeconds(15)
-            };
+                var client = new HttpClient
+                {
+                    BaseAddress = new Uri(departmentApiBaseAddress, UriKind.Absolute),
+                    Timeout = TimeSpan.FromSeconds(15)
+                };
 
-            return new RemoteDepartmentAppService(client);
-        });
+                return new RemoteDepartmentAppService(client);
+            });
+        }
         var app = builder.Build();
 
         // ✅ seed depois do build (mesmo container)

@@ -22,7 +22,7 @@ public partial class App : Microsoft.Maui.Controls.Application
         _serviceProvider = serviceProvider;
 
         // Tema inicial
-        _ = _themeService.ApplyInitialThemeAsync();
+        _ = _themeService.InitializeAsync();
 
         // ✅ Seed do "banco" in-memory (agora com DI correto)
         database.SeedIfEmpty();

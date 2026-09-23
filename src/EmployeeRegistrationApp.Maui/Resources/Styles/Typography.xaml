@@ -23,7 +23,7 @@
 
     <!-- Estilo padrão para todas as Labels -->
     <Style TargetType="Label" x:Key="BaseLabelStyle">
-        <Setter Property="TextColor" Value="{StaticResource Color.TextPrimary}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Color.TextPrimary.Light}, Dark={StaticResource Color.TextPrimary}}" />
         <Setter Property="FontSize" Value="{StaticResource FontSize.Body}" />
         <Setter Property="FontFamily" Value="{StaticResource FontFamily.Primary}" />
         <Setter Property="LineBreakMode" Value="WordWrap" />
@@ -34,7 +34,7 @@
            BasedOn="{StaticResource BaseLabelStyle}">
         <Setter Property="FontSize" Value="{StaticResource FontSize.Display}" />
         <Setter Property="FontAttributes" Value="Bold" />
-        <Setter Property="TextColor" Value="{StaticResource Color.TextPrimary}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Color.TextPrimary.Light}, Dark={StaticResource Color.TextPrimary}}" />
     </Style>
 
     <Style TargetType="Label" x:Key="PageTitleLabel"
@@ -46,19 +46,19 @@
     <Style TargetType="Label" x:Key="PageSubtitleLabel"
            BasedOn="{StaticResource BaseLabelStyle}">
         <Setter Property="FontSize" Value="{StaticResource FontSize.Subtitle}" />
-        <Setter Property="TextColor" Value="{StaticResource Color.TextSecondary}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Color.TextSecondary.Light}, Dark={StaticResource Color.TextSecondary}}" />
     </Style>
 
     <!-- Texto secundário / descrição -->
     <Style TargetType="Label" x:Key="BodySecondaryLabel"
            BasedOn="{StaticResource BaseLabelStyle}">
-        <Setter Property="TextColor" Value="{StaticResource Color.TextSecondary}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Color.TextSecondary.Light}, Dark={StaticResource Color.TextSecondary}}" />
     </Style>
 
     <Style TargetType="Label" x:Key="CaptionLabel"
            BasedOn="{StaticResource BaseLabelStyle}">
         <Setter Property="FontSize" Value="{StaticResource FontSize.Caption}" />
-        <Setter Property="TextColor" Value="{StaticResource Color.TextMuted}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Color.TextMuted.Light}, Dark={StaticResource Color.TextMuted}}" />
     </Style>
 
     <!-- Stage16 semantic typography foundation -->
@@ -66,20 +66,20 @@
            BasedOn="{StaticResource BaseLabelStyle}">
         <Setter Property="FontSize" Value="{StaticResource FontSize.Section}" />
         <Setter Property="FontFamily" Value="{StaticResource FontFamily.SemiBold}" />
-        <Setter Property="TextColor" Value="{StaticResource Color.TextPrimary}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Color.TextPrimary.Light}, Dark={StaticResource Color.TextPrimary}}" />
     </Style>
 
     <Style TargetType="Label" x:Key="FieldLabel"
            BasedOn="{StaticResource BaseLabelStyle}">
         <Setter Property="FontSize" Value="{StaticResource FontSize.Label}" />
         <Setter Property="FontFamily" Value="{StaticResource FontFamily.SemiBold}" />
-        <Setter Property="TextColor" Value="{StaticResource Color.TextSecondary}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Color.TextSecondary.Light}, Dark={StaticResource Color.TextSecondary}}" />
     </Style>
 
     <Style TargetType="Label" x:Key="SupportingLabel"
            BasedOn="{StaticResource BaseLabelStyle}">
         <Setter Property="FontSize" Value="{StaticResource FontSize.Caption}" />
-        <Setter Property="TextColor" Value="{StaticResource Color.TextMuted}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Color.TextMuted.Light}, Dark={StaticResource Color.TextMuted}}" />
     </Style>
 
     <Style TargetType="Label" x:Key="InteractiveLabel"
@@ -93,7 +93,7 @@
            BasedOn="{StaticResource BaseLabelStyle}">
         <Setter Property="FontSize" Value="{StaticResource FontSize.Metric}" />
         <Setter Property="FontFamily" Value="{StaticResource FontFamily.SemiBold}" />
-        <Setter Property="TextColor" Value="{StaticResource Color.TextPrimary}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Color.TextPrimary.Light}, Dark={StaticResource Color.TextPrimary}}" />
     </Style>
 
 </ResourceDictionary>

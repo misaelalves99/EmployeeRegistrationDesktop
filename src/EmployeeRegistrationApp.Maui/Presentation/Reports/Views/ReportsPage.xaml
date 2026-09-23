@@ -10,12 +10,12 @@
         <Style TargetType="Label" x:Key="SectionTitle">
             <Setter Property="FontSize" Value="22" />
             <Setter Property="FontAttributes" Value="Bold" />
-            <Setter Property="TextColor" Value="{StaticResource Color.TextPrimary}" />
+            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Color.TextPrimary.Light}, Dark={StaticResource Color.TextPrimary}}" />
         </Style>
 
         <Style TargetType="Label" x:Key="SectionSubtitle">
             <Setter Property="FontSize" Value="14" />
-            <Setter Property="TextColor" Value="{StaticResource Color.TextSecondary}" />
+            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Color.TextSecondary.Light}, Dark={StaticResource Color.TextSecondary}}" />
         </Style>
 
         <Style TargetType="Button" x:Key="ReportButton">
@@ -45,33 +45,33 @@
         <HorizontalStackLayout Grid.Row="1" Spacing="12">
             <Frame Padding="14"
                    CornerRadius="14"
-                   BackgroundColor="{StaticResource Color.CardBackground}"
+                   BackgroundColor="{AppThemeBinding Light={StaticResource Color.CardBackground.Light}, Dark={StaticResource Color.CardBackground}}"
                    HasShadow="False"
                    HorizontalOptions="FillAndExpand">
                 <VerticalStackLayout Spacing="2">
                     <Label Text="Headcount por departamento"
                            FontSize="13"
-                           TextColor="{StaticResource Color.TextSecondary}" />
+                           TextColor="{AppThemeBinding Light={StaticResource Color.TextSecondary.Light}, Dark={StaticResource Color.TextSecondary}}" />
                     <Label Text="{Binding HeadcountSummary}"
                            FontSize="18"
                            FontAttributes="Bold"
-                           TextColor="{StaticResource Color.TextPrimary}" />
+                           TextColor="{AppThemeBinding Light={StaticResource Color.TextPrimary.Light}, Dark={StaticResource Color.TextPrimary}}" />
                 </VerticalStackLayout>
             </Frame>
 
             <Frame Padding="14"
                    CornerRadius="14"
-                   BackgroundColor="{StaticResource Color.CardBackground}"
+                   BackgroundColor="{AppThemeBinding Light={StaticResource Color.CardBackground.Light}, Dark={StaticResource Color.CardBackground}}"
                    HasShadow="False"
                    HorizontalOptions="FillAndExpand">
                 <VerticalStackLayout Spacing="2">
                     <Label Text="Departamentos ativos"
                            FontSize="13"
-                           TextColor="{StaticResource Color.TextSecondary}" />
+                           TextColor="{AppThemeBinding Light={StaticResource Color.TextSecondary.Light}, Dark={StaticResource Color.TextSecondary}}" />
                     <Label Text="{Binding ActiveDepartmentsSummary}"
                            FontSize="18"
                            FontAttributes="Bold"
-                           TextColor="{StaticResource Color.TextPrimary}" />
+                           TextColor="{AppThemeBinding Light={StaticResource Color.TextPrimary.Light}, Dark={StaticResource Color.TextPrimary}}" />
                 </VerticalStackLayout>
             </Frame>
         </HorizontalStackLayout>
@@ -82,17 +82,17 @@
 
                 <Frame Padding="16"
                        CornerRadius="16"
-                       BackgroundColor="{StaticResource Color.CardBackground}"
+                       BackgroundColor="{AppThemeBinding Light={StaticResource Color.CardBackground.Light}, Dark={StaticResource Color.CardBackground}}"
                        HasShadow="False">
                     <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto" ColumnSpacing="8">
                         <VerticalStackLayout Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Spacing="4">
                             <Label Text="Headcount por departamento"
                                    FontAttributes="Bold"
                                    FontSize="17"
-                                   TextColor="{StaticResource Color.TextPrimary}" />
+                                   TextColor="{AppThemeBinding Light={StaticResource Color.TextPrimary.Light}, Dark={StaticResource Color.TextPrimary}}" />
                             <Label Text="Veja quantos colaboradores existem em cada área, ativos e inativos, e identifique concentrações da equipe."
                                    FontSize="13"
-                                   TextColor="{StaticResource Color.TextSecondary}" />
+                                   TextColor="{AppThemeBinding Light={StaticResource Color.TextSecondary.Light}, Dark={StaticResource Color.TextSecondary}}" />
                         </VerticalStackLayout>
 
                         <Button Grid.Column="1"
@@ -105,17 +105,17 @@
 
                 <Frame Padding="16"
                        CornerRadius="16"
-                       BackgroundColor="{StaticResource Color.CardBackground}"
+                       BackgroundColor="{AppThemeBinding Light={StaticResource Color.CardBackground.Light}, Dark={StaticResource Color.CardBackground}}"
                        HasShadow="False">
                     <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto" ColumnSpacing="8">
                         <VerticalStackLayout Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Spacing="4">
                             <Label Text="Resumo de salários (futuro)"
                                    FontAttributes="Bold"
                                    FontSize="17"
-                                   TextColor="{StaticResource Color.TextPrimary}" />
+                                   TextColor="{AppThemeBinding Light={StaticResource Color.TextPrimary.Light}, Dark={StaticResource Color.TextPrimary}}" />
                             <Label Text="Planejado para consolidar salários médios, faixas e distribuição por cargo."
                                    FontSize="13"
-                                   TextColor="{StaticResource Color.TextSecondary}" />
+                                   TextColor="{AppThemeBinding Light={StaticResource Color.TextSecondary.Light}, Dark={StaticResource Color.TextSecondary}}" />
                         </VerticalStackLayout>
 
                         <Button Grid.Column="1"

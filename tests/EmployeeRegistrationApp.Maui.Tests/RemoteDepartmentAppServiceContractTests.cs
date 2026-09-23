@@ -168,12 +168,14 @@ public sealed class RemoteDepartmentAppServiceContractTests
     }
 
     [Fact]
-    public void MauiProgram_source_declares_environment_variable_and_fallback()
+    public void MauiProgram_source_uses_local_demo_service_and_explicit_remote_configuration()
     {
         var source = File.ReadAllText(FindRepoFile("src/EmployeeRegistrationApp.Maui/MauiProgram.cs"));
 
         Assert.Contains("EMPLOYEE_REGISTRATION_DEPARTMENT_API_BASE_ADDRESS", source);
-        Assert.Contains("https://localhost:5001/api/", source);
+        Assert.Contains("!AppConfig.IsDemoMode", source);
+        Assert.Contains("!string.IsNullOrWhiteSpace(departmentApiBaseAddress)", source);
+        Assert.DoesNotContain("https://localhost:5001/api/", source);
     }
 
     [Fact]

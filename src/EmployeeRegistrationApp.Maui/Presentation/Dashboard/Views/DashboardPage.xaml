@@ -6,7 +6,7 @@
     xmlns:vm="clr-namespace:EmployeeRegistrationApp.Maui.Presentation.Dashboard.ViewModels"
     xmlns:controls="clr-namespace:EmployeeRegistrationApp.Maui.Presentation.Common.Controls"
     x:DataType="vm:DashboardViewModel"
-    BackgroundColor="{StaticResource Color.PageBackground}">
+    BackgroundColor="{AppThemeBinding Light={StaticResource Color.PageBackground.Light}, Dark={StaticResource Color.PageBackground}}">
 
     <Grid Padding="24">
         <VisualStateManager.VisualStateGroups>
@@ -45,7 +45,7 @@
             VerticalOptions="Center"
             Color="{StaticResource Color.Primary}" />
 
-        <ScrollView>
+        <ScrollView VerticalScrollBarVisibility="Never">
             <VerticalStackLayout Spacing="24" Padding="0,4,0,24">
 
                 <Grid ColumnDefinitions="*,Auto">
@@ -55,11 +55,11 @@
                             SemanticProperties.HeadingLevel="Level1"
                             FontSize="24"
                             FontAttributes="Bold"
-                            TextColor="{StaticResource Color.TextPrimary}" />
+                            TextColor="{AppThemeBinding Light={StaticResource Color.TextPrimary.Light}, Dark={StaticResource Color.TextPrimary}}" />
                         <Label
                             Text="Visão geral de headcount, departamentos e posições ativas."
                             FontSize="13"
-                            TextColor="{StaticResource Color.TextSecondary}" />
+                            TextColor="{AppThemeBinding Light={StaticResource Color.TextSecondary.Light}, Dark={StaticResource Color.TextSecondary}}" />
                     </VerticalStackLayout>
 
                     <Button
@@ -88,14 +88,14 @@
 
                 <Border
                     Padding="16"
-                    BackgroundColor="{StaticResource Color.CardBackground}"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource Color.CardBackground.Light}, Dark={StaticResource Color.CardBackground}}"
                     Stroke="{StaticResource Color.BorderSubtle}"
                     StrokeThickness="1"
                     StrokeShape="RoundRectangle 18">
                     <VerticalStackLayout Spacing="8">
-                        <Label Text="Resumo de headcount" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Color.TextPrimary}" />
-                        <Label Text="{Binding HeadcountSummary}" FontSize="13" TextColor="{StaticResource Color.TextSecondary}" />
-                        <Label Text="{Binding LastUpdatedDisplay}" FontSize="11" TextColor="{StaticResource Color.TextMuted}" />
+                        <Label Text="Resumo de headcount" FontSize="15" FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource Color.TextPrimary.Light}, Dark={StaticResource Color.TextPrimary}}" />
+                        <Label Text="{Binding HeadcountSummary}" FontSize="13" TextColor="{AppThemeBinding Light={StaticResource Color.TextSecondary.Light}, Dark={StaticResource Color.TextSecondary}}" />
+                        <Label Text="{Binding LastUpdatedDisplay}" FontSize="11" TextColor="{AppThemeBinding Light={StaticResource Color.TextMuted.Light}, Dark={StaticResource Color.TextMuted}}" />
                     </VerticalStackLayout>
                 </Border>
 

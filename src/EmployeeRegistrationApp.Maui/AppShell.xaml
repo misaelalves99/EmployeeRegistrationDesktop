@@ -8,20 +8,28 @@
        xmlns:rep="clr-namespace:EmployeeRegistrationApp.Maui.Presentation.Reports.Views"
        xmlns:sets="clr-namespace:EmployeeRegistrationApp.Maui.Presentation.Settings.Views"
        x:Class="EmployeeRegistrationApp.Maui.AppShell"
-       Shell.FlyoutBehavior="Locked">
+       Shell.FlyoutBehavior="Disabled"
+       Shell.BackgroundColor="{AppThemeBinding Light={StaticResource Color.PageBackground.Light}, Dark={StaticResource Color.PageBackground}}"
+       Shell.ForegroundColor="{StaticResource Color.PrimaryLight}"
+       Shell.TitleColor="{AppThemeBinding Light={StaticResource Color.TextPrimary.Light}, Dark={StaticResource Color.TextPrimary}}"
+       Shell.UnselectedColor="{AppThemeBinding Light={StaticResource Color.TextSecondary.Light}, Dark={StaticResource Color.TextSecondary}}"
+       Shell.DisabledColor="{AppThemeBinding Light={StaticResource Color.DisabledText.Light}, Dark={StaticResource Color.DisabledText}}"
+       Shell.NavBarHasShadow="False"
+       Shell.TabBarBackgroundColor="{AppThemeBinding Light={StaticResource Color.SurfaceElevated.Light}, Dark={StaticResource Color.SurfaceElevated}}"
+       Shell.TabBarForegroundColor="{StaticResource Color.PrimaryLight}"
+       Shell.TabBarTitleColor="{StaticResource Color.PrimaryLight}"
+       Shell.TabBarUnselectedColor="{AppThemeBinding Light={StaticResource Color.TextSecondary.Light}, Dark={StaticResource Color.TextSecondary}}">
 <TabBar>
 
         <!-- Dashboard -->
         <ShellContent
             Title="Dashboard"
             Route="dashboard-tab"
-            Icon="tab_dashboard.png"
             ContentTemplate="{DataTemplate dash:DashboardPage}" />
 
         <!-- Funcionários -->
         <Tab
-            Title="Funcionários"
-            Icon="tab_employees.png">
+            Title="Funcionários">
             <ShellContent
                 Title="Lista"
                 Route="employees-list"
@@ -30,8 +38,7 @@
 
         <!-- Departamentos -->
         <Tab
-            Title="Departamentos"
-            Icon="tab_departments.png">
+            Title="Departamentos">
             <ShellContent
                 Title="Departamentos"
                 Route="departments-list"
@@ -40,8 +47,7 @@
 
         <!-- Cargos / Posições -->
         <Tab
-            Title="Cargos"
-            Icon="tab_positions.png">
+            Title="Cargos">
             <ShellContent
                 Title="Cargos"
                 Route="positions-list"
@@ -50,8 +56,7 @@
 
         <!-- Relatórios -->
         <Tab
-            Title="Relatórios"
-            Icon="tab_reports.png">
+            Title="Relatórios">
             <ShellContent
                 Title="Visão Geral"
                 Route="reports"
@@ -60,8 +65,7 @@
 
         <!-- Configurações -->
         <Tab
-            Title="Configurações"
-            Icon="tab_settings.png">
+            Title="Configurações">
             <ShellContent
                 Title="Configurações"
                 Route="settings"

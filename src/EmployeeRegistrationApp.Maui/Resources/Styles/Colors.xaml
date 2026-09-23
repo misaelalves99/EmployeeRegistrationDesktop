@@ -22,42 +22,64 @@
 
     <!-- Fundo / superfícies -->
     <Color x:Key="Color.PageBackground">#070B14</Color>
+    <Color x:Key="Color.PageBackground.Light">#F8FAFC</Color>
     <!-- quase preto -->
     <Color x:Key="Color.Surface">#0B1220</Color>
+    <Color x:Key="Color.Surface.Light">#FFFFFF</Color>
     <Color x:Key="Color.SurfaceElevated">#111827</Color>
+    <Color x:Key="Color.SurfaceElevated.Light">#F1F5F9</Color>
     <Color x:Key="Color.CardBackground">#0F172A</Color>
+    <Color x:Key="Color.CardBackground.Light">#FFFFFF</Color>
     <Color x:Key="Color.BrandSurface">#0C1A33</Color>
+    <Color x:Key="Color.BrandSurface.Light">#EFF6FF</Color>
 
     <!-- Bordas e divisores -->
     <Color x:Key="Color.BorderSubtle">#243044</Color>
+    <Color x:Key="Color.BorderSubtle.Light">#E2E8F0</Color>
     <Color x:Key="Color.BorderStrong">#3B4A61</Color>
+    <Color x:Key="Color.BorderStrong.Light">#CBD5E1</Color>
     <Color x:Key="Color.Divider">#1E293B</Color>
+    <Color x:Key="Color.Divider.Light">#E2E8F0</Color>
 
     <!-- Texto -->
     <Color x:Key="Color.TextPrimary">#F8FAFC</Color>
+    <Color x:Key="Color.TextPrimary.Light">#0F172A</Color>
     <!-- cinza bem claro -->
     <Color x:Key="Color.TextSecondary">#CBD5E1</Color>
+    <Color x:Key="Color.TextSecondary.Light">#475569</Color>
     <Color x:Key="Color.TextMuted">#94A3B8</Color>
+    <Color x:Key="Color.TextMuted.Light">#64748B</Color>
     <Color x:Key="Color.TextOnPrimary">#FFFFFF</Color>
 
     <!-- Inputs -->
     <Color x:Key="Color.InputBackground">#0B1220</Color>
+    <Color x:Key="Color.InputBackground.Light">#FFFFFF</Color>
     <Color x:Key="Color.InputBorder">#334155</Color>
+    <Color x:Key="Color.InputBorder.Light">#CBD5E1</Color>
     <Color x:Key="Color.InputPlaceholder">#64748B</Color>
+    <Color x:Key="Color.InputPlaceholder.Light">#94A3B8</Color>
     <Color x:Key="Color.InputFocusedBorder">#60A5FA</Color>
+    <Color x:Key="Color.InputFocusedBorder.Light">#2563EB</Color>
 
     <!-- Outros -->
     <Color x:Key="Color.Overlay">#80000000</Color>
     <Color x:Key="Color.BadgeBackground">#1E293B</Color>
+    <Color x:Key="Color.BadgeBackground.Light">#E2E8F0</Color>
     <Color x:Key="Color.BadgeText">#E5E7EB</Color>
+    <Color x:Key="Color.BadgeText.Light">#334155</Color>
 
     <!-- Foundation tokens: interaction / elevation -->
     <Color x:Key="Color.PrimarySoft">#263B82F6</Color>
     <Color x:Key="Color.SurfaceHover">#172033</Color>
+    <Color x:Key="Color.SurfaceHover.Light">#F1F5F9</Color>
     <Color x:Key="Color.SurfacePressed">#1E293B</Color>
+    <Color x:Key="Color.SurfacePressed.Light">#E2E8F0</Color>
     <Color x:Key="Color.FocusRing">#663B82F6</Color>
     <Color x:Key="Color.DisabledBackground">#1E293B</Color>
+    <Color x:Key="Color.DisabledBackground.Light">#E2E8F0</Color>
     <Color x:Key="Color.DisabledText">#64748B</Color>
+    <Color x:Key="Color.DisabledText.Light">#94A3B8</Color>
     <Color x:Key="Color.Shadow">#000000</Color>
+    <Color x:Key="Color.Shadow.Light">#0F172A</Color>
 
 </ResourceDictionary>

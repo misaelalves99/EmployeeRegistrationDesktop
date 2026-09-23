@@ -10,8 +10,8 @@
         Margin="0,4"
         CornerRadius="14"
         HasShadow="False"
-        BackgroundColor="#020617"
-        BorderColor="#1f2937">
+        BackgroundColor="{AppThemeBinding Light={StaticResource Color.CardBackground.Light}, Dark={StaticResource Color.CardBackground}}"
+        BorderColor="{AppThemeBinding Light={StaticResource Color.BorderSubtle.Light}, Dark={StaticResource Color.BorderSubtle}}">
 
         <Grid RowDefinitions="Auto,*,Auto" ColumnDefinitions="*,Auto">
             <!-- Título -->
@@ -20,7 +20,7 @@
                 Grid.Column="0"
                 Text="{Binding Title, Source={x:Reference Root}}"
                 FontSize="13"
-                TextColor="#9ca3af" />
+                TextColor="{AppThemeBinding Light={StaticResource Color.TextSecondary.Light}, Dark={StaticResource Color.TextSecondary}}" />
 
             <!-- Ícone -->
             <Label
@@ -40,7 +40,7 @@
                 Text="{Binding Value, Source={x:Reference Root}}"
                 FontSize="24"
                 FontAttributes="Bold"
-                TextColor="#e5e7eb" />
+                TextColor="{AppThemeBinding Light={StaticResource Color.TextPrimary.Light}, Dark={StaticResource Color.TextPrimary}}" />
 
             <!-- Rodapé: subtítulo + tendência -->
             <StackLayout
@@ -53,7 +53,7 @@
                 <Label
                     Text="{Binding Subtitle, Source={x:Reference Root}}"
                     FontSize="12"
-                    TextColor="#6b7280" />
+                    TextColor="{AppThemeBinding Light={StaticResource Color.TextMuted.Light}, Dark={StaticResource Color.TextMuted}}" />
 
                 <Label
                     x:Name="TrendLabel"

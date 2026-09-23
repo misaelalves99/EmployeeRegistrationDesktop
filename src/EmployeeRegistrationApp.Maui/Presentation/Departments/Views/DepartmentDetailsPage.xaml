@@ -43,7 +43,7 @@
                 HasShadow="False"
                 CornerRadius="12"
                 BorderColor="{DynamicResource Color.BorderStrong}"
-                BackgroundColor="{DynamicResource Color.TextOnPrimary}">
+                BackgroundColor="{AppThemeBinding Light={StaticResource Color.CardBackground.Light}, Dark={StaticResource Color.CardBackground}}">
                 <Grid
                     ColumnDefinitions="*,*"
                     RowDefinitions="Auto,Auto"

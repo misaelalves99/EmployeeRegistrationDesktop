@@ -18,7 +18,7 @@ namespace EmployeeRegistrationApp.Maui.Core.Services.Theme
     public sealed class ThemeService : IThemeService
     {
         private const string PreferenceKey = "EmployeeApp.Theme";
-        private const AppTheme DefaultThemeFallback = AppTheme.Dark;
+        private const AppTheme DefaultThemeFallback = AppTheme.Light;
 
         private AppTheme _currentTheme = DefaultThemeFallback;
 

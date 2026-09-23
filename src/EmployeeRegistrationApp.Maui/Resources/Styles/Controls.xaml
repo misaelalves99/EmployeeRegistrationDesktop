@@ -28,14 +28,14 @@
            BasedOn="{StaticResource PrimaryButtonStyle}">
         <Setter Property="BackgroundColor" Value="Transparent" />
         <Setter Property="TextColor" Value="{StaticResource Color.PrimaryLight}" />
-        <Setter Property="BorderColor" Value="{StaticResource Color.BorderStrong}" />
+        <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource Color.BorderStrong.Light}, Dark={StaticResource Color.BorderStrong}}" />
         <Setter Property="BorderWidth" Value="1" />
     </Style>
 
     <Style x:Key="TertiaryButtonStyle" TargetType="Button"
            BasedOn="{StaticResource PrimaryButtonStyle}">
         <Setter Property="BackgroundColor" Value="Transparent" />
-        <Setter Property="TextColor" Value="{StaticResource Color.TextSecondary}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Color.TextSecondary.Light}, Dark={StaticResource Color.TextSecondary}}" />
         <Setter Property="BorderWidth" Value="0" />
     </Style>
 
@@ -53,11 +53,20 @@
         <Setter Property="FontSize" Value="{StaticResource FontSize.Caption}" />
     </Style>
 
+    <!-- Stage16 theme parity defaults -->
+    <Style TargetType="ContentPage">
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color.PageBackground.Light}, Dark={StaticResource Color.PageBackground}}" />
+    </Style>
+
+    <Style TargetType="Frame">
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color.CardBackground.Light}, Dark={StaticResource Color.CardBackground}}" />
+        <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource Color.BorderSubtle.Light}, Dark={StaticResource Color.BorderSubtle}}" />
+    </Style>
     <!-- Entry padrão -->
     <Style TargetType="Entry" x:Key="BaseEntryStyle">
         <Setter Property="TextColor" Value="{StaticResource Color.TextPrimary}" />
-        <Setter Property="PlaceholderColor" Value="{StaticResource Color.InputPlaceholder}" />
-        <Setter Property="BackgroundColor" Value="{StaticResource Color.InputBackground}" />
+        <Setter Property="PlaceholderColor" Value="{AppThemeBinding Light={StaticResource Color.InputPlaceholder.Light}, Dark={StaticResource Color.InputPlaceholder}}" />
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color.InputBackground.Light}, Dark={StaticResource Color.InputBackground}}" />
         <Setter Property="FontFamily" Value="{StaticResource FontFamily.Primary}" />
         <Setter Property="FontSize" Value="{StaticResource FontSize.Body}" />
         <Setter Property="HeightRequest" Value="{StaticResource Control.Height.Standard}" />
@@ -68,15 +77,15 @@
 
     <Style TargetType="Editor">
         <Setter Property="TextColor" Value="{StaticResource Color.TextPrimary}" />
-        <Setter Property="PlaceholderColor" Value="{StaticResource Color.InputPlaceholder}" />
-        <Setter Property="BackgroundColor" Value="{StaticResource Color.InputBackground}" />
+        <Setter Property="PlaceholderColor" Value="{AppThemeBinding Light={StaticResource Color.InputPlaceholder.Light}, Dark={StaticResource Color.InputPlaceholder}}" />
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color.InputBackground.Light}, Dark={StaticResource Color.InputBackground}}" />
         <Setter Property="FontFamily" Value="{StaticResource FontFamily.Primary}" />
         <Setter Property="FontSize" Value="{StaticResource FontSize.Body}" />
     </Style>
 
     <Style TargetType="Picker">
         <Setter Property="TextColor" Value="{StaticResource Color.TextPrimary}" />
-        <Setter Property="BackgroundColor" Value="{StaticResource Color.InputBackground}" />
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color.InputBackground.Light}, Dark={StaticResource Color.InputBackground}}" />
         <Setter Property="FontFamily" Value="{StaticResource FontFamily.Primary}" />
         <Setter Property="FontSize" Value="{StaticResource FontSize.Body}" />
         <Setter Property="HeightRequest" Value="{StaticResource Control.Height.Standard}" />
@@ -84,8 +93,8 @@
 
     <Style TargetType="SearchBar">
         <Setter Property="TextColor" Value="{StaticResource Color.TextPrimary}" />
-        <Setter Property="PlaceholderColor" Value="{StaticResource Color.InputPlaceholder}" />
-        <Setter Property="BackgroundColor" Value="{StaticResource Color.InputBackground}" />
+        <Setter Property="PlaceholderColor" Value="{AppThemeBinding Light={StaticResource Color.InputPlaceholder.Light}, Dark={StaticResource Color.InputPlaceholder}}" />
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color.InputBackground.Light}, Dark={StaticResource Color.InputBackground}}" />
         <Setter Property="FontFamily" Value="{StaticResource FontFamily.Primary}" />
         <Setter Property="FontSize" Value="{StaticResource FontSize.Body}" />
         <Setter Property="HeightRequest" Value="{StaticResource Control.Height.Standard}" />
@@ -101,11 +110,11 @@
 
     <!-- Frame como card -->
     <Style x:Key="CardFrameStyle" TargetType="Frame">
-        <Setter Property="BackgroundColor" Value="{StaticResource Color.CardBackground}" />
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color.CardBackground.Light}, Dark={StaticResource Color.CardBackground}}" />
         <Setter Property="CornerRadius" Value="{StaticResource Radius.Large}" />
         <Setter Property="Padding" Value="{StaticResource Spacing.CardPadding}" />
         <Setter Property="HasShadow" Value="True" />
-        <Setter Property="BorderColor" Value="{StaticResource Color.BorderSubtle}" />
+        <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource Color.BorderSubtle.Light}, Dark={StaticResource Color.BorderSubtle}}" />
     </Style>
 
     <!-- CollectionView padrão (lista de dashboard, listas de funcionários etc.) -->
@@ -124,8 +133,8 @@
     <!-- Badge de status (usado no StatusBadge control) -->
     <Style x:Key="StatusBadgeLabelStyle" TargetType="Label"
            BasedOn="{StaticResource CaptionLabel}">
-        <Setter Property="BackgroundColor" Value="{StaticResource Color.BadgeBackground}" />
-        <Setter Property="TextColor" Value="{StaticResource Color.BadgeText}" />
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color.BadgeBackground.Light}, Dark={StaticResource Color.BadgeBackground}}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Color.BadgeText.Light}, Dark={StaticResource Color.BadgeText}}" />
         <Setter Property="Padding" Value="10,5" />
         <Setter Property="HorizontalOptions" Value="Start" />
         <Setter Property="VerticalOptions" Value="Center" />
