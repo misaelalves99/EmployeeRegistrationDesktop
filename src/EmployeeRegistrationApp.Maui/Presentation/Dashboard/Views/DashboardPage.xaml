@@ -8,7 +8,7 @@
     x:DataType="vm:DashboardViewModel"
     BackgroundColor="{AppThemeBinding Light={StaticResource Color.PageBackground.Light}, Dark={StaticResource Color.PageBackground}}">
 
-    <Grid Padding="24">
+    <Grid x:Name="RootGrid" Padding="{StaticResource Spacing.PagePadding}">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="WindowStates">
                 <VisualState x:Name="Wide">
@@ -16,6 +16,13 @@
                         <AdaptiveTrigger MinWindowWidth="1000" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
+                        <Setter TargetName="RootGrid" Property="Padding" Value="{StaticResource Spacing.PagePaddingWide}" />
+                        <Setter TargetName="DashboardHeader" Property="Grid.ColumnDefinitions" Value="*,Auto" />
+                        <Setter TargetName="DashboardHeader" Property="Grid.RowDefinitions" Value="Auto" />
+                        <Setter TargetName="RefreshButton" Property="Grid.Row" Value="0" />
+                        <Setter TargetName="RefreshButton" Property="Grid.Column" Value="1" />
+                        <Setter TargetName="RefreshButton" Property="HorizontalOptions" Value="End" />
+                        <Setter TargetName="RefreshButton" Property="Margin" Value="8,0,0,0" />
                         <Setter TargetName="PrimaryMetricsGrid" Property="Grid.ColumnDefinitions" Value="*,*,*,*" />
                         <Setter TargetName="MetricActive" Property="Grid.Column" Value="1" />
                         <Setter TargetName="MetricInactive" Property="Grid.Column" Value="2" />
@@ -27,6 +34,13 @@
                         <AdaptiveTrigger MinWindowWidth="0" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
+                        <Setter TargetName="RootGrid" Property="Padding" Value="{StaticResource Spacing.PagePadding}" />
+                        <Setter TargetName="DashboardHeader" Property="Grid.ColumnDefinitions" Value="*" />
+                        <Setter TargetName="DashboardHeader" Property="Grid.RowDefinitions" Value="Auto,Auto" />
+                        <Setter TargetName="RefreshButton" Property="Grid.Row" Value="1" />
+                        <Setter TargetName="RefreshButton" Property="Grid.Column" Value="0" />
+                        <Setter TargetName="RefreshButton" Property="HorizontalOptions" Value="Start" />
+                        <Setter TargetName="RefreshButton" Property="Margin" Value="0,12,0,0" />
                         <Setter TargetName="PrimaryMetricsGrid" Property="Grid.ColumnDefinitions" Value="*,*" />
                         <Setter TargetName="PrimaryMetricsGrid" Property="Grid.RowDefinitions" Value="Auto,Auto" />
                         <Setter TargetName="MetricActive" Property="Grid.Column" Value="1" />
@@ -46,56 +60,51 @@
             Color="{StaticResource Color.Primary}" />
 
         <ScrollView VerticalScrollBarVisibility="Never">
-            <VerticalStackLayout Spacing="24" Padding="0,4,0,24">
+            <VerticalStackLayout Spacing="{StaticResource Spacing.XL}" Padding="0,4,0,24">
 
-                <Grid ColumnDefinitions="*,Auto">
-                    <VerticalStackLayout Spacing="4">
+                <Grid x:Name="DashboardHeader" ColumnDefinitions="*,Auto" RowDefinitions="Auto">
+                    <VerticalStackLayout Spacing="{StaticResource Spacing.XS}">
                         <Label
                             Text="Dashboard de Pessoas"
-                            SemanticProperties.HeadingLevel="Level1"
-                            FontSize="24"
-                            FontAttributes="Bold"
-                            TextColor="{AppThemeBinding Light={StaticResource Color.TextPrimary.Light}, Dark={StaticResource Color.TextPrimary}}" />
+                            Style="{StaticResource PageTitleLabel}"
+                            SemanticProperties.HeadingLevel="Level1" />
                         <Label
                             Text="Visão geral de headcount, departamentos e posições ativas."
-                            FontSize="13"
-                            TextColor="{AppThemeBinding Light={StaticResource Color.TextSecondary.Light}, Dark={StaticResource Color.TextSecondary}}" />
+                            Style="{StaticResource BodySecondaryLabel}" />
                     </VerticalStackLayout>
 
                     <Button
+                        x:Name="RefreshButton"
                         Grid.Column="1"
                         Text="Atualizar"
                         Command="{Binding RefreshCommand}"
-                        HeightRequest="36"
-                        CornerRadius="999"
-                        BackgroundColor="{StaticResource Color.Primary}"
-                        TextColor="{StaticResource Color.TextOnPrimary}"
-                        FontSize="12"
+                        Style="{StaticResource CompactButtonStyle}"
+                        SemanticProperties.Hint="Atualiza os indicadores e o resumo do dashboard"
                         Margin="8,0,0,0" />
                 </Grid>
 
-                <Grid x:Name="PrimaryMetricsGrid" ColumnDefinitions="*,*,*,*" RowDefinitions="Auto" ColumnSpacing="12" RowSpacing="12">
+                <Grid x:Name="PrimaryMetricsGrid" ColumnDefinitions="*,*,*,*" RowDefinitions="Auto" ColumnSpacing="{StaticResource Spacing.M}" RowSpacing="{StaticResource Spacing.M}">
                     <controls:MetricCard x:Name="MetricTotal" Grid.Column="0" Title="Total de funcionários" Value="{Binding TotalEmployees}" Subtitle="Todos os vínculos" Icon="👥" AccentColor="{StaticResource Color.Primary}" />
                     <controls:MetricCard x:Name="MetricActive" Grid.Column="1" Title="Ativos" Value="{Binding ActiveEmployees}" Subtitle="Trabalhando atualmente" Icon="✅" AccentColor="{StaticResource Color.Success}" />
                     <controls:MetricCard x:Name="MetricInactive" Grid.Column="2" Title="Inativos" Value="{Binding InactiveEmployees}" Subtitle="Desligados / afastados" Icon="⚠️" AccentColor="{StaticResource Color.Warning}" />
                     <controls:MetricCard x:Name="MetricDepartments" Grid.Column="3" Title="Departamentos" Value="{Binding DepartmentsCount}" Subtitle="Áreas organizadas" Icon="🏢" AccentColor="{StaticResource Color.Info}" />
                 </Grid>
 
-                <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="{StaticResource Spacing.M}">
                     <controls:MetricCard Grid.Column="0" Title="Cargos cadastrados" Value="{Binding PositionsCount}" Subtitle="Níveis e funções" Icon="📌" AccentColor="{StaticResource Color.Primary}" />
                     <controls:MetricCard Grid.Column="1" Title="Média salarial" Value="{Binding AverageSalaryDisplay}" Subtitle="Base global" Icon="💰" AccentColor="{StaticResource Color.Accent}" />
                 </Grid>
 
                 <Border
-                    Padding="16"
+                    Padding="{StaticResource Spacing.CardPadding}"
                     BackgroundColor="{AppThemeBinding Light={StaticResource Color.CardBackground.Light}, Dark={StaticResource Color.CardBackground}}"
-                    Stroke="{StaticResource Color.BorderSubtle}"
+                    Stroke="{AppThemeBinding Light={StaticResource Color.BorderSubtle.Light}, Dark={StaticResource Color.BorderSubtle}}"
                     StrokeThickness="1"
                     StrokeShape="RoundRectangle 18">
-                    <VerticalStackLayout Spacing="8">
-                        <Label Text="Resumo de headcount" FontSize="15" FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource Color.TextPrimary.Light}, Dark={StaticResource Color.TextPrimary}}" />
-                        <Label Text="{Binding HeadcountSummary}" FontSize="13" TextColor="{AppThemeBinding Light={StaticResource Color.TextSecondary.Light}, Dark={StaticResource Color.TextSecondary}}" />
-                        <Label Text="{Binding LastUpdatedDisplay}" FontSize="11" TextColor="{AppThemeBinding Light={StaticResource Color.TextMuted.Light}, Dark={StaticResource Color.TextMuted}}" />
+                    <VerticalStackLayout Spacing="{StaticResource Spacing.S}">
+                        <Label Text="Resumo de headcount" Style="{StaticResource SectionTitleLabel}" SemanticProperties.HeadingLevel="Level2" />
+                        <Label Text="{Binding HeadcountSummary}" Style="{StaticResource BodySecondaryLabel}" />
+                        <Label Text="{Binding LastUpdatedDisplay}" Style="{StaticResource SupportingLabel}" />
                     </VerticalStackLayout>
                 </Border>
 
