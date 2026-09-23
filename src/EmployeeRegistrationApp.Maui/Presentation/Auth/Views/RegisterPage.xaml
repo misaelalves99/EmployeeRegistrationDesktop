@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:vm="clr-namespace:EmployeeRegistrationApp.Maui.Presentation.Auth.ViewModels"
     x:DataType="vm:RegisterViewModel"
-    BackgroundColor="{StaticResource Color.PageBackground}">
+    BackgroundColor="{AppThemeBinding Light={StaticResource Color.PageBackground.Light}, Dark={StaticResource Color.PageBackground}}">
 
     <Grid x:Name="RootLayout" Padding="32">
         <VisualStateManager.VisualStateGroups>
@@ -58,7 +58,7 @@
                 Grid.Column="0"
                 Padding="32"
                 Margin="0,0,24,0"
-                BackgroundColor="{StaticResource Color.BrandSurface}"
+                BackgroundColor="{AppThemeBinding Light={StaticResource Color.BrandSurface.Light}, Dark={StaticResource Color.BrandSurface}}"
                 StrokeThickness="0"
                 StrokeShape="RoundRectangle 24">
                 <VerticalStackLayout Spacing="14" VerticalOptions="Center">
@@ -66,12 +66,12 @@
                         Text="Crie sua conta administrativa"
                         FontSize="22"
                         FontAttributes="Bold"
-                        TextColor="{StaticResource Color.TextPrimary}" />
+                        TextColor="{AppThemeBinding Light={StaticResource Color.TextPrimary.Light}, Dark={StaticResource Color.TextPrimary}}" />
 
                     <Label
                         Text="A conta de cadastro permite acesso ao dashboard completo de gestão de funcionários, departamentos, cargos e relatórios."
                         FontSize="13"
-                        TextColor="{StaticResource Color.TextSecondary}" />
+                        TextColor="{AppThemeBinding Light={StaticResource Color.TextSecondary.Light}, Dark={StaticResource Color.TextSecondary}}" />
 
                     <VerticalStackLayout Spacing="10">
                         <HorizontalStackLayout Spacing="8">
@@ -79,7 +79,7 @@
                             <Label
                                 Text="Controle de headcount por departamento."
                                 FontSize="12"
-                                TextColor="{StaticResource Color.TextSecondary}" />
+                                TextColor="{AppThemeBinding Light={StaticResource Color.TextSecondary.Light}, Dark={StaticResource Color.TextSecondary}}" />
                         </HorizontalStackLayout>
 
                         <HorizontalStackLayout Spacing="8">
@@ -87,7 +87,7 @@
                             <Label
                                 Text="Gestão de cargos, salários e status de vínculo."
                                 FontSize="12"
-                                TextColor="{StaticResource Color.TextSecondary}" />
+                                TextColor="{AppThemeBinding Light={StaticResource Color.TextSecondary.Light}, Dark={StaticResource Color.TextSecondary}}" />
                         </HorizontalStackLayout>
 
                         <HorizontalStackLayout Spacing="8">
@@ -95,7 +95,7 @@
                             <Label
                                 Text="Relatórios estratégicos para RH e diretoria."
                                 FontSize="12"
-                                TextColor="{StaticResource Color.TextSecondary}" />
+                                TextColor="{AppThemeBinding Light={StaticResource Color.TextSecondary.Light}, Dark={StaticResource Color.TextSecondary}}" />
                         </HorizontalStackLayout>
                     </VerticalStackLayout>
                 </VerticalStackLayout>
@@ -106,12 +106,12 @@
                 x:Name="FormPanel"
                 Grid.Column="1"
                 Padding="28"
-                BackgroundColor="{StaticResource Color.CardBackground}"
+                BackgroundColor="{AppThemeBinding Light={StaticResource Color.CardBackground.Light}, Dark={StaticResource Color.CardBackground}}"
                 StrokeThickness="1"
-                Stroke="{StaticResource Color.BorderSubtle}"
+                Stroke="{AppThemeBinding Light={StaticResource Color.BorderSubtle.Light}, Dark={StaticResource Color.BorderSubtle}}"
                 StrokeShape="RoundRectangle 24"
                 Shadow="{StaticResource Shadow.Card}">
-                <ScrollView>
+                <ScrollView VerticalScrollBarVisibility="Never">
                     <VerticalStackLayout Spacing="18">
 
                         <!-- Cabeçalho -->
@@ -121,11 +121,11 @@
                                 SemanticProperties.HeadingLevel="Level1"
                                 FontSize="22"
                                 FontAttributes="Bold"
-                                TextColor="{StaticResource Color.TextPrimary}" />
+                                TextColor="{AppThemeBinding Light={StaticResource Color.TextPrimary.Light}, Dark={StaticResource Color.TextPrimary}}" />
                             <Label
                                 Text="Preencha os dados abaixo para configurar o primeiro usuário administrador."
                                 FontSize="13"
-                                TextColor="{StaticResource Color.TextSecondary}" />
+                                TextColor="{AppThemeBinding Light={StaticResource Color.TextSecondary.Light}, Dark={StaticResource Color.TextSecondary}}" />
                         </VerticalStackLayout>
 
                         <!-- Mensagem de erro -->
@@ -147,14 +147,14 @@
                             <Label
                                 Text="Nome completo"
                                 FontSize="13"
-                                TextColor="{StaticResource Color.TextSecondary}" />
+                                TextColor="{AppThemeBinding Light={StaticResource Color.TextSecondary.Light}, Dark={StaticResource Color.TextSecondary}}" />
                             <Entry
                                 Text="{Binding FullName}"
                                 SemanticProperties.Description="Nome completo"
                                 Placeholder="Seu nome completo"
-                                TextColor="{StaticResource Color.TextPrimary}"
-                                PlaceholderColor="{StaticResource Color.TextMuted}"
-                                BackgroundColor="{StaticResource Color.InputBackground}"
+                                TextColor="{AppThemeBinding Light={StaticResource Color.TextPrimary.Light}, Dark={StaticResource Color.TextPrimary}}"
+                                PlaceholderColor="{AppThemeBinding Light={StaticResource Color.TextMuted.Light}, Dark={StaticResource Color.TextMuted}}"
+                                BackgroundColor="{AppThemeBinding Light={StaticResource Color.InputBackground.Light}, Dark={StaticResource Color.InputBackground}}"
                                 HeightRequest="42" />
                         </VerticalStackLayout>
 
@@ -163,15 +163,15 @@
                             <Label
                                 Text="E-mail corporativo"
                                 FontSize="13"
-                                TextColor="{StaticResource Color.TextSecondary}" />
+                                TextColor="{AppThemeBinding Light={StaticResource Color.TextSecondary.Light}, Dark={StaticResource Color.TextSecondary}}" />
                             <Entry
                                 Text="{Binding Email}"
                                 SemanticProperties.Description="E-mail corporativo"
                                 Placeholder="seu.email@empresa.com"
                                 Keyboard="Email"
-                                TextColor="{StaticResource Color.TextPrimary}"
-                                PlaceholderColor="{StaticResource Color.TextMuted}"
-                                BackgroundColor="{StaticResource Color.InputBackground}"
+                                TextColor="{AppThemeBinding Light={StaticResource Color.TextPrimary.Light}, Dark={StaticResource Color.TextPrimary}}"
+                                PlaceholderColor="{AppThemeBinding Light={StaticResource Color.TextMuted.Light}, Dark={StaticResource Color.TextMuted}}"
+                                BackgroundColor="{AppThemeBinding Light={StaticResource Color.InputBackground.Light}, Dark={StaticResource Color.InputBackground}}"
                                 HeightRequest="42" />
                         </VerticalStackLayout>
 
@@ -180,15 +180,15 @@
                             <Label
                                 Text="Senha"
                                 FontSize="13"
-                                TextColor="{StaticResource Color.TextSecondary}" />
+                                TextColor="{AppThemeBinding Light={StaticResource Color.TextSecondary.Light}, Dark={StaticResource Color.TextSecondary}}" />
                             <Entry
                                 Text="{Binding Password}"
                                 SemanticProperties.Description="Senha"
                                 Placeholder="Crie uma senha segura"
                                 IsPassword="True"
-                                TextColor="{StaticResource Color.TextPrimary}"
-                                PlaceholderColor="{StaticResource Color.TextMuted}"
-                                BackgroundColor="{StaticResource Color.InputBackground}"
+                                TextColor="{AppThemeBinding Light={StaticResource Color.TextPrimary.Light}, Dark={StaticResource Color.TextPrimary}}"
+                                PlaceholderColor="{AppThemeBinding Light={StaticResource Color.TextMuted.Light}, Dark={StaticResource Color.TextMuted}}"
+                                BackgroundColor="{AppThemeBinding Light={StaticResource Color.InputBackground.Light}, Dark={StaticResource Color.InputBackground}}"
                                 HeightRequest="42" />
                         </VerticalStackLayout>
 
@@ -197,15 +197,15 @@
                             <Label
                                 Text="Confirmar senha"
                                 FontSize="13"
-                                TextColor="{StaticResource Color.TextSecondary}" />
+                                TextColor="{AppThemeBinding Light={StaticResource Color.TextSecondary.Light}, Dark={StaticResource Color.TextSecondary}}" />
                             <Entry
                                 Text="{Binding ConfirmPassword}"
                                 SemanticProperties.Description="Confirmar senha"
                                 Placeholder="Repita a senha"
                                 IsPassword="True"
-                                TextColor="{StaticResource Color.TextPrimary}"
-                                PlaceholderColor="{StaticResource Color.TextMuted}"
-                                BackgroundColor="{StaticResource Color.InputBackground}"
+                                TextColor="{AppThemeBinding Light={StaticResource Color.TextPrimary.Light}, Dark={StaticResource Color.TextPrimary}}"
+                                PlaceholderColor="{AppThemeBinding Light={StaticResource Color.TextMuted.Light}, Dark={StaticResource Color.TextMuted}}"
+                                BackgroundColor="{AppThemeBinding Light={StaticResource Color.InputBackground.Light}, Dark={StaticResource Color.InputBackground}}"
                                 HeightRequest="42" />
                         </VerticalStackLayout>
 
@@ -218,7 +218,7 @@
                                 Text="Concordo com os termos de uso deste sistema interno."
                                 FontSize="11"
                                 VerticalOptions="Center"
-                                TextColor="{StaticResource Color.TextSecondary}" />
+                                TextColor="{AppThemeBinding Light={StaticResource Color.TextSecondary.Light}, Dark={StaticResource Color.TextSecondary}}" />
                         </HorizontalStackLayout>
 
                         <!-- Botão registrar -->
@@ -240,7 +240,7 @@
                             <Label
                                 Text="Já possui uma conta?"
                                 FontSize="12"
-                                TextColor="{StaticResource Color.TextSecondary}" />
+                                TextColor="{AppThemeBinding Light={StaticResource Color.TextSecondary.Light}, Dark={StaticResource Color.TextSecondary}}" />
                             <Label
                                 Text="Ir para login"
                                 FontSize="12"
