@@ -4,130 +4,121 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewModels="clr-namespace:EmployeeRegistrationApp.Maui.Presentation.Reports.ViewModels"
-    Title="Relatórios">
+    x:DataType="viewModels:ReportsViewModel"
+    Title="Relatórios"
+    BackgroundColor="{AppThemeBinding Light={StaticResource Color.PageBackground.Light}, Dark={StaticResource Color.PageBackground}}">
 
-    <ContentPage.Resources>
-        <Style TargetType="Label" x:Key="SectionTitle">
-            <Setter Property="FontSize" Value="22" />
-            <Setter Property="FontAttributes" Value="Bold" />
-            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Color.TextPrimary.Light}, Dark={StaticResource Color.TextPrimary}}" />
-        </Style>
+    <Grid
+        Padding="{StaticResource Spacing.PagePadding}"
+        RowDefinitions="Auto,Auto,*"
+        RowSpacing="{StaticResource Spacing.StackLarge}">
 
-        <Style TargetType="Label" x:Key="SectionSubtitle">
-            <Setter Property="FontSize" Value="14" />
-            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Color.TextSecondary.Light}, Dark={StaticResource Color.TextSecondary}}" />
-        </Style>
+        <VerticalStackLayout Spacing="{StaticResource Spacing.XS}">
+            <Label
+                Text="Relatórios e indicadores"
+                Style="{StaticResource PageTitleLabel}"
+                SemanticProperties.HeadingLevel="Level1" />
 
-        <Style TargetType="Button" x:Key="ReportButton">
-            <Setter Property="HeightRequest" Value="52" />
-            <Setter Property="CornerRadius" Value="12" />
-            <Setter Property="BackgroundColor" Value="{StaticResource Color.Accent}" />
-            <Setter Property="TextColor" Value="White" />
-            <Setter Property="FontAttributes" Value="Bold" />
-            <Setter Property="Padding" Value="14,0" />
-        </Style>
-    </ContentPage.Resources>
-
-    <Grid Padding="24"
-          RowDefinitions="Auto,Auto,*"
-          RowSpacing="20">
-
-        <!-- Cabeçalho -->
-        <VerticalStackLayout Grid.Row="0" Spacing="4">
-            <Label Text="Relatórios e indicadores"
-                   Style="{StaticResource SectionTitle}" />
-
-            <Label Text="Acompanhe headcount, distribuição de cargos e visão geral da força de trabalho da empresa."
-                   Style="{StaticResource SectionSubtitle}" />
+            <Label
+                Text="Acompanhe headcount, distribuição de cargos e visão geral da força de trabalho da empresa."
+                Style="{StaticResource BodySecondaryLabel}" />
         </VerticalStackLayout>
 
-        <!-- Resumo rápido -->
-        <HorizontalStackLayout Grid.Row="1" Spacing="12">
-            <Frame Padding="14"
-                   CornerRadius="14"
-                   BackgroundColor="{AppThemeBinding Light={StaticResource Color.CardBackground.Light}, Dark={StaticResource Color.CardBackground}}"
-                   HasShadow="False"
-                   HorizontalOptions="FillAndExpand">
-                <VerticalStackLayout Spacing="2">
-                    <Label Text="Headcount por departamento"
-                           FontSize="13"
-                           TextColor="{AppThemeBinding Light={StaticResource Color.TextSecondary.Light}, Dark={StaticResource Color.TextSecondary}}" />
-                    <Label Text="{Binding HeadcountSummary}"
-                           FontSize="18"
-                           FontAttributes="Bold"
-                           TextColor="{AppThemeBinding Light={StaticResource Color.TextPrimary.Light}, Dark={StaticResource Color.TextPrimary}}" />
+        <Grid
+            Grid.Row="1"
+            ColumnDefinitions="*,*"
+            ColumnSpacing="{StaticResource Spacing.StackMedium}">
+
+            <Frame
+                Grid.Column="0"
+                Style="{StaticResource CardFrameStyle}">
+
+                <VerticalStackLayout Spacing="{StaticResource Spacing.XXS}">
+                    <Label
+                        Text="Headcount"
+                        Style="{StaticResource SupportingLabel}" />
+
+                    <Label
+                        Text="{Binding HeadcountSummary}"
+                        Style="{StaticResource MetricValueLabel}" />
                 </VerticalStackLayout>
             </Frame>
 
-            <Frame Padding="14"
-                   CornerRadius="14"
-                   BackgroundColor="{AppThemeBinding Light={StaticResource Color.CardBackground.Light}, Dark={StaticResource Color.CardBackground}}"
-                   HasShadow="False"
-                   HorizontalOptions="FillAndExpand">
-                <VerticalStackLayout Spacing="2">
-                    <Label Text="Departamentos ativos"
-                           FontSize="13"
-                           TextColor="{AppThemeBinding Light={StaticResource Color.TextSecondary.Light}, Dark={StaticResource Color.TextSecondary}}" />
-                    <Label Text="{Binding ActiveDepartmentsSummary}"
-                           FontSize="18"
-                           FontAttributes="Bold"
-                           TextColor="{AppThemeBinding Light={StaticResource Color.TextPrimary.Light}, Dark={StaticResource Color.TextPrimary}}" />
+            <Frame
+                Grid.Column="1"
+                Style="{StaticResource CardFrameStyle}">
+
+                <VerticalStackLayout Spacing="{StaticResource Spacing.XXS}">
+                    <Label
+                        Text="Departamentos"
+                        Style="{StaticResource SupportingLabel}" />
+
+                    <Label
+                        Text="{Binding DepartmentsSummary}"
+                        Style="{StaticResource MetricValueLabel}" />
                 </VerticalStackLayout>
             </Frame>
-        </HorizontalStackLayout>
+        </Grid>
 
-        <!-- Cartões de navegação para relatórios -->
         <ScrollView Grid.Row="2">
-            <VerticalStackLayout Spacing="14">
+            <VerticalStackLayout Spacing="{StaticResource Spacing.StackMedium}">
 
-                <Frame Padding="16"
-                       CornerRadius="16"
-                       BackgroundColor="{AppThemeBinding Light={StaticResource Color.CardBackground.Light}, Dark={StaticResource Color.CardBackground}}"
-                       HasShadow="False">
-                    <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto" ColumnSpacing="8">
-                        <VerticalStackLayout Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Spacing="4">
-                            <Label Text="Headcount por departamento"
-                                   FontAttributes="Bold"
-                                   FontSize="17"
-                                   TextColor="{AppThemeBinding Light={StaticResource Color.TextPrimary.Light}, Dark={StaticResource Color.TextPrimary}}" />
-                            <Label Text="Veja quantos colaboradores existem em cada área, ativos e inativos, e identifique concentrações da equipe."
-                                   FontSize="13"
-                                   TextColor="{AppThemeBinding Light={StaticResource Color.TextSecondary.Light}, Dark={StaticResource Color.TextSecondary}}" />
+                <Frame Style="{StaticResource CardFrameStyle}">
+                    <Grid
+                        ColumnDefinitions="*,Auto"
+                        ColumnSpacing="{StaticResource Spacing.StackLarge}">
+
+                        <VerticalStackLayout
+                            Grid.Column="0"
+                            Spacing="{StaticResource Spacing.XS}">
+
+                            <Label
+                                Text="Headcount por departamento"
+                                Style="{StaticResource SectionTitleLabel}"
+                                SemanticProperties.HeadingLevel="Level2" />
+
+                            <Label
+                                Text="Veja quantos colaboradores existem em cada área, ativos e inativos, e identifique concentrações da equipe."
+                                Style="{StaticResource BodySecondaryLabel}" />
                         </VerticalStackLayout>
 
-                        <Button Grid.Column="1"
-                                Grid.Row="1"
-                                Style="{StaticResource ReportButton}"
-                                Text="Abrir relatório"
-                                Command="{Binding OpenHeadcountReportCommand}" />
+                        <Button
+                            Grid.Column="1"
+                            Text="Abrir relatório"
+                            Command="{Binding OpenHeadcountReportCommand}"
+                            Style="{StaticResource PrimaryButtonStyle}"
+                            VerticalOptions="Center" />
                     </Grid>
                 </Frame>
 
-                <Frame Padding="16"
-                       CornerRadius="16"
-                       BackgroundColor="{AppThemeBinding Light={StaticResource Color.CardBackground.Light}, Dark={StaticResource Color.CardBackground}}"
-                       HasShadow="False">
-                    <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto" ColumnSpacing="8">
-                        <VerticalStackLayout Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Spacing="4">
-                            <Label Text="Resumo de salários (futuro)"
-                                   FontAttributes="Bold"
-                                   FontSize="17"
-                                   TextColor="{AppThemeBinding Light={StaticResource Color.TextPrimary.Light}, Dark={StaticResource Color.TextPrimary}}" />
-                            <Label Text="Planejado para consolidar salários médios, faixas e distribuição por cargo."
-                                   FontSize="13"
-                                   TextColor="{AppThemeBinding Light={StaticResource Color.TextSecondary.Light}, Dark={StaticResource Color.TextSecondary}}" />
+                <Frame Style="{StaticResource CardFrameStyle}">
+                    <Grid
+                        ColumnDefinitions="*,Auto"
+                        ColumnSpacing="{StaticResource Spacing.StackLarge}">
+
+                        <VerticalStackLayout
+                            Grid.Column="0"
+                            Spacing="{StaticResource Spacing.XS}">
+
+                            <Label
+                                Text="Resumo de salários (futuro)"
+                                Style="{StaticResource SectionTitleLabel}"
+                                SemanticProperties.HeadingLevel="Level2" />
+
+                            <Label
+                                Text="Planejado para consolidar salários médios, faixas e distribuição por cargo."
+                                Style="{StaticResource BodySecondaryLabel}" />
                         </VerticalStackLayout>
 
-                        <Button Grid.Column="1"
-                                Grid.Row="1"
-                                Style="{StaticResource ReportButton}"
-                                Text="Em breve"
-                                IsEnabled="False" />
+                        <Button
+                            Grid.Column="1"
+                            Text="Em breve"
+                            IsEnabled="False"
+                            Style="{StaticResource TertiaryButtonStyle}"
+                            VerticalOptions="Center" />
                     </Grid>
                 </Frame>
-
             </VerticalStackLayout>
         </ScrollView>
-
     </Grid>
 </ContentPage>

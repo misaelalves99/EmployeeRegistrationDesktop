@@ -4,143 +4,145 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewModels="clr-namespace:EmployeeRegistrationApp.Maui.Presentation.Reports.ViewModels"
-    Title="Headcount por departamento">
+    x:DataType="viewModels:HeadcountByDepartmentViewModel"
+    Title="Headcount por departamento"
+    BackgroundColor="{AppThemeBinding Light={StaticResource Color.PageBackground.Light}, Dark={StaticResource Color.PageBackground}}">
 
-    <ContentPage.Resources>
-        <Style TargetType="Label" x:Key="Title">
-            <Setter Property="FontSize" Value="22" />
-            <Setter Property="FontAttributes" Value="Bold" />
-            <Setter Property="TextColor" Value="{StaticResource Color.TextPrimary}" />
-        </Style>
+    <Grid
+        Padding="{StaticResource Spacing.PagePadding}"
+        RowDefinitions="Auto,Auto,*"
+        RowSpacing="{StaticResource Spacing.StackLarge}">
 
-        <Style TargetType="Label" x:Key="Subtitle">
-            <Setter Property="FontSize" Value="14" />
-            <Setter Property="TextColor" Value="{StaticResource Color.TextSecondary}" />
-        </Style>
+        <VerticalStackLayout Spacing="{StaticResource Spacing.XS}">
+            <Label
+                Text="Headcount por departamento"
+                Style="{StaticResource PageTitleLabel}"
+                SemanticProperties.HeadingLevel="Level1" />
 
-        <Style TargetType="Frame" x:Key="DepartmentCard">
-            <Setter Property="CornerRadius" Value="16" />
-            <Setter Property="Padding" Value="14" />
-            <Setter Property="HasShadow" Value="False" />
-            <Setter Property="BackgroundColor" Value="{StaticResource Color.CardBackground}" />
-        </Style>
-    </ContentPage.Resources>
-
-    <Grid Padding="24"
-          RowDefinitions="Auto,Auto,*"
-          RowSpacing="16">
-
-        <!-- Cabeçalho -->
-        <VerticalStackLayout Grid.Row="0" Spacing="4">
-            <Label Text="Headcount por departamento"
-                   Style="{StaticResource Title}" />
-            <Label Text="Visualize a quantidade de colaboradores por área, separando ativos e inativos."
-                   Style="{StaticResource Subtitle}" />
+            <Label
+                Text="Visualize a quantidade de colaboradores por área, separando ativos e inativos."
+                Style="{StaticResource BodySecondaryLabel}" />
         </VerticalStackLayout>
 
-        <!-- Filtros simples (período) -->
-        <HorizontalStackLayout Grid.Row="1" Spacing="12" VerticalOptions="Center">
-            <Label Text="Período:"
-                   FontSize="13"
-                   VerticalOptions="Center"
-                   TextColor="{StaticResource Color.TextSecondary}" />
+        <Grid
+            Grid.Row="1"
+            ColumnDefinitions="Auto,*,Auto"
+            ColumnSpacing="{StaticResource Spacing.M}"
+            VerticalOptions="Center">
 
-            <Picker Title="Selecione"
-                    ItemsSource="{Binding Periods}"
-                    ItemDisplayBinding="{Binding}"
-                    SelectedItem="{Binding SelectedPeriod}"
-                    WidthRequest="180" />
+            <Label
+                Grid.Column="0"
+                Text="Período"
+                Style="{StaticResource FieldLabel}"
+                VerticalOptions="Center" />
 
-            <Button Text="Atualizar"
-                    HeightRequest="40"
-                    Padding="14,0"
-                    CornerRadius="12"
-                    BackgroundColor="{StaticResource Color.Accent}"
-                    TextColor="White"
-                    Command="{Binding RefreshCommand}" />
-        </HorizontalStackLayout>
+            <Picker
+                Grid.Column="1"
+                Title="Selecione"
+                ItemsSource="{Binding Periods}"
+                ItemDisplayBinding="{Binding}"
+                SelectedItem="{Binding SelectedPeriod}"
+                HorizontalOptions="Fill" />
 
-        <!-- Lista de departamentos -->
-        <RefreshView Grid.Row="2"
-                     Command="{Binding RefreshCommand}"
-                     IsRefreshing="{Binding IsBusy}">
-            <CollectionView ItemsSource="{Binding HeadcountItems}"
-                            SelectionMode="None">
+            <Button
+                Grid.Column="2"
+                Text="Atualizar"
+                Command="{Binding RefreshCommand}"
+                Style="{StaticResource PrimaryButtonStyle}" />
+        </Grid>
+
+        <RefreshView
+            Grid.Row="2"
+            Command="{Binding RefreshCommand}"
+            IsRefreshing="{Binding IsBusy, Mode=OneWay}">
+
+            <CollectionView
+                ItemsSource="{Binding HeadcountItems}"
+                SelectionMode="None">
+
                 <CollectionView.EmptyView>
-                    <VerticalStackLayout Padding="40,60"
-                                         Spacing="8"
-                                         HorizontalOptions="Center"
-                                         VerticalOptions="Center">
-                        <Label Text="Nenhum dado encontrado para o filtro atual."
-                               FontSize="14"
-                               TextColor="{StaticResource Color.TextSecondary}"
-                               HorizontalTextAlignment="Center" />
+                    <VerticalStackLayout
+                        Padding="{StaticResource Spacing.EmptyStatePadding}"
+                        Spacing="{StaticResource Spacing.S}"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center">
+
+                        <Label
+                            Text="Nenhum dado encontrado para o filtro atual."
+                            Style="{StaticResource BodySecondaryLabel}"
+                            HorizontalTextAlignment="Center" />
                     </VerticalStackLayout>
                 </CollectionView.EmptyView>
 
                 <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Frame Style="{StaticResource DepartmentCard}" Margin="0,0,0,10">
-                            <Grid ColumnDefinitions="*,Auto"
-                                  RowDefinitions="Auto,Auto"
-                                  ColumnSpacing="12"
-                                  RowSpacing="6">
+                    <DataTemplate x:DataType="viewModels:HeadcountItemViewModel">
+                        <Frame Style="{StaticResource CardFrameStyle}">
+                            <Grid
+                                ColumnDefinitions="*,Auto"
+                                RowDefinitions="Auto,Auto"
+                                ColumnSpacing="{StaticResource Spacing.StackLarge}"
+                                RowSpacing="{StaticResource Spacing.S}">
 
-                                <!-- Nome do departamento -->
-                                <Label Grid.Row="0"
-                                       Grid.Column="0"
-                                       Text="{Binding DepartmentName}"
-                                       FontSize="16"
-                                       FontAttributes="Bold"
-                                       TextColor="{StaticResource Color.TextPrimary}" />
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Text="{Binding DepartmentName}"
+                                    Style="{StaticResource SectionTitleLabel}"
+                                    SemanticProperties.HeadingLevel="Level2" />
 
-                                <!-- Total -->
-                                <Label Grid.Row="0"
-                                       Grid.Column="1"
-                                       Text="{Binding TotalEmployees}"
-                                       FontSize="18"
-                                       FontAttributes="Bold"
-                                       TextColor="{StaticResource Color.TextPrimary}"
-                                       HorizontalTextAlignment="End" />
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    Text="{Binding TotalEmployees}"
+                                    Style="{StaticResource MetricValueLabel}"
+                                    HorizontalTextAlignment="End" />
 
-                                <!-- Ativos / Inativos -->
-                                <HorizontalStackLayout Grid.Row="1"
-                                                       Grid.Column="0"
-                                                       Spacing="18">
-                                    <HorizontalStackLayout Spacing="4">
-                                        <BoxView WidthRequest="10"
-                                                 HeightRequest="10"
-                                                 CornerRadius="5"
-                                                 Color="{StaticResource Color.Success}" />
-                                        <Label Text="{Binding ActiveEmployees, StringFormat='Ativos: {0}'}"
-                                               FontSize="13"
-                                               TextColor="{StaticResource Color.TextSecondary}" />
+                                <HorizontalStackLayout
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    Spacing="{StaticResource Spacing.L}">
+
+                                    <HorizontalStackLayout Spacing="{StaticResource Spacing.XS}">
+                                        <BoxView
+                                            WidthRequest="10"
+                                            HeightRequest="10"
+                                            CornerRadius="{StaticResource Radius.Pill}"
+                                            Color="{StaticResource Color.Success}"
+                                            VerticalOptions="Center" />
+
+                                        <Label
+                                            Text="{Binding ActiveEmployees, StringFormat='Ativos: {0}'}"
+                                            Style="{StaticResource SupportingLabel}"
+                                            VerticalOptions="Center" />
                                     </HorizontalStackLayout>
 
-                                    <HorizontalStackLayout Spacing="4">
-                                        <BoxView WidthRequest="10"
-                                                 HeightRequest="10"
-                                                 CornerRadius="5"
-                                                 Color="{StaticResource Color.Warning}" />
-                                        <Label Text="{Binding InactiveEmployees, StringFormat='Inativos: {0}'}"
-                                               FontSize="13"
-                                               TextColor="{StaticResource Color.TextSecondary}" />
+                                    <HorizontalStackLayout Spacing="{StaticResource Spacing.XS}">
+                                        <BoxView
+                                            WidthRequest="10"
+                                            HeightRequest="10"
+                                            CornerRadius="{StaticResource Radius.Pill}"
+                                            Color="{StaticResource Color.Warning}"
+                                            VerticalOptions="Center" />
+
+                                        <Label
+                                            Text="{Binding InactiveEmployees, StringFormat='Inativos: {0}'}"
+                                            Style="{StaticResource SupportingLabel}"
+                                            VerticalOptions="Center" />
                                     </HorizontalStackLayout>
                                 </HorizontalStackLayout>
 
-                                <!-- Percentual -->
-                                <Label Grid.Row="1"
-                                       Grid.Column="1"
-                                       FontSize="13"
-                                       TextColor="{StaticResource Color.TextSecondary}"
-                                       HorizontalTextAlignment="End"
-                                       Text="{Binding PercentageInWorkforce, StringFormat='Participação: {0:P1}'}" />
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Text="{Binding PercentageInWorkforce, StringFormat='Participação: {0:P1}'}"
+                                    Style="{StaticResource SupportingLabel}"
+                                    HorizontalTextAlignment="End"
+                                    VerticalOptions="Center" />
                             </Grid>
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </RefreshView>
-
     </Grid>
 </ContentPage>
