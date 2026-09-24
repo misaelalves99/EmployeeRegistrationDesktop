@@ -3,63 +3,68 @@
     x:Class="EmployeeRegistrationApp.Maui.Presentation.Employees.Views.EmployeeReactivatePage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Reativar">
+    xmlns:viewModels="clr-namespace:EmployeeRegistrationApp.Maui.Presentation.Employees.ViewModels"
+    x:DataType="viewModels:EmployeeReactivateViewModel"
+    Title="Reativar"
+    BackgroundColor="{AppThemeBinding Light={StaticResource Color.PageBackground.Light}, Dark={StaticResource Color.PageBackground}}">
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <Color x:Key="BgPage">#0B1220</Color>
-            <Color x:Key="BgCard">#101A2E</Color>
-            <Color x:Key="TextPrimary">#E5E7EB</Color>
-            <Color x:Key="TextMuted">#94A3B8</Color>
-            <Color x:Key="Accent">#60A5FA</Color>
+    <ScrollView>
+        <Grid
+            Padding="{StaticResource Spacing.PagePadding}"
+            RowDefinitions="Auto,Auto,Auto"
+            RowSpacing="{StaticResource Spacing.StackLarge}">
 
-            <Style x:Key="CardFrameStyle" TargetType="Frame">
-                <Setter Property="BackgroundColor" Value="{StaticResource BgCard}" />
-                <Setter Property="BorderColor" Value="#1F2A44" />
-                <Setter Property="CornerRadius" Value="16" />
-                <Setter Property="HasShadow" Value="True" />
-                <Setter Property="Padding" Value="14" />
-                <Setter Property="Margin" Value="0,0,0,14" />
-            </Style>
+            <VerticalStackLayout
+                Grid.Row="0"
+                Spacing="{StaticResource Spacing.XS}">
+                <Label
+                    Text="Reativar colaborador"
+                    Style="{StaticResource PageTitleLabel}"
+                    SemanticProperties.HeadingLevel="Level1" />
+                <Label
+                    Text="Confirme a data de reativação para restabelecer o status do colaborador."
+                    Style="{StaticResource BodySecondaryLabel}" />
+            </VerticalStackLayout>
 
-            <Style x:Key="TitleStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
-                <Setter Property="FontAttributes" Value="Bold" />
-                <Setter Property="FontSize" Value="18" />
-            </Style>
+            <Frame
+                Grid.Row="1"
+                Style="{StaticResource CardFrameStyle}">
+                <VerticalStackLayout Spacing="{StaticResource Spacing.M}">
+                    <VerticalStackLayout Spacing="{StaticResource Spacing.XXS}">
+                        <Label
+                            Text="Colaborador"
+                            Style="{StaticResource FieldLabel}" />
+                        <Label
+                            Text="{Binding EmployeeName}"
+                            Style="{StaticResource SectionTitleLabel}"
+                            SemanticProperties.HeadingLevel="Level2" />
+                    </VerticalStackLayout>
 
-            <Style x:Key="MutedStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="{StaticResource TextMuted}" />
-                <Setter Property="FontSize" Value="12" />
-            </Style>
-
-            <Style x:Key="PrimaryButtonStyle" TargetType="Button">
-                <Setter Property="BackgroundColor" Value="{StaticResource Accent}" />
-                <Setter Property="TextColor" Value="#0B1220" />
-                <Setter Property="CornerRadius" Value="14" />
-                <Setter Property="Padding" Value="14,10" />
-                <Setter Property="FontAttributes" Value="Bold" />
-            </Style>
-        </ResourceDictionary>
-    </ContentPage.Resources>
-
-    <ScrollView BackgroundColor="{StaticResource BgPage}">
-        <VerticalStackLayout Padding="16" Spacing="12">
-
-            <Label Text="Reativar colaborador" Style="{StaticResource TitleStyle}" />
-            <Label Text="Confirme a data de reativação para reabilitar o acesso e o status do colaborador." Style="{StaticResource MutedStyle}" />
-
-            <Frame Style="{StaticResource CardFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Text="{Binding EmployeeName}" Style="{StaticResource TitleStyle}" FontSize="16"/>
-                    <Label Text="Data de reativação" Style="{StaticResource MutedStyle}" />
-                    <DatePicker Date="{Binding ReactivationDate}" />
+                    <VerticalStackLayout Spacing="{StaticResource Spacing.XXS}">
+                        <Label
+                            Text="Data de reativação"
+                            Style="{StaticResource FieldLabel}" />
+                        <DatePicker
+                            Date="{Binding ReactivationDate}"
+                            BackgroundColor="{AppThemeBinding Light={StaticResource Color.InputBackground.Light}, Dark={StaticResource Color.InputBackground}}"
+                            TextColor="{AppThemeBinding Light={StaticResource Color.TextPrimary.Light}, Dark={StaticResource Color.TextPrimary}}"
+                            SemanticProperties.Description="Data escolhida para reativar o colaborador" />
+                    </VerticalStackLayout>
                 </VerticalStackLayout>
             </Frame>
 
-            <Button Text="Confirmar reativação" Style="{StaticResource PrimaryButtonStyle}" Command="{Binding ConfirmCommand}" />
-            <Button Text="Cancelar" Command="{Binding CancelCommand}" />
-
-        </VerticalStackLayout>
+            <VerticalStackLayout
+                Grid.Row="2"
+                Spacing="{StaticResource Spacing.S}">
+                <Button
+                    Text="Confirmar reativação"
+                    Style="{StaticResource PrimaryButtonStyle}"
+                    Command="{Binding ConfirmCommand}" />
+                <Button
+                    Text="Cancelar"
+                    Style="{StaticResource SecondaryButtonStyle}"
+                    Command="{Binding CancelCommand}" />
+            </VerticalStackLayout>
+        </Grid>
     </ScrollView>
 </ContentPage>

@@ -45,6 +45,32 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
             });
 
+#if WINDOWS
+        // .NET MAUI 10.0.101 maps Picker.Title to WinUI ComboBox.Header.
+        // Windows desktop guidance uses native ComboBox.PlaceholderText for
+        // the unselected prompt. Keep field labels in XAML and render Title
+        // inside the closed selector instead of as an external heading.
+        Microsoft.Maui.Handlers.PickerHandler.Mapper.AppendToMapping(
+            nameof(Microsoft.Maui.Controls.Picker.Title),
+            (handler, picker) =>
+            {
+                handler.PlatformView.Header = null;
+                handler.PlatformView.HeaderTemplate = null;
+                handler.PlatformView.PlaceholderText = picker.Title ?? string.Empty;
+            });
+
+        // PickerHandler.MapTitleColor calls the same Windows UpdateTitle path,
+        // so re-apply the placeholder after that mapping as well.
+        Microsoft.Maui.Handlers.PickerHandler.Mapper.AppendToMapping(
+            nameof(Microsoft.Maui.Controls.Picker.TitleColor),
+            (handler, picker) =>
+            {
+                handler.PlatformView.Header = null;
+                handler.PlatformView.HeaderTemplate = null;
+                handler.PlatformView.PlaceholderText = picker.Title ?? string.Empty;
+            });
+#endif
+
         // Camadas (Application + Infra InMemory)
         builder.Services.AddApplicationServices();
         builder.Services.AddInMemoryPersistence();

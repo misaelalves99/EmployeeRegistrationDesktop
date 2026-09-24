@@ -34,8 +34,12 @@ public sealed class EmployeesListViewModel : ViewModelBase
 
         RefreshCommand = new Command(async () => await LoadEmployeesAsync(), () => IsNotBusy);
         NewEmployeeCommand = new Command(async () => await NavigateToCreateAsync(), () => IsNotBusy);
-        OpenDetailsCommand = new Command<EmployeeListItemDto>(async e => await NavigateToDetailsAsync(e), e => IsNotBusy && e != null);
-        ReactivateCommand = new Command<EmployeeListItemDto>(async e => await NavigateToReactivateAsync(e), e => IsNotBusy && e != null);
+        OpenDetailsCommand = new Command<EmployeeListItemDto>(
+            async e => await NavigateToDetailsAsync(e),
+            e => IsNotBusy && e != null);
+        ReactivateCommand = new Command<EmployeeListItemDto>(
+            async e => await NavigateToReactivateAsync(e),
+            e => IsNotBusy && e != null);
     }
 
     private string _searchText = string.Empty;
@@ -81,6 +85,7 @@ public sealed class EmployeesListViewModel : ViewModelBase
         {
             IsBusy = true;
             IsRefreshing = true;
+            RefreshCommandStates();
 
             Employees.Clear();
 
@@ -104,6 +109,7 @@ public sealed class EmployeesListViewModel : ViewModelBase
         {
             IsBusy = false;
             IsRefreshing = false;
+            RefreshCommandStates();
         }
     }
 
@@ -115,12 +121,8 @@ public sealed class EmployeesListViewModel : ViewModelBase
         if (employee is null)
             return Task.CompletedTask;
 
-        var parameters = new Dictionary<string, object>
-        {
-            ["id"] = employee.Id
-        };
-
-        return _navigationService.NavigateToAsync(NavigationRoutes.EmployeeDetailsPage, parameters);
+        var route = $"{NavigationRoutes.EmployeeDetailsPage}?id={employee.Id:D}";
+        return _navigationService.NavigateToAsync(route);
     }
 
     private Task NavigateToReactivateAsync(EmployeeListItemDto? employee)
@@ -128,11 +130,15 @@ public sealed class EmployeesListViewModel : ViewModelBase
         if (employee is null)
             return Task.CompletedTask;
 
-        var parameters = new Dictionary<string, object>
-        {
-            ["id"] = employee.Id
-        };
+        var route = $"{NavigationRoutes.EmployeeReactivatePage}?id={employee.Id:D}";
+        return _navigationService.NavigateToAsync(route);
+    }
 
-        return _navigationService.NavigateToAsync(NavigationRoutes.EmployeeReactivatePage, parameters);
+    private void RefreshCommandStates()
+    {
+        ((Command)RefreshCommand).ChangeCanExecute();
+        ((Command)NewEmployeeCommand).ChangeCanExecute();
+        ((Command<EmployeeListItemDto>)OpenDetailsCommand).ChangeCanExecute();
+        ((Command<EmployeeListItemDto>)ReactivateCommand).ChangeCanExecute();
     }
 }

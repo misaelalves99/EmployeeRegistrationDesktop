@@ -29,8 +29,12 @@ namespace EmployeeRegistrationApp.Maui.Presentation.Employees.ViewModels
             _dialogService = dialogService;
 
             EditCommand = new Command(async () => await EditAsync(), () => IsNotBusy && Employee != null);
-            DeactivateCommand = new Command(async () => await DeactivateAsync(), () => IsNotBusy && Employee != null);
-            ReactivateCommand = new Command(async () => await ReactivateAsync(), () => IsNotBusy && Employee != null);
+            DeactivateCommand = new Command(
+                async () => await DeactivateAsync(),
+                () => IsNotBusy && Employee?.IsActive == true);
+            ReactivateCommand = new Command(
+                async () => await ReactivateAsync(),
+                () => IsNotBusy && Employee?.IsActive == false);
             DeleteCommand = new Command(async () => await DeleteAsync(), () => IsNotBusy && Employee != null);
         }
 
@@ -41,10 +45,7 @@ namespace EmployeeRegistrationApp.Maui.Presentation.Employees.ViewModels
             {
                 if (SetProperty(ref _employee, value))
                 {
-                    ((Command)EditCommand).ChangeCanExecute();
-                    ((Command)DeactivateCommand).ChangeCanExecute();
-                    ((Command)ReactivateCommand).ChangeCanExecute();
-                    ((Command)DeleteCommand).ChangeCanExecute();
+                    RefreshActionCommandStates();
                 }
             }
         }
@@ -61,6 +62,7 @@ namespace EmployeeRegistrationApp.Maui.Presentation.Employees.ViewModels
             try
             {
                 IsBusy = true;
+                RefreshActionCommandStates();
                 Employee = await _employeeAppService.GetByIdAsync(id);
             }
             catch (Exception ex)
@@ -70,6 +72,7 @@ namespace EmployeeRegistrationApp.Maui.Presentation.Employees.ViewModels
             finally
             {
                 IsBusy = false;
+                RefreshActionCommandStates();
             }
         }
 
@@ -77,20 +80,52 @@ namespace EmployeeRegistrationApp.Maui.Presentation.Employees.ViewModels
         {
             if (Employee == null) return Task.CompletedTask;
 
-            return _navigationService.NavigateToAsync(
-                NavigationRoutes.EmployeeFormPage,
-                new System.Collections.Generic.Dictionary<string, object> { ["id"] = Employee.Id });
+            var route = $"{NavigationRoutes.EmployeeFormPage}?id={Employee.Id:D}";
+            return _navigationService.NavigateToAsync(route);
         }
 
         private async Task DeactivateAsync()
         {
-            if (Employee == null) return;
+            if (Employee == null || !Employee.IsActive)
+                return;
+
+            var employeeId = Employee.Id;
+
+            var confirmed = await _dialogService.ShowDangerConfirmationAsync(
+                "Desativar colaborador",
+                "Tem certeza que deseja desativar este colaborador?",
+                "Sim, desativar",
+                "Cancelar");
+
+            if (!confirmed)
+                return;
 
             try
             {
                 IsBusy = true;
-                await _employeeAppService.DeactivateAsync(Employee.Id);
-                await LoadAsync(Employee.Id);
+                RefreshActionCommandStates();
+
+                var deactivated = await _employeeAppService.DeactivateAsync(employeeId);
+                if (!deactivated)
+                {
+                    await _dialogService.ShowWarningAsync(
+                        "Colaborador não encontrado",
+                        "Não foi possível desativar o colaborador selecionado.");
+                    return;
+                }
+
+                Employee = await _employeeAppService.GetByIdAsync(employeeId);
+                if (Employee == null)
+                {
+                    await _dialogService.ShowErrorAsync(
+                        "Erro ao atualizar colaborador",
+                        "O colaborador foi desativado, mas não foi possível recarregar os detalhes.");
+                    return;
+                }
+
+                await _dialogService.ShowInfoAsync(
+                    "Colaborador desativado",
+                    "O colaborador foi desativado com sucesso.");
             }
             catch (Exception ex)
             {
@@ -99,16 +134,17 @@ namespace EmployeeRegistrationApp.Maui.Presentation.Employees.ViewModels
             finally
             {
                 IsBusy = false;
+                RefreshActionCommandStates();
             }
         }
 
         private Task ReactivateAsync()
         {
-            if (Employee == null) return Task.CompletedTask;
+            if (Employee == null || Employee.IsActive)
+                return Task.CompletedTask;
 
-            return _navigationService.NavigateToAsync(
-                NavigationRoutes.EmployeeReactivatePage,
-                new System.Collections.Generic.Dictionary<string, object> { ["id"] = Employee.Id });
+            var route = $"{NavigationRoutes.EmployeeReactivatePage}?id={Employee.Id:D}";
+            return _navigationService.NavigateToAsync(route);
         }
 
         private async Task DeleteAsync()
@@ -124,6 +160,7 @@ namespace EmployeeRegistrationApp.Maui.Presentation.Employees.ViewModels
             try
             {
                 IsBusy = true;
+                RefreshActionCommandStates();
                 await _employeeAppService.DeleteAsync(Employee.Id);
                 await _navigationService.GoBackAsync();
             }
@@ -134,7 +171,16 @@ namespace EmployeeRegistrationApp.Maui.Presentation.Employees.ViewModels
             finally
             {
                 IsBusy = false;
+                RefreshActionCommandStates();
             }
+        }
+
+        private void RefreshActionCommandStates()
+        {
+            ((Command)EditCommand).ChangeCanExecute();
+            ((Command)DeactivateCommand).ChangeCanExecute();
+            ((Command)ReactivateCommand).ChangeCanExecute();
+            ((Command)DeleteCommand).ChangeCanExecute();
         }
     }
 }
