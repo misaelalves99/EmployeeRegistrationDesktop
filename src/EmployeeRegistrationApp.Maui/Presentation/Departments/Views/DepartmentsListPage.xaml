@@ -3,7 +3,11 @@
     x:Class="EmployeeRegistrationApp.Maui.Presentation.Departments.Views.DepartmentsListPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Departamentos">
+    xmlns:vm="clr-namespace:EmployeeRegistrationApp.Maui.Presentation.Departments.ViewModels"
+    xmlns:dto="clr-namespace:EmployeeRegistrationApp.Application.DTOs.Departments;assembly=EmployeeRegistrationApp.Application"
+    x:DataType="vm:DepartmentsListViewModel"
+    Title="Departamentos"
+    BackgroundColor="{AppThemeBinding Light={StaticResource Color.PageBackground.Light}, Dark={StaticResource Color.PageBackground}}">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem
@@ -13,99 +17,105 @@
             Command="{Binding NewDepartmentCommand}" />
     </ContentPage.ToolbarItems>
 
-    <VerticalStackLayout
-        Padding="24"
-        Spacing="16">
+    <Grid
+        Padding="{StaticResource Spacing.PagePadding}"
+        RowDefinitions="Auto,Auto,*"
+        RowSpacing="{StaticResource Spacing.StackLarge}">
 
-        <!-- Cabeçalho -->
-        <VerticalStackLayout Spacing="4">
+        <VerticalStackLayout Spacing="{StaticResource Spacing.XS}">
             <Label
                 Text="Departamentos"
-                FontAttributes="Bold"
-                FontSize="22" />
+                Style="{StaticResource PageTitleLabel}"
+                SemanticProperties.HeadingLevel="Level1" />
 
             <Label
-                Text="Gerencie as áreas da empresa (RH, TI, Financeiro, etc.)."
-                FontSize="13"
-                Opacity="0.8" />
+                Text="Gerencie as áreas da empresa e acompanhe a distribuição de pessoas."
+                Style="{StaticResource BodySecondaryLabel}" />
         </VerticalStackLayout>
 
-        <!-- Busca -->
         <SearchBar
+            Grid.Row="1"
             Placeholder="Buscar departamento..."
             Text="{Binding SearchTerm}"
-            FontSize="14" />
+            SemanticProperties.Description="Buscar departamentos por nome ou descrição" />
 
-        <!-- Lista -->
-        <CollectionView
-            x:Name="DepartmentsCollectionView"
-            ItemsSource="{Binding Departments}"
-            SelectionMode="Single"
-            SelectionChanged="DepartmentsCollectionView_SelectionChanged">
+        <RefreshView
+            Grid.Row="2"
+            IsRefreshing="{Binding IsRefreshing}"
+            Command="{Binding RefreshCommand}">
 
-            <CollectionView.EmptyView>
-                <VerticalStackLayout
-                    Padding="32"
-                    Spacing="8"
-                    HorizontalOptions="Center"
-                    VerticalOptions="Center">
-                    <Label
-                        Text="Nenhum departamento encontrado."
-                        FontAttributes="Bold"
-                        FontSize="16"
-                        HorizontalOptions="Center" />
-                    <Label
-                        Text="Toque em 'Novo' para cadastrar o primeiro departamento."
-                        FontSize="13"
+            <CollectionView
+                x:Name="DepartmentsCollectionView"
+                ItemsSource="{Binding Departments}"
+                SelectionMode="Single"
+                SelectionChanged="DepartmentsCollectionView_SelectionChanged">
+
+                <CollectionView.EmptyView>
+                    <VerticalStackLayout
+                        Padding="{StaticResource Spacing.EmptyStatePadding}"
+                        Spacing="{StaticResource Spacing.S}"
                         HorizontalOptions="Center"
-                        Opacity="0.7" />
-                </VerticalStackLayout>
-            </CollectionView.EmptyView>
+                        VerticalOptions="Center">
 
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Frame
-                        Padding="12"
-                        Margin="0,4"
-                        HasShadow="False"
-                        BorderColor="{DynamicResource Color.BorderStrong}"
-                        BackgroundColor="{AppThemeBinding Light={StaticResource Color.CardBackground.Light}, Dark={StaticResource Color.CardBackground}}"
-                        CornerRadius="12">
+                        <Label
+                            Text="Nenhum departamento encontrado"
+                            Style="{StaticResource SectionTitleLabel}"
+                            HorizontalOptions="Center"
+                            SemanticProperties.HeadingLevel="Level2" />
 
-                        <Grid
-                            ColumnDefinitions="*,Auto"
-                            RowDefinitions="Auto,Auto"
-                            ColumnSpacing="8">
+                        <Label
+                            Text="Use “Novo” para cadastrar o primeiro departamento."
+                            Style="{StaticResource BodySecondaryLabel}"
+                            HorizontalTextAlignment="Center" />
+                    </VerticalStackLayout>
+                </CollectionView.EmptyView>
 
-                            <Label
-                                Grid.Row="0"
-                                Grid.Column="0"
-                                Text="{Binding Name}"
-                                FontAttributes="Bold"
-                                FontSize="16" />
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="dto:DepartmentDto">
+                        <Frame Style="{StaticResource CardFrameStyle}">
+                            <Grid
+                                ColumnDefinitions="*,Auto"
+                                RowDefinitions="Auto,Auto"
+                                ColumnSpacing="{StaticResource Spacing.StackLarge}"
+                                RowSpacing="{StaticResource Spacing.XS}">
 
-                            <Label
-                                Grid.Row="1"
-                                Grid.Column="0"
-                                Text="{Binding Description}"
-                                FontSize="13"
-                                Opacity="0.8"
-                                LineBreakMode="TailTruncation"
-                                MaxLines="2" />
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Text="{Binding Name}"
+                                    Style="{StaticResource SectionTitleLabel}"
+                                    SemanticProperties.HeadingLevel="Level2" />
 
-                            <Label
-                                Grid.RowSpan="2"
-                                Grid.Column="1"
-                                Text="›"
-                                FontSize="20"
-                                VerticalOptions="Center"
-                                HorizontalOptions="End"
-                                Opacity="0.5" />
-                        </Grid>
-                    </Frame>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    Text="{Binding Description}"
+                                    Style="{StaticResource BodySecondaryLabel}"
+                                    LineBreakMode="TailTruncation"
+                                    MaxLines="2" />
 
-    </VerticalStackLayout>
+                                <VerticalStackLayout
+                                    Grid.RowSpan="2"
+                                    Grid.Column="1"
+                                    Spacing="{StaticResource Spacing.XXS}"
+                                    HorizontalOptions="End"
+                                    VerticalOptions="Center">
+
+                                    <Label
+                                        Text="{Binding Headcount}"
+                                        Style="{StaticResource SectionTitleLabel}"
+                                        HorizontalOptions="End" />
+
+                                    <Label
+                                        Text="pessoas"
+                                        Style="{StaticResource SupportingLabel}"
+                                        HorizontalOptions="End" />
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+    </Grid>
 </ContentPage>

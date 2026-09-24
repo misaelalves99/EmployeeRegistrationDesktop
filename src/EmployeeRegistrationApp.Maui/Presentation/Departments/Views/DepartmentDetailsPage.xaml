@@ -3,7 +3,10 @@
     x:Class="EmployeeRegistrationApp.Maui.Presentation.Departments.Views.DepartmentDetailsPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Detalhes do Departamento">
+    xmlns:vm="clr-namespace:EmployeeRegistrationApp.Maui.Presentation.Departments.ViewModels"
+    x:DataType="vm:DepartmentDetailsViewModel"
+    Title="Detalhes do Departamento"
+    BackgroundColor="{AppThemeBinding Light={StaticResource Color.PageBackground.Light}, Dark={StaticResource Color.PageBackground}}">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem
@@ -20,92 +23,87 @@
     </ContentPage.ToolbarItems>
 
     <ScrollView>
-        <VerticalStackLayout
-            Padding="24"
-            Spacing="20">
+        <Grid
+            Padding="{StaticResource Spacing.PagePadding}"
+            RowDefinitions="Auto,Auto,Auto,Auto"
+            RowSpacing="{StaticResource Spacing.StackLarge}">
 
-            <!-- Cabeçalho -->
-            <VerticalStackLayout Spacing="4">
+            <VerticalStackLayout Spacing="{StaticResource Spacing.XS}">
                 <Label
                     Text="{Binding Name}"
-                    FontAttributes="Bold"
-                    FontSize="22" />
+                    Style="{StaticResource PageTitleLabel}"
+                    SemanticProperties.HeadingLevel="Level1" />
 
                 <Label
                     Text="{Binding CodeDisplay}"
-                    FontSize="13"
-                    Opacity="0.8" />
+                    Style="{StaticResource SupportingLabel}" />
             </VerticalStackLayout>
 
-            <!-- Resumo -->
             <Frame
-                Padding="16"
-                HasShadow="False"
-                CornerRadius="12"
-                BorderColor="{DynamicResource Color.BorderStrong}"
-                BackgroundColor="{AppThemeBinding Light={StaticResource Color.CardBackground.Light}, Dark={StaticResource Color.CardBackground}}">
+                Grid.Row="1"
+                Style="{StaticResource CardFrameStyle}">
+
                 <Grid
                     ColumnDefinitions="*,*"
                     RowDefinitions="Auto,Auto"
-                    ColumnSpacing="16"
-                    RowSpacing="8">
+                    ColumnSpacing="{StaticResource Spacing.StackLarge}"
+                    RowSpacing="{StaticResource Spacing.S}">
 
                     <Label
                         Grid.Row="0"
                         Grid.Column="0"
                         Text="Funcionários ativos"
-                        FontSize="13"
-                        Opacity="0.7" />
+                        Style="{StaticResource SupportingLabel}" />
+
                     <Label
                         Grid.Row="1"
                         Grid.Column="0"
                         Text="{Binding ActiveEmployeesCount}"
-                        FontAttributes="Bold"
-                        FontSize="20" />
+                        Style="{StaticResource MetricValueLabel}" />
 
                     <Label
                         Grid.Row="0"
                         Grid.Column="1"
                         Text="Total de funcionários"
-                        FontSize="13"
-                        Opacity="0.7" />
+                        Style="{StaticResource SupportingLabel}" />
+
                     <Label
                         Grid.Row="1"
                         Grid.Column="1"
                         Text="{Binding TotalEmployeesCount}"
-                        FontAttributes="Bold"
-                        FontSize="20" />
+                        Style="{StaticResource MetricValueLabel}" />
                 </Grid>
             </Frame>
 
-            <!-- Descrição -->
-            <VerticalStackLayout Spacing="4">
+            <VerticalStackLayout
+                Grid.Row="2"
+                Spacing="{StaticResource Spacing.XS}">
+
                 <Label
                     Text="Descrição"
-                    FontAttributes="Bold"
-                    FontSize="14" />
+                    Style="{StaticResource SectionTitleLabel}"
+                    SemanticProperties.HeadingLevel="Level2" />
+
                 <Label
                     Text="{Binding Description}"
-                    FontSize="14"
-                    Opacity="0.9" />
+                    Style="{StaticResource BodySecondaryLabel}" />
             </VerticalStackLayout>
 
-            <!-- Ações -->
             <HorizontalStackLayout
-                Spacing="12"
+                Grid.Row="3"
+                Spacing="{StaticResource Spacing.M}"
                 HorizontalOptions="End">
 
                 <Button
                     Text="Voltar"
-                    Command="{Binding BackCommand}" Style="{StaticResource SecondaryButtonStyle}" />
+                    Command="{Binding BackCommand}"
+                    Style="{StaticResource SecondaryButtonStyle}" />
 
                 <Button
                     Text="Editar"
                     Command="{Binding EditCommand}"
-                    BackgroundColor="{DynamicResource Color.Primary}"
-                    TextColor="White" />
+                    Style="{StaticResource PrimaryButtonStyle}" />
             </HorizontalStackLayout>
-
-        </VerticalStackLayout>
+        </Grid>
     </ScrollView>
 </ContentPage>
