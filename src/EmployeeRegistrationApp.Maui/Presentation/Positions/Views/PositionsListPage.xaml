@@ -3,7 +3,11 @@
     x:Class="EmployeeRegistrationApp.Maui.Presentation.Positions.Views.PositionsListPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Cargos">
+    xmlns:vm="clr-namespace:EmployeeRegistrationApp.Maui.Presentation.Positions.ViewModels"
+    xmlns:dto="clr-namespace:EmployeeRegistrationApp.Application.DTOs.Positions;assembly=EmployeeRegistrationApp.Application"
+    x:DataType="vm:PositionsListViewModel"
+    Title="Cargos"
+    BackgroundColor="{AppThemeBinding Light={StaticResource Color.PageBackground.Light}, Dark={StaticResource Color.PageBackground}}">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem
@@ -13,88 +17,99 @@
             Command="{Binding NewPositionCommand}" />
     </ContentPage.ToolbarItems>
 
-    <ContentPage.Content>
-        <Grid RowDefinitions="Auto, *"
-              Padding="16">
+    <Grid
+        Padding="{StaticResource Spacing.PagePadding}"
+        RowDefinitions="Auto,Auto,*"
+        RowSpacing="{StaticResource Spacing.StackLarge}">
 
-            <!-- Barra de busca -->
-            <SearchBar
-                Grid.Row="0"
-                Placeholder="Buscar cargos..."
-                Text="{Binding SearchTerm}" />
+        <VerticalStackLayout Spacing="{StaticResource Spacing.XS}">
+            <Label
+                Text="Cargos"
+                Style="{StaticResource PageTitleLabel}"
+                SemanticProperties.HeadingLevel="Level1" />
 
-            <!-- Lista de cargos -->
-            <CollectionView
-                Grid.Row="1"
-                Margin="0,12,0,0"
-                ItemsSource="{Binding Positions}"
-                SelectionMode="Single"
-                SelectionChanged="OnSelectionChanged">
+            <Label
+                Text="Gerencie os cargos da empresa e visualize departamento e senioridade."
+                Style="{StaticResource BodySecondaryLabel}" />
+        </VerticalStackLayout>
 
-                <CollectionView.EmptyView>
-                    <VerticalStackLayout
-                        Padding="24"
-                        Spacing="8"
+        <SearchBar
+            Grid.Row="1"
+            Placeholder="Buscar cargos..."
+            Text="{Binding SearchTerm}"
+            SemanticProperties.Description="Buscar cargos por nome" />
+
+        <CollectionView
+            Grid.Row="2"
+            ItemsSource="{Binding Positions}"
+            SelectionMode="Single"
+            SelectionChanged="OnSelectionChanged">
+
+            <CollectionView.EmptyView>
+                <VerticalStackLayout
+                    Padding="{StaticResource Spacing.EmptyStatePadding}"
+                    Spacing="{StaticResource Spacing.S}"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center">
+
+                    <Label
+                        Text="Nenhum cargo encontrado"
+                        Style="{StaticResource SectionTitleLabel}"
                         HorizontalOptions="Center"
-                        VerticalOptions="Center">
+                        SemanticProperties.HeadingLevel="Level2" />
 
-                        <Label
-                            Text="Nenhum cargo encontrado"
-                            FontAttributes="Bold"
-                            HorizontalOptions="Center" />
+                    <Label
+                        Text="Cadastre um novo cargo ou ajuste o filtro de busca."
+                        Style="{StaticResource BodySecondaryLabel}"
+                        HorizontalTextAlignment="Center" />
+                </VerticalStackLayout>
+            </CollectionView.EmptyView>
 
-                        <Label
-                            Text="Cadastre um novo cargo ou ajuste o filtro de busca."
-                            FontSize="13"
-                            Opacity="0.7"
-                            HorizontalOptions="Center" />
-                    </VerticalStackLayout>
-                </CollectionView.EmptyView>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="dto:PositionDto">
+                    <Frame Style="{StaticResource CardFrameStyle}">
+                        <Grid
+                            ColumnDefinitions="*,Auto"
+                            RowDefinitions="Auto,Auto"
+                            ColumnSpacing="{StaticResource Spacing.StackLarge}"
+                            RowSpacing="{StaticResource Spacing.XS}">
 
-                <CollectionView.ItemTemplate>
-                    <!-- Se você registrou o DataTemplate globalmente, pode usar StaticResource -->
-                    <!-- <StaticResource ResourceKey="PositionListItemTemplate" /> -->
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Text="{Binding Name}"
+                                Style="{StaticResource SectionTitleLabel}"
+                                SemanticProperties.HeadingLevel="Level2" />
 
-                    <!-- Template simples inline (fallback) -->
-                    <DataTemplate>
-                        <Frame
-                            Margin="0,0,0,10"
-                            Padding="12"
-                            HasShadow="False"
-                            CornerRadius="12"
-                            BorderColor="{DynamicResource Color.BorderSubtle}">
-                            <Grid ColumnDefinitions="*,Auto"
-                                  RowDefinitions="Auto,Auto"
-                                  ColumnSpacing="8"
-                                  RowSpacing="4">
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Text="{Binding DepartmentName}"
+                                Style="{StaticResource BodySecondaryLabel}"
+                                LineBreakMode="TailTruncation"
+                                MaxLines="1" />
 
-                                <Label
-                                    Grid.Row="0"
-                                    Grid.Column="0"
-                                    Text="{Binding Name}"
-                                    FontAttributes="Bold"
-                                    FontSize="16" />
-
-                                <Label
-                                    Grid.Row="1"
-                                    Grid.Column="0"
-                                    Text="{Binding DepartmentName}"
-                                    FontSize="13"
-                                    Opacity="0.7" />
+                            <VerticalStackLayout
+                                Grid.RowSpan="2"
+                                Grid.Column="1"
+                                Spacing="{StaticResource Spacing.XXS}"
+                                HorizontalOptions="End"
+                                VerticalOptions="Center">
 
                                 <Label
-                                    Grid.Row="0"
-                                    Grid.RowSpan="2"
-                                    Grid.Column="1"
-                                    VerticalOptions="Center"
+                                    Text="Tipo"
+                                    Style="{StaticResource SupportingLabel}"
+                                    HorizontalOptions="End" />
+
+                                <Label
                                     Text="{Binding Type}"
-                                    FontSize="13"
-                                    Opacity="0.7" />
-                            </Grid>
-                        </Frame>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </Grid>
-    </ContentPage.Content>
+                                    Style="{StaticResource SectionTitleLabel}"
+                                    HorizontalOptions="End" />
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
 </ContentPage>
