@@ -64,7 +64,7 @@
     </Style>
     <!-- Entry padrão -->
     <Style TargetType="Entry" x:Key="BaseEntryStyle">
-        <Setter Property="TextColor" Value="{StaticResource Color.TextPrimary}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Color.TextPrimary.Light}, Dark={StaticResource Color.TextPrimary}}" />
         <Setter Property="PlaceholderColor" Value="{AppThemeBinding Light={StaticResource Color.InputPlaceholder.Light}, Dark={StaticResource Color.InputPlaceholder}}" />
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color.InputBackground.Light}, Dark={StaticResource Color.InputBackground}}" />
         <Setter Property="FontFamily" Value="{StaticResource FontFamily.Primary}" />
@@ -76,7 +76,7 @@
     <Style TargetType="Entry" BasedOn="{StaticResource BaseEntryStyle}" />
 
     <Style TargetType="Editor">
-        <Setter Property="TextColor" Value="{StaticResource Color.TextPrimary}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Color.TextPrimary.Light}, Dark={StaticResource Color.TextPrimary}}" />
         <Setter Property="PlaceholderColor" Value="{AppThemeBinding Light={StaticResource Color.InputPlaceholder.Light}, Dark={StaticResource Color.InputPlaceholder}}" />
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color.InputBackground.Light}, Dark={StaticResource Color.InputBackground}}" />
         <Setter Property="FontFamily" Value="{StaticResource FontFamily.Primary}" />
@@ -84,7 +84,7 @@
     </Style>
 
     <Style TargetType="Picker">
-        <Setter Property="TextColor" Value="{StaticResource Color.TextPrimary}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Color.TextPrimary.Light}, Dark={StaticResource Color.TextPrimary}}" />
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color.InputBackground.Light}, Dark={StaticResource Color.InputBackground}}" />
         <Setter Property="FontFamily" Value="{StaticResource FontFamily.Primary}" />
         <Setter Property="FontSize" Value="{StaticResource FontSize.Body}" />
@@ -92,7 +92,7 @@
     </Style>
 
     <Style TargetType="SearchBar">
-        <Setter Property="TextColor" Value="{StaticResource Color.TextPrimary}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Color.TextPrimary.Light}, Dark={StaticResource Color.TextPrimary}}" />
         <Setter Property="PlaceholderColor" Value="{AppThemeBinding Light={StaticResource Color.InputPlaceholder.Light}, Dark={StaticResource Color.InputPlaceholder}}" />
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color.InputBackground.Light}, Dark={StaticResource Color.InputBackground}}" />
         <Setter Property="FontFamily" Value="{StaticResource FontFamily.Primary}" />

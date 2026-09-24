@@ -3,7 +3,8 @@
     x:Class="EmployeeRegistrationApp.Maui.Presentation.Departments.Views.DepartmentFormPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="{Binding PageTitle}">
+    Title="{Binding PageTitle}"
+    BackgroundColor="{AppThemeBinding Light={StaticResource Color.PageBackground.Light}, Dark={StaticResource Color.PageBackground}}">
 
     <ScrollView>
         <VerticalStackLayout
@@ -14,25 +15,21 @@
             <VerticalStackLayout Spacing="4">
                 <Label
                     Text="{Binding HeaderTitle}"
-                    FontAttributes="Bold"
-                    FontSize="22" />
+                    Style="{StaticResource PageTitleLabel}" />
 
                 <Label
                     Text="{Binding HeaderSubtitle}"
-                    FontSize="13"
-                    Opacity="0.8" />
+                    Style="{StaticResource BodySecondaryLabel}" />
             </VerticalStackLayout>
 
             <!-- Nome -->
             <VerticalStackLayout Spacing="4">
                 <Label
                     Text="Nome do departamento"
-                    FontAttributes="Bold"
-                    FontSize="14" />
+                    Style="{StaticResource FieldLabel}" />
                 <Entry
                     Text="{Binding Name}"
-                    Placeholder="Ex: Tecnologia da Informação"
-                    FontSize="14" />
+                    Placeholder="Ex: Tecnologia da Informação" />
                 <Label
                     Text="{Binding NameError}"
                     FontSize="12"
@@ -44,13 +41,11 @@
             <VerticalStackLayout Spacing="4">
                 <Label
                     Text="Descrição"
-                    FontAttributes="Bold"
-                    FontSize="14" />
+                    Style="{StaticResource FieldLabel}" />
                 <Editor
                     Text="{Binding Description}"
                     AutoSize="TextChanges"
                     HeightRequest="120"
-                    FontSize="14"
                     Placeholder="Resumo das responsabilidades do departamento..." />
             </VerticalStackLayout>
 
@@ -61,14 +56,14 @@
 
                 <Button
                     Text="Cancelar"
-                    Command="{Binding CancelCommand}" Style="{StaticResource SecondaryButtonStyle}" />
+                    Command="{Binding CancelCommand}"
+                    Style="{StaticResource SecondaryButtonStyle}" />
 
                 <Button
                     Text="Salvar"
                     Command="{Binding SaveCommand}"
                     IsEnabled="{Binding CanSave}"
-                    BackgroundColor="{DynamicResource Color.Primary}"
-                    TextColor="White" />
+                    Style="{StaticResource PrimaryButtonStyle}" />
             </HorizontalStackLayout>
 
         </VerticalStackLayout>

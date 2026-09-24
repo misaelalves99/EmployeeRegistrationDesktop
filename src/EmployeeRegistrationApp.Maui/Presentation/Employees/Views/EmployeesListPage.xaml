@@ -3,95 +3,130 @@
     x:Class="EmployeeRegistrationApp.Maui.Presentation.Employees.Views.EmployeesListPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Colaboradores">
+    xmlns:vm="clr-namespace:EmployeeRegistrationApp.Maui.Presentation.Employees.ViewModels"
+    x:DataType="vm:EmployeesListViewModel"
+    Title="Colaboradores"
+    BackgroundColor="{AppThemeBinding Light={StaticResource Color.PageBackground.Light}, Dark={StaticResource Color.PageBackground}}">
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
+    <Grid
+        x:Name="RootGrid"
+        Padding="{StaticResource Spacing.PagePadding}"
+        RowDefinitions="Auto,Auto,*"
+        RowSpacing="{StaticResource Spacing.M}">
 
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="WindowStates">
+                <VisualState x:Name="Wide">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1000" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter TargetName="RootGrid" Property="Padding" Value="{StaticResource Spacing.PagePaddingWide}" />
+                        <Setter TargetName="HeaderGrid" Property="Grid.ColumnDefinitions" Value="*,Auto" />
+                        <Setter TargetName="HeaderGrid" Property="Grid.RowDefinitions" Value="Auto" />
+                        <Setter TargetName="NewEmployeeButton" Property="Grid.Row" Value="0" />
+                        <Setter TargetName="NewEmployeeButton" Property="Grid.Column" Value="1" />
+                        <Setter TargetName="NewEmployeeButton" Property="HorizontalOptions" Value="End" />
+                        <Setter TargetName="NewEmployeeButton" Property="Margin" Value="16,0,0,0" />
+                    </VisualState.Setters>
+                </VisualState>
 
+                <VisualState x:Name="Compact">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter TargetName="RootGrid" Property="Padding" Value="{StaticResource Spacing.PagePadding}" />
+                        <Setter TargetName="HeaderGrid" Property="Grid.ColumnDefinitions" Value="*" />
+                        <Setter TargetName="HeaderGrid" Property="Grid.RowDefinitions" Value="Auto,Auto" />
+                        <Setter TargetName="NewEmployeeButton" Property="Grid.Row" Value="1" />
+                        <Setter TargetName="NewEmployeeButton" Property="Grid.Column" Value="0" />
+                        <Setter TargetName="NewEmployeeButton" Property="HorizontalOptions" Value="Start" />
+                        <Setter TargetName="NewEmployeeButton" Property="Margin" Value="0,12,0,0" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
 
+        <Grid
+            x:Name="HeaderGrid"
+            Grid.Row="0"
+            ColumnDefinitions="*,Auto"
+            RowDefinitions="Auto">
+            <VerticalStackLayout Spacing="{StaticResource Spacing.XS}">
+                <Label
+                    Text="Colaboradores"
+                    Style="{StaticResource PageTitleLabel}"
+                    SemanticProperties.HeadingLevel="Level1" />
+                <Label
+                    Text="Liste, busque e acesse os detalhes dos colaboradores."
+                    Style="{StaticResource BodySecondaryLabel}" />
+            </VerticalStackLayout>
 
+            <Button
+                x:Name="NewEmployeeButton"
+                Grid.Column="1"
+                Text="Novo colaborador"
+                Style="{StaticResource PrimaryButtonStyle}"
+                Command="{Binding NewEmployeeCommand}"
+                SemanticProperties.Hint="Abre o formulário para cadastrar um novo colaborador"
+                HorizontalOptions="End" />
+        </Grid>
 
-
-
-            <Style x:Key="CardFrameStyle" TargetType="Frame">
-                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Color.CardBackground.Light}, Dark={StaticResource Color.CardBackground}}" />
-                <Setter Property="BorderColor" Value="#1F2A44" />
-                <Setter Property="CornerRadius" Value="16" />
-                <Setter Property="HasShadow" Value="True" />
-                <Setter Property="Padding" Value="14" />
-                <Setter Property="Margin" Value="0,0,0,12" />
-            </Style>
-
-            <Style x:Key="TitleStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Color.TextPrimary.Light}, Dark={StaticResource Color.TextPrimary}}" />
-                <Setter Property="FontSize" Value="16" />
-                <Setter Property="FontAttributes" Value="Bold" />
-            </Style>
-
-            <Style x:Key="MutedStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Color.TextMuted.Light}, Dark={StaticResource Color.TextMuted}}" />
-                <Setter Property="FontSize" Value="12" />
-            </Style>
-
-            <Style x:Key="PrimaryButtonStyle" TargetType="Button">
-                <Setter Property="BackgroundColor" Value="{StaticResource Color.Primary}" />
-                <Setter Property="TextColor" Value="{StaticResource Color.TextOnPrimary}" />
-                <Setter Property="CornerRadius" Value="14" />
-                <Setter Property="Padding" Value="14,10" />
-                <Setter Property="FontAttributes" Value="Bold" />
-            </Style>
-        </ResourceDictionary>
-    </ContentPage.Resources>
-
-    <Grid BackgroundColor="{AppThemeBinding Light={StaticResource Color.PageBackground.Light}, Dark={StaticResource Color.PageBackground}}" RowDefinitions="Auto,Auto,* ,Auto" Padding="16">
-
-        <!-- Header -->
-        <VerticalStackLayout Grid.Row="0" Spacing="6">
-            <Label Text="Colaboradores" Style="{StaticResource TitleStyle}" FontSize="20" SemanticProperties.HeadingLevel="Level1"/>
-            <Label Text="Liste, busque e acesse os detalhes dos colaboradores." Style="{StaticResource MutedStyle}" />
-        </VerticalStackLayout>
-
-        <!-- Search -->
         <SearchBar
             Grid.Row="1"
             Placeholder="Buscar por nome, e-mail ou departamento..."
             Text="{Binding SearchText}"
-            Margin="0,12,0,12" />
+            SemanticProperties.Description="Busca colaboradores por nome, e-mail ou departamento" />
 
-        <!-- List -->
         <RefreshView
             Grid.Row="2"
             IsRefreshing="{Binding IsRefreshing}"
             Command="{Binding RefreshCommand}">
-
             <CollectionView
                 ItemsSource="{Binding Employees}"
-                SelectionMode="None">
+                SelectionMode="None"
+                VerticalScrollBarVisibility="Never">
 
                 <CollectionView.EmptyView>
-                    <VerticalStackLayout Padding="20" Spacing="8">
-                        <Label Text="Nenhum colaborador encontrado." Style="{StaticResource TitleStyle}" />
-                        <Label Text="Tente ajustar a busca ou cadastre um novo colaborador." Style="{StaticResource MutedStyle}" />
+                    <VerticalStackLayout
+                        Padding="{StaticResource Spacing.EmptyStatePadding}"
+                        Spacing="{StaticResource Spacing.S}"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center">
+                        <Label
+                            Text="Nenhum colaborador encontrado."
+                            Style="{StaticResource SectionTitleLabel}"
+                            HorizontalTextAlignment="Center"
+                            SemanticProperties.HeadingLevel="Level2" />
+                        <Label
+                            Text="Tente ajustar a busca ou cadastre um novo colaborador."
+                            Style="{StaticResource BodySecondaryLabel}"
+                            HorizontalTextAlignment="Center" />
                     </VerticalStackLayout>
                 </CollectionView.EmptyView>
 
                 <CollectionView.ItemTemplate>
-                    <DataTemplate>
+                    <DataTemplate x:DataType="{x:Null}">
                         <Frame Style="{StaticResource CardFrameStyle}">
-                            <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="*,Auto" RowSpacing="6">
+                            <Grid
+                                RowDefinitions="Auto,Auto,Auto"
+                                ColumnDefinitions="*,Auto"
+                                RowSpacing="{StaticResource Spacing.S}"
+                                ColumnSpacing="{StaticResource Spacing.M}">
 
                                 <Label
                                     Grid.Row="0"
                                     Grid.Column="0"
                                     Text="{Binding FullName}"
-                                    Style="{StaticResource TitleStyle}" />
+                                    Style="{StaticResource SectionTitleLabel}"
+                                    LineBreakMode="TailTruncation" />
 
                                 <Label
                                     Grid.Row="0"
                                     Grid.Column="1"
                                     Text="{Binding IsActive, StringFormat='Ativo: {0}'}"
-                                    Style="{StaticResource MutedStyle}"
+                                    Style="{StaticResource StatusBadgeLabelStyle}"
                                     HorizontalOptions="End" />
 
                                 <Label
@@ -99,37 +134,39 @@
                                     Grid.Column="0"
                                     Grid.ColumnSpan="2"
                                     Text="{Binding Email}"
-                                    Style="{StaticResource MutedStyle}" />
+                                    Style="{StaticResource SupportingLabel}"
+                                    LineBreakMode="TailTruncation" />
 
-                                <HorizontalStackLayout Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Spacing="10">
-                                    <Label Text="{Binding DepartmentName, StringFormat='Depto: {0}'}" Style="{StaticResource MutedStyle}" />
-                                    <Label Text="{Binding PositionName, StringFormat='Cargo: {0}'}" Style="{StaticResource MutedStyle}" />
-                                </HorizontalStackLayout>
+                                <VerticalStackLayout
+                                    Grid.Row="2"
+                                    Grid.Column="0"
+                                    Spacing="{StaticResource Spacing.XXS}"
+                                    VerticalOptions="Center">
+                                    <Label
+                                        Text="{Binding DepartmentName, StringFormat='Depto: {0}'}"
+                                        Style="{StaticResource BodySecondaryLabel}"
+                                        LineBreakMode="TailTruncation" />
+                                    <Label
+                                        Text="{Binding PositionName, StringFormat='Cargo: {0}'}"
+                                        Style="{StaticResource SupportingLabel}"
+                                        LineBreakMode="TailTruncation" />
+                                </VerticalStackLayout>
 
                                 <Button
                                     Grid.Row="2"
                                     Grid.Column="1"
                                     Text="Detalhes"
+                                    Style="{StaticResource CompactButtonStyle}"
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.OpenDetailsCommand}"
                                     CommandParameter="{Binding .}"
                                     SemanticProperties.Hint="Abre os detalhes do colaborador selecionado"
                                     HorizontalOptions="End"
                                     VerticalOptions="Center" />
-
                             </Grid>
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
-
             </CollectionView>
         </RefreshView>
-
-        <!-- CTA -->
-        <Button
-            Grid.Row="3"
-            Text="Novo colaborador"
-            Style="{StaticResource PrimaryButtonStyle}"
-            Command="{Binding NewEmployeeCommand}" />
-
     </Grid>
 </ContentPage>

@@ -3,7 +3,8 @@
     x:Class="EmployeeRegistrationApp.Maui.Presentation.Positions.Views.PositionFormPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="{Binding PageTitle}">
+    Title="{Binding PageTitle}"
+    BackgroundColor="{AppThemeBinding Light={StaticResource Color.PageBackground.Light}, Dark={StaticResource Color.PageBackground}}">
 
     <ScrollView>
         <VerticalStackLayout
@@ -14,20 +15,17 @@
             <VerticalStackLayout Spacing="4">
                 <Label
                     Text="{Binding HeaderTitle}"
-                    FontAttributes="Bold"
-                    FontSize="22" />
+                    Style="{StaticResource PageTitleLabel}" />
                 <Label
                     Text="{Binding HeaderSubtitle}"
-                    FontSize="13"
-                    Opacity="0.8" />
+                    Style="{StaticResource BodySecondaryLabel}" />
             </VerticalStackLayout>
 
             <!-- Nome do cargo -->
             <VerticalStackLayout Spacing="4">
                 <Label
                     Text="Nome do cargo"
-                    FontAttributes="Bold"
-                    FontSize="14" />
+                    Style="{StaticResource FieldLabel}" />
                 <Entry
                     Text="{Binding Name}"
                     Placeholder="Ex.: Desenvolvedor Backend Pleno"
@@ -43,8 +41,7 @@
             <VerticalStackLayout Spacing="4">
                 <Label
                     Text="Departamento"
-                    FontAttributes="Bold"
-                    FontSize="14" />
+                    Style="{StaticResource FieldLabel}" />
                 <Picker
                     Title="Selecione o departamento"
                     ItemsSource="{Binding Departments}"
@@ -56,8 +53,7 @@
             <VerticalStackLayout Spacing="4">
                 <Label
                     Text="Tipo"
-                    FontAttributes="Bold"
-                    FontSize="14" />
+                    Style="{StaticResource FieldLabel}" />
                 <Picker
                     Title="Selecione o tipo"
                     ItemsSource="{Binding PositionTypes}"
@@ -68,8 +64,7 @@
             <VerticalStackLayout Spacing="4">
                 <Label
                     Text="Salário base (R$)"
-                    FontAttributes="Bold"
-                    FontSize="14" />
+                    Style="{StaticResource FieldLabel}" />
                 <Entry
                     Keyboard="Numeric"
                     Text="{Binding BaseSalaryText}"
@@ -80,8 +75,7 @@
             <VerticalStackLayout Spacing="4">
                 <Label
                     Text="Descrição"
-                    FontAttributes="Bold"
-                    FontSize="14" />
+                    Style="{StaticResource FieldLabel}" />
                 <Editor
                     AutoSize="TextChanges"
                     HeightRequest="120"
@@ -96,17 +90,16 @@
 
                 <Button
                     Text="Cancelar"
-                    Command="{Binding CancelCommand}" Style="{StaticResource SecondaryButtonStyle}" />
+                    Command="{Binding CancelCommand}"
+                    Style="{StaticResource SecondaryButtonStyle}" />
 
                 <Button
                     Text="Salvar"
                     Command="{Binding SaveCommand}"
                     IsEnabled="{Binding CanSave}"
-                    BackgroundColor="{DynamicResource Color.Primary}"
-                    TextColor="White" />
+                    Style="{StaticResource PrimaryButtonStyle}" />
             </HorizontalStackLayout>
 
-            <!-- Busy indicator simples -->
             <ActivityIndicator
                 IsRunning="{Binding IsBusy}"
                 IsVisible="{Binding IsBusy}"
